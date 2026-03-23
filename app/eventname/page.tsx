@@ -19,55 +19,115 @@ import {
 } from "lucide-react";
 
 const MERCH_POSITIONS = [
-  { top: '10%', left: '5%', rotate: '-rotate-12', type: 'tshirt', size: 'w-48' },
-  { top: '60%', left: '10%', rotate: 'rotate-6', type: 'mug', size: 'w-32' },
-  { top: '20%', right: '10%', rotate: 'rotate-12', type: 'tote', size: 'w-40' },
-  { bottom: '10%', right: '15%', rotate: '-rotate-6', type: 'cap', size: 'w-36' },
+  { top: '8%', left: '4%', rot: '-12deg', type: 'tshirt', size: 'w-56', delay: '0s', duration: '6s' },
+  { top: '55%', left: '8%', rot: '8deg', type: 'mug', size: 'w-40', delay: '1.5s', duration: '7s' },
+  { top: '15%', right: '6%', rot: '12deg', type: 'tote', size: 'w-48', delay: '0.7s', duration: '6.5s' },
+  { bottom: '12%', right: '10%', rot: '-8deg', type: 'cap', size: 'w-44', delay: '2s', duration: '5.5s' },
 ];
 
 const FloatingMerch = ({ currentText }: { currentText: string }) => {
   const displayText = currentText.trim() === "" ? "The Grand Return" : currentText;
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 opacity-40 hidden md:block">
-      {MERCH_POSITIONS.map((pos, index) => (
-        <div 
-          key={index}
-          className={`absolute ${pos.rotate} ${pos.size} transition-all duration-300 ease-out`}
-          style={{ top: pos.top, left: pos.left, right: pos.right, bottom: pos.bottom }}
-        >
-          {pos.type === 'tshirt' && (
-             <div className="relative w-full aspect-square bg-slate-200 rounded-2xl shadow-sm flex items-center justify-center border border-slate-300">
-               <span className="text-xs text-slate-400 absolute top-2">T-Shirt Print</span>
-               <div className="w-3/4 text-center font-serif font-bold text-[#1f295a] text-lg leading-tight break-words">
-                  {displayText}
+    <>
+      {/* Global styles for the organic floating animation */}
+      <style>{`
+        @keyframes organicFloat {
+          0% { transform: translateY(0px) rotate(var(--rot)); }
+          50% { transform: translateY(-15px) rotate(calc(var(--rot) + 3deg)); }
+          100% { transform: translateY(0px) rotate(var(--rot)); }
+        }
+        .merch-item {
+          animation: organicFloat var(--dur) ease-in-out infinite;
+          animation-delay: var(--del);
+        }
+      `}</style>
+
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 opacity-90 hidden xl:block">
+        {MERCH_POSITIONS.map((pos, index) => (
+          <div 
+            key={index}
+            className="absolute merch-item drop-shadow-2xl transition-all"
+            style={{ 
+              top: pos.top, left: pos.left, right: pos.right, bottom: pos.bottom,
+              '--rot': pos.rot, '--del': pos.delay, '--dur': pos.duration 
+            } as React.CSSProperties}
+          >
+            {/* 1. T-SHIRT */}
+            {pos.type === 'tshirt' && (
+               <div className={`${pos.size} relative flex flex-col items-center`}>
+                 {/* Sleeves */}
+                 <div className="absolute top-6 -left-4 w-12 h-16 bg-gradient-to-br from-white to-slate-100 rounded-l-3xl shadow-inner -rotate-12"></div>
+                 <div className="absolute top-6 -right-4 w-12 h-16 bg-gradient-to-bl from-white to-slate-100 rounded-r-3xl shadow-inner rotate-12"></div>
+                 {/* Main Body */}
+                 <div className="relative z-10 w-full aspect-[4/5] bg-gradient-to-b from-white via-slate-50 to-slate-100 rounded-3xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] border border-white/60 flex flex-col items-center pt-10 overflow-hidden">
+                   {/* Neck Cutout */}
+                   <div className="absolute -top-6 w-20 h-14 bg-transparent shadow-[0_10px_0_0_rgba(255,255,255,1)] border-b border-black/5 rounded-b-full"></div>
+                   {/* Text printed on shirt */}
+                   <div className="w-3/4 text-center mt-6 font-serif font-bold text-slate-800 text-xl leading-tight break-words mix-blend-multiply opacity-80">
+                      {displayText}
+                   </div>
+                 </div>
                </div>
-             </div>
-          )}
-          {pos.type === 'mug' && (
-             <div className="relative w-full aspect-square bg-white rounded-lg shadow-md flex items-center justify-center border-l-8 border-slate-300">
-                <div className="w-2/3 text-center font-serif font-bold text-amber-600 text-sm leading-tight break-words">
-                  {displayText}
+            )}
+
+            {/* 2. MUG */}
+            {pos.type === 'mug' && (
+               <div className={`${pos.size} relative`}>
+                 {/* Mug Handle */}
+                 <div className="absolute top-1/2 -right-6 w-12 h-16 -translate-y-1/2 border-[8px] border-white rounded-r-full shadow-lg"></div>
+                 {/* Mug Body */}
+                 <div className="relative z-10 w-full aspect-square bg-gradient-to-br from-white via-slate-50 to-slate-200 rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] border border-white flex flex-col items-center justify-center p-4">
+                    {/* Inner Rim */}
+                    <div className="absolute top-0 w-full h-5 bg-gradient-to-b from-slate-200 to-slate-100 rounded-t-2xl shadow-inner border-b border-black/5"></div>
+                    {/* Printed Text */}
+                    <div className="w-4/5 text-center font-serif font-black text-amber-600 text-base leading-tight break-words mix-blend-multiply mt-2 rotate-[-4deg]">
+                      {displayText}
+                   </div>
+                 </div>
                </div>
-             </div>
-          )}
-          {pos.type === 'tote' && (
-             <div className="relative w-full aspect-[3/4] bg-[#fdfbf7] rounded-sm shadow-sm flex items-center justify-center border-2 border-slate-200 border-t-8">
-                <div className="w-4/5 text-center font-serif font-black text-[#1f295a] text-xl uppercase tracking-tighter break-words">
-                  {displayText}
+            )}
+
+            {/* 3. TOTE BAG */}
+            {pos.type === 'tote' && (
+               <div className={`${pos.size} relative mt-10`}>
+                 {/* Handles */}
+                 <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-20 h-16 border-t-[6px] border-x-[6px] border-[#d4c5b0] rounded-t-full shadow-sm"></div>
+                 <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-20 h-16 border-t-[6px] border-x-[6px] border-[#e8ddcb] rounded-t-full -z-10 opacity-70"></div>
+                 {/* Tote Body */}
+                 <div className="relative z-10 w-full aspect-[3/4] bg-[#fdfaf5] rounded-b-xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border border-white/50 flex items-center justify-center overflow-hidden">
+                    {/* Fabric Texture/Lighting Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-black/5 to-transparent"></div>
+                    {/* Printed Text */}
+                    <div className="relative z-20 w-4/5 text-center font-serif font-bold text-[#1f295a] text-2xl uppercase tracking-tighter break-words mix-blend-multiply opacity-90">
+                      {displayText}
+                   </div>
+                 </div>
                </div>
-             </div>
-          )}
-          {pos.type === 'cap' && (
-             <div className="relative w-full aspect-[2/1] bg-navy-900 bg-[#1f295a] rounded-t-full shadow-sm flex items-end justify-center pb-2">
-                <div className="w-1/2 text-center font-sans font-bold text-white text-[10px] leading-tight break-words">
-                  {displayText}
+            )}
+
+            {/* 4. CAP */}
+            {pos.type === 'cap' && (
+               <div className={`${pos.size} relative flex flex-col justify-end pb-4`}>
+                 {/* Crown */}
+                 <div className="relative z-10 w-4/5 aspect-[4/3] bg-gradient-to-br from-[#2a3775] to-[#151c3d] mx-auto rounded-t-full shadow-xl border-t border-white/20 flex flex-col items-center justify-end pb-3">
+                    {/* Top Button */}
+                    <div className="absolute -top-2 w-4 h-3 bg-[#151c3d] rounded-t-full"></div>
+                    {/* Front Seam */}
+                    <div className="absolute top-0 bottom-0 left-1/2 w-[2px] bg-black/10"></div>
+                    {/* Embroidered Text */}
+                    <div className="relative z-20 w-3/4 text-center font-sans font-bold text-white text-[11px] leading-tight break-words drop-shadow-md">
+                      {displayText}
+                   </div>
+                 </div>
+                 {/* Brim */}
+                 <div className="absolute bottom-2 left-0 w-full h-8 bg-[#0f142b] rounded-full shadow-[0_20px_25px_-5px_rgba(0,0,0,0.6)] z-0 transform translate-y-2 border-t border-white/10"></div>
                </div>
-             </div>
-          )}
-        </div>
-      ))}
-    </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
@@ -119,12 +179,12 @@ export default function EventNamePage() {
       {/* Immersive Overlay */}
       <div className="absolute inset-0 bg-[#1f295a]/65 backdrop-blur-[2px]"></div>
 
-      {/* NEW: The Floating Merch Background Component */}
+      {/* NEW: Premium Floating Merch Component */}
       <FloatingMerch currentText={eventName} />
 
       <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 bg-white/95 backdrop-blur-md overflow-hidden sm:rounded-[2rem] shadow-2xl border border-white/20">
         
-        {/* Header Section: Compact on mobile, sidebar on desktop */}
+        {/* Header Section */}
         <div className="lg:col-span-4 bg-[#1f295a]/90 p-6 md:p-12 text-white flex flex-col justify-center">
           <div className="animate-in fade-in slide-in-from-top-4 duration-700">
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-[9px] font-semibold uppercase tracking-[0.3em] mb-4 md:mb-8">
@@ -158,7 +218,7 @@ export default function EventNamePage() {
           </div>
         </div>
 
-        {/* Form Section: Fluid padding for mobile comfort */}
+        {/* Form Section */}
         <div className="lg:col-span-8 p-6 md:p-16 bg-white">
           {status === "success" ? (
             <div className="h-full flex flex-col items-center justify-center text-center py-10 animate-in fade-in zoom-in duration-500">
