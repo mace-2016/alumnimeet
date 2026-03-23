@@ -12,14 +12,64 @@ import {
   Send,
   CheckCircle,
   Loader2,
-  User,
-  Mail,
   Home,
-  GraduationCap,
   MapPin,
   Calendar,
   Languages,
 } from "lucide-react";
+
+const MERCH_POSITIONS = [
+  { top: '10%', left: '5%', rotate: '-rotate-12', type: 'tshirt', size: 'w-48' },
+  { top: '60%', left: '10%', rotate: 'rotate-6', type: 'mug', size: 'w-32' },
+  { top: '20%', right: '10%', rotate: 'rotate-12', type: 'tote', size: 'w-40' },
+  { bottom: '10%', right: '15%', rotate: '-rotate-6', type: 'cap', size: 'w-36' },
+];
+
+const FloatingMerch = ({ currentText }: { currentText: string }) => {
+  const displayText = currentText.trim() === "" ? "The Grand Return" : currentText;
+
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 opacity-40 hidden md:block">
+      {MERCH_POSITIONS.map((pos, index) => (
+        <div 
+          key={index}
+          className={`absolute ${pos.rotate} ${pos.size} transition-all duration-300 ease-out`}
+          style={{ top: pos.top, left: pos.left, right: pos.right, bottom: pos.bottom }}
+        >
+          {pos.type === 'tshirt' && (
+             <div className="relative w-full aspect-square bg-slate-200 rounded-2xl shadow-sm flex items-center justify-center border border-slate-300">
+               <span className="text-xs text-slate-400 absolute top-2">T-Shirt Print</span>
+               <div className="w-3/4 text-center font-serif font-bold text-[#1f295a] text-lg leading-tight break-words">
+                  {displayText}
+               </div>
+             </div>
+          )}
+          {pos.type === 'mug' && (
+             <div className="relative w-full aspect-square bg-white rounded-lg shadow-md flex items-center justify-center border-l-8 border-slate-300">
+                <div className="w-2/3 text-center font-serif font-bold text-amber-600 text-sm leading-tight break-words">
+                  {displayText}
+               </div>
+             </div>
+          )}
+          {pos.type === 'tote' && (
+             <div className="relative w-full aspect-[3/4] bg-[#fdfbf7] rounded-sm shadow-sm flex items-center justify-center border-2 border-slate-200 border-t-8">
+                <div className="w-4/5 text-center font-serif font-black text-[#1f295a] text-xl uppercase tracking-tighter break-words">
+                  {displayText}
+               </div>
+             </div>
+          )}
+          {pos.type === 'cap' && (
+             <div className="relative w-full aspect-[2/1] bg-navy-900 bg-[#1f295a] rounded-t-full shadow-sm flex items-end justify-center pb-2">
+                <div className="w-1/2 text-center font-sans font-bold text-white text-[10px] leading-tight break-words">
+                  {displayText}
+               </div>
+             </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default function EventNamePage() {
   const [eventName, setEventName] = useState("");
@@ -64,20 +114,13 @@ export default function EventNamePage() {
     }
   };
 
-  const resetForm = () => {
-    setEventName("");
-    setSubmitterName("");
-    setPhone("");
-    setEmailId("");
-    setClassYear("");
-    setStatus("idle");
-    setLang("en");
-  };
-
   return (
     <div className="relative min-h-screen flex items-center justify-center p-0 sm:p-6 lg:p-10 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/hero.jpg')" }}>
       {/* Immersive Overlay */}
       <div className="absolute inset-0 bg-[#1f295a]/65 backdrop-blur-[2px]"></div>
+
+      {/* NEW: The Floating Merch Background Component */}
+      <FloatingMerch currentText={eventName} />
 
       <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 bg-white/95 backdrop-blur-md overflow-hidden sm:rounded-[2rem] shadow-2xl border border-white/20">
         
@@ -146,29 +189,27 @@ export default function EventNamePage() {
                   }`}
                 >
                   <Languages className="w-3.5 h-3.5" />
-                  {lang === "ml" ? "Malayalam Mode" : "Malayalam Mode"}
+                  {lang === "ml" ? "English Mode" : "Malayalam Mode"}
                 </button>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Proposed Title: Prominent Serif Typography */}
                 <div className="space-y-3">
                   <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.2em] ml-1">Proposed Title *</label>
                   <div className="relative">
                     <Sparkles className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-5 text-amber-500 z-10 opacity-30" />
                     <ReactTransliterate
-  renderComponent={(props) => (
-    <input {...props} required className="w-full pl-9 py-4 border-b border-slate-200 focus:border-[#1f295a] outline-none text-[#1f295a] font-serif text-2xl md:text-3xl transition-all placeholder:text-slate-100 bg-transparent" placeholder={lang === "ml" ? "മലയാളത്തിൽ..." : "The Grand Return"} />
-  )}
-  value={eventName}
-  onChangeText={(text) => setEventName(text)}
-  lang={lang as any} 
-  enabled={lang === "ml"}
-/>
+                      renderComponent={(props) => (
+                        <input {...props} required className="w-full pl-9 py-4 border-b border-slate-200 focus:border-[#1f295a] outline-none text-[#1f295a] font-serif text-2xl md:text-3xl transition-all placeholder:text-slate-100 bg-transparent" placeholder={lang === "ml" ? "മലയാളത്തിൽ..." : "The Grand Return"} />
+                      )}
+                      value={eventName}
+                      onChangeText={(text) => setEventName(text)}
+                      lang={lang as any} 
+                      enabled={lang === "ml"}
+                    />
                   </div>
                 </div>
 
-                {/* Information Grid: Lightened Labels */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                   <div className="space-y-2">
                     <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.2em]">Your Name *</label>
