@@ -1,26 +1,51 @@
 @import "tailwindcss";
 
+@theme {
+  /* This links the Next.js font variables from layout.tsx to Tailwind */
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+
+  /* Custom branding colors from your poster */
+  --color-mace-navy: #1f295a;
+  --color-mace-gold: #fbbf24;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Updated to use the Inter font defined in your theme */
+  font-family: var(--font-sans);
+}
+
+/* Existing phone input overrides to keep the UI clean */
+.react-international-phone-input {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.react-international-phone-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.react-international-phone-country-selector-button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.react-international-phone-country-selector-dropdown {
+  z-index: 9999 !important;
 }
