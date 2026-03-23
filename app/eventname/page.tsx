@@ -18,56 +18,6 @@ import {
   Languages,
 } from "lucide-react";
 
-// NEW: Dynamic Stage Banner Component
-const StageBanner = ({ currentText }: { currentText: string }) => {
-  const displayText = currentText.trim() === "" ? "The Grand Return" : currentText;
-
-  return (
-    <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 relative z-20 -mb-6 sm:-mb-12 mt-4 sm:mt-8">
-      <style>{`
-        @keyframes gentleSway {
-          0% { transform: rotateX(2deg) rotateY(0deg) translateY(0); }
-          50% { transform: rotateX(-1deg) rotateY(1deg) translateY(-2px); }
-          100% { transform: rotateX(2deg) rotateY(0deg) translateY(0); }
-        }
-        .banner-sway {
-          animation: gentleSway 6s ease-in-out infinite;
-          transform-origin: top center;
-        }
-      `}</style>
-
-      {/* Ropes/Cables hanging from the "ceiling" */}
-      <div className="absolute -top-12 left-[15%] w-[2px] h-16 bg-gradient-to-b from-transparent to-slate-400 z-10"></div>
-      <div className="absolute -top-12 right-[15%] w-[2px] h-16 bg-gradient-to-b from-transparent to-slate-400 z-10"></div>
-
-      {/* The Banner Itself */}
-      <div className="banner-sway relative w-full bg-[#fdfbf7] rounded-sm shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] border-t border-b border-white overflow-hidden flex items-center justify-center min-h-[140px] md:min-h-[220px]">
-        
-        {/* Grommets (Metal eyelets) */}
-        <div className="absolute top-3 left-[15%] -translate-x-1/2 w-4 h-4 rounded-full bg-slate-200 border-2 border-slate-400 shadow-inner z-20"></div>
-        <div className="absolute top-3 right-[15%] translate-x-1/2 w-4 h-4 rounded-full bg-slate-200 border-2 border-slate-400 shadow-inner z-20"></div>
-
-        {/* Ambient Stage Lighting & Fabric Folds */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/10 pointer-events-none z-10"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.9)_0%,_transparent_70%)] pointer-events-none z-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10 pointer-events-none z-10"></div>
-
-        {/* Dynamic Text */}
-        <div className="relative z-20 w-10/12 text-center py-8">
-          <h2 
-            className="font-serif font-black text-[#1f295a] text-3xl sm:text-5xl md:text-6xl tracking-tight leading-tight mix-blend-multiply opacity-90 break-words drop-shadow-sm transition-all duration-200"
-            style={{ 
-              textShadow: "0px 2px 4px rgba(255,255,255,0.8)" 
-            }}
-          >
-            {displayText}
-          </h2>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 export default function EventNamePage() {
   const [eventName, setEventName] = useState("");
   const [submitterName, setSubmitterName] = useState("");
@@ -112,18 +62,15 @@ export default function EventNamePage() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center p-0 sm:p-6 lg:p-10 bg-cover bg-center bg-no-repeat bg-fixed" style={{ backgroundImage: "url('/hero.jpg')" }}>
+    <div className="relative min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-cover bg-center bg-no-repeat bg-fixed" style={{ backgroundImage: "url('/hero.jpg')" }}>
       {/* Immersive Dark Overlay */}
       <div className="absolute inset-0 bg-[#151c3d]/80 backdrop-blur-sm z-0"></div>
 
-      {/* NEW: The hanging stage banner sitting above the form */}
-      <StageBanner currentText={eventName} />
-
       {/* Main Card */}
-      <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 bg-white/95 backdrop-blur-xl overflow-hidden sm:rounded-[2rem] shadow-2xl border border-white/20 mt-8">
+      <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 bg-white/95 backdrop-blur-xl overflow-hidden rounded-3xl sm:rounded-[2rem] shadow-2xl border border-white/20">
         
         {/* Header Section */}
-        <div className="lg:col-span-4 bg-gradient-to-br from-[#1f295a] to-[#151c3d] p-6 md:p-12 text-white flex flex-col justify-center relative overflow-hidden">
+        <div className="lg:col-span-4 bg-gradient-to-br from-[#1f295a] to-[#151c3d] p-8 md:p-12 text-white flex flex-col justify-center relative overflow-hidden">
           {/* Subtle background decoration inside the dark panel */}
           <div className="absolute -top-20 -left-20 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
           
@@ -164,7 +111,7 @@ export default function EventNamePage() {
         </div>
 
         {/* Form Section */}
-        <div className="lg:col-span-8 p-6 md:p-16 bg-white">
+        <div className="lg:col-span-8 p-6 md:p-16 bg-white flex flex-col justify-center">
           {status === "success" ? (
             <div className="h-full flex flex-col items-center justify-center text-center py-10 animate-in fade-in zoom-in duration-500">
               <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
@@ -179,7 +126,7 @@ export default function EventNamePage() {
               </Link>
             </div>
           ) : (
-            <div className="max-w-xl mx-auto lg:mx-0">
+            <div className="max-w-xl mx-auto lg:mx-0 w-full">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10 md:mb-12">
                 <div>
                   <h2 className="text-2xl font-serif font-bold text-[#1f295a]">Title Naming</h2>
