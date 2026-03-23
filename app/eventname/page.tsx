@@ -157,11 +157,14 @@ export default function EventNamePage() {
                   <div className="relative">
                     <Sparkles className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-5 text-amber-500 z-10 opacity-30" />
                     <ReactTransliterate
-                      renderComponent={(props) => (
-                        <input {...props} required className="w-full pl-9 py-4 border-b border-slate-200 focus:border-[#1f295a] outline-none text-[#1f295a] font-serif text-2xl md:text-3xl transition-all placeholder:text-slate-100 bg-transparent" placeholder={lang === "ml" ? "Orma..." : "The Grand Return"} />
-                      )}
-                      value={eventName} onChangeText={(text) => setEventName(text)} lang={lang} enabled={lang === "ml"}
-                    />
+  renderComponent={(props) => (
+    <input {...props} required className="w-full pl-9 py-4 border-b border-slate-200 focus:border-[#1f295a] outline-none text-[#1f295a] font-serif text-2xl md:text-3xl transition-all placeholder:text-slate-100 bg-transparent" placeholder={lang === "ml" ? "മലയാളത്തിൽ..." : "The Grand Return"} />
+  )}
+  value={eventName}
+  onChangeText={(text) => setEventName(text)}
+  lang={lang as any} 
+  enabled={lang === "ml"}
+/>
                   </div>
                 </div>
 
