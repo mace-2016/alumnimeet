@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, MessageCircle, Sparkles, ChevronDown } from "lucide-react";
-
+import { ArrowRight, MessageCircle, Sparkles, ChevronDown, Calendar, MapPin } from "lucide-react";
 export default function HomePage() {
   const [mounted, setMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -59,10 +58,14 @@ export default function HomePage() {
             </p>
             
             <div className="flex items-center justify-center gap-4 text-[10px] uppercase tracking-[0.3em] text-amber-500/80 font-semibold bg-white/5 inline-flex px-6 py-2 rounded-full border border-white/10">
-              <span>Dec 19</span>
-              <span className="opacity-30 text-white">|</span>
-              <span>The OAT</span>
-            </div>
+  <span className="flex items-center gap-2">
+    <Calendar className="w-3 h-3" /> Dec 19
+  </span>
+  <span className="opacity-30 text-white">|</span>
+  <span className="flex items-center gap-2">
+    <MapPin className="w-3 h-3" /> The OAT
+  </span>
+</div>
           </div>
         </div>
 
