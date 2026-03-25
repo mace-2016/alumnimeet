@@ -67,7 +67,9 @@ export default function ContestsHubPage() {
         {/* Header Section */}
         <div className="text-center mb-12 animate-in fade-in slide-in-from-top-6 duration-700">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-[10px] font-semibold uppercase tracking-[0.3em] mb-6">
-            <Sparkles className="w-3.5 h-3.5" /> exclusive rewards await
+            <Sparkles className="w-3.5 h-3.5" /> Winning entry unlocks exclusive rewards.
+
+
           </div>
           <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-4 tracking-tight">
             Let's get it <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 italic font-light">Rolling!!</span>
