@@ -73,11 +73,11 @@ export default function RootLayout({
                       className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1f295a] hover:bg-amber-50 hover:text-amber-600 transition-colors"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-green-400 shadow-[0_0_5px_rgba(74,222,128,0.5)]"></span>
-                      Contest 01: Naming
+                      01: The Naming
                     </Link>
                     <div className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 bg-slate-50/50 cursor-not-allowed">
                       <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-                      Phase 02 (Locked)
+                      02:███ ██████ (Locked)
                     </div>
                   </div>
                 </div>
@@ -90,6 +90,16 @@ export default function RootLayout({
               >
                 Registration <Lock className="w-3 h-3 opacity-50" />
               </div>
+
+
+{/* 6. Itinerary (Locked - Hidden on very small screens to prevent clutter) */}
+              <div 
+                className="hidden md:flex items-center gap-1.5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300 cursor-not-allowed select-none"
+                title="Opening Soon"
+              >
+                The Master Plan <Lock className="w-3 h-3 opacity-50" />
+              </div>
+              
 
               {/* 4. Merchandise (Locked) */}
               <div 
@@ -107,13 +117,7 @@ export default function RootLayout({
                 Gallery <Lock className="w-3 h-3 opacity-50" />
               </div>
 
-              {/* 6. Itinerary (Locked - Hidden on very small screens to prevent clutter) */}
-              <div 
-                className="hidden md:flex items-center gap-1.5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300 cursor-not-allowed select-none"
-                title="Opening Soon"
-              >
-                Itinerary <Lock className="w-3 h-3 opacity-50" />
-              </div>
+              
 
             </nav>
           </header>
