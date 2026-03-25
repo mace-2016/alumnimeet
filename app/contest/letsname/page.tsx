@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -17,9 +16,12 @@ import {
   MapPin,
   Calendar,
   Languages,
+  ArrowRight,
+  ArrowLeft,
 } from "lucide-react";
 
 export default function EventNamePage() {
+  const [step, setStep] = useState(1); // New state to track the form step
   const [eventName, setEventName] = useState("");
   const [submitterName, setSubmitterName] = useState("");
   const [phone, setPhone] = useState("");
@@ -27,6 +29,16 @@ export default function EventNamePage() {
   const [classYear, setClassYear] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [lang, setLang] = useState<"en" | "ml">("en");
+
+  const handleNext = () => {
+    if (eventName.trim()) {
+      setStep(2);
+    }
+  };
+
+  const handleBack = () => {
+    setStep(1);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -112,7 +124,7 @@ export default function EventNamePage() {
         </div>
 
         {/* Form Section */}
-        <div className="lg:col-span-8 p-6 md:p-16 bg-white flex flex-col justify-center">
+        <div className="lg:col-span-8 p-6 md:p-16 bg-white flex flex-col justify-center overflow-hidden">
           {status === "success" ? (
             <div className="h-full flex flex-col items-center justify-center text-center py-10 animate-in fade-in zoom-in duration-500">
               <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
@@ -122,83 +134,118 @@ export default function EventNamePage() {
               <p className="text-slate-500 text-base max-w-sm mx-auto mb-10 leading-relaxed">
                 Thank you for contributing. We'll review your suggestion for the grand return.
               </p>
-              <Link href="/" className="inline-flex items-center gap-3 bg-[#1f295a] text-white px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] shadow-[0_10px_20px_-10px_rgba(31,41,90,0.5)] hover:bg-amber-500 hover:shadow-[0_10px_20px_-10px_rgba(245,158,11,0.5)] transition-all active:scale-95">
-                <Home className="w-4 h-4" /> Return Home
-              </Link>
+              <button onClick={() => { setStatus("idle"); setStep(1); setEventName(""); }} className="inline-flex items-center gap-3 bg-[#1f295a] text-white px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] shadow-[0_10px_20px_-10px_rgba(31,41,90,0.5)] hover:bg-amber-500 hover:shadow-[0_10px_20px_-10px_rgba(245,158,11,0.5)] transition-all active:scale-95">
+                <Home className="w-4 h-4" /> Submit Another
+              </button>
             </div>
           ) : (
-            <div className="max-w-xl mx-auto lg:mx-0 w-full">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10 md:mb-12">
-                <div>
-                  <h2 className="text-2xl font-serif font-bold text-[#1f295a]">Title Naming</h2>
-                  <p className="text-[11px] text-slate-400 uppercase tracking-[0.2em] font-medium mt-1">What should we call our homecoming?</p>
-                </div>
+            <div className="max-w-xl mx-auto lg:mx-0 w-full relative">
+              <form onSubmit={handleSubmit}>
                 
-                <button 
-                  type="button" 
-                  onClick={() => setLang(lang === "en" ? "ml" : "en")}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all border ${
-                    lang === "ml" 
-                    ? "bg-amber-400 border-amber-400 text-[#1f295a] shadow-[0_8px_16px_-6px_rgba(251,191,36,0.5)]" 
-                    : "bg-slate-50 border-slate-200 text-slate-500 hover:bg-slate-100"
-                  }`}
-                >
-                  <Languages className="w-3.5 h-3.5" />
-                  {lang === "ml" ? "English Mode" : "Malayalam Mode"}
-                </button>
-              </div>
-
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="space-y-3">
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1">Proposed Title *</label>
-                  <div className="relative group">
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-full flex items-center justify-center">
-                      <Sparkles className="h-5 w-5 text-amber-500 opacity-50 group-focus-within:opacity-100 transition-opacity" />
+                {/* STEP 1: EVENT NAME */}
+                {step === 1 && (
+                  <div className="animate-in fade-in slide-in-from-right-8 duration-500 space-y-8">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10 md:mb-12">
+                      <div>
+                        <h2 className="text-2xl font-serif font-bold text-[#1f295a]">Title Naming</h2>
+                        <p className="text-[11px] text-slate-400 uppercase tracking-[0.2em] font-medium mt-1">What should we call our homecoming?</p>
+                      </div>
+                      
+                      <button 
+                        type="button" 
+                        onClick={() => setLang(lang === "en" ? "ml" : "en")}
+                        className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all border ${
+                          lang === "ml" 
+                          ? "bg-amber-400 border-amber-400 text-[#1f295a] shadow-[0_8px_16px_-6px_rgba(251,191,36,0.5)]" 
+                          : "bg-slate-50 border-slate-200 text-slate-500 hover:bg-slate-100"
+                        }`}
+                      >
+                        <Languages className="w-3.5 h-3.5" />
+                        {lang === "ml" ? "English Mode" : "Malayalam Mode"}
+                      </button>
                     </div>
-                    <ReactTransliterate
-                      renderComponent={(props) => (
-                        <input {...props} required className="w-full pl-12 py-4 border-b-2 border-slate-100 focus:border-[#1f295a] outline-none text-[#1f295a] font-serif text-2xl md:text-3xl transition-colors placeholder:text-slate-200 bg-transparent" placeholder={lang === "ml" ? "മലയാളത്തിൽ..." : "The Grand Return"} />
-                      )}
-                      value={eventName}
-                      onChangeText={(text) => setEventName(text)}
-                      lang={lang as any} 
-                      enabled={lang === "ml"}
-                    />
-                  </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 pt-4">
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1">Your Name *</label>
-                    <input required type="text" value={submitterName} onChange={(e) => setSubmitterName(e.target.value)} className="w-full px-1 py-3 border-b-2 border-slate-100 focus:border-[#1f295a] outline-none text-sm font-medium transition-colors bg-transparent" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1">Branch *</label>
-                    <select required value={classYear} onChange={(e) => setClassYear(e.target.value)} className="w-full px-1 py-3 border-b-2 border-slate-100 focus:border-[#1f295a] outline-none text-sm font-medium bg-transparent appearance-none transition-colors cursor-pointer">
-                      <option value="" disabled>Select Branch</option>
-                      <option value="Mech A">Mechanical A</option><option value="Mech B">Mechanical B</option>
-                      <option value="EEE A">EEE A</option><option value="EEE B">EEE B</option>
-                      <option value="EC">Electronics</option><option value="CS">Computer Science</option>
-                      <option value="Civil A">Civil A</option><option value="Civil B">Civil B</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1">WhatsApp Number *</label>
-                    <div className="border-b-2 border-slate-100 focus-within:border-[#1f295a] transition-colors pt-2 pb-1 px-1">
-                      <PhoneInput defaultCountry="in" value={phone} onChange={(val) => setPhone(val)} inputClassName="!w-full !border-0 !text-sm !font-medium !h-8 !bg-transparent !outline-none" />
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1">Proposed Title *</label>
+                      <div className="relative group">
+                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-full flex items-center justify-center">
+                          <Sparkles className="h-5 w-5 text-amber-500 opacity-50 group-focus-within:opacity-100 transition-opacity" />
+                        </div>
+                        <ReactTransliterate
+                          renderComponent={(props) => (
+                            <input {...props} required className="w-full pl-12 py-4 border-b-2 border-slate-100 focus:border-[#1f295a] outline-none text-[#1f295a] font-serif text-2xl md:text-3xl transition-colors placeholder:text-slate-200 bg-transparent" placeholder={lang === "ml" ? "മലയാളത്തിൽ..." : "The Grand Return"} />
+                          )}
+                          value={eventName}
+                          onChangeText={(text) => setEventName(text)}
+                          lang={lang as any} 
+                          enabled={lang === "ml"}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="pt-8 flex justify-end">
+                      <button 
+                        type="button" 
+                        onClick={handleNext} 
+                        disabled={!eventName.trim()} 
+                        className="w-full sm:w-auto flex justify-center items-center gap-3 px-10 py-4 rounded-full font-bold text-white bg-[#1f295a] shadow-[0_10px_20px_-10px_rgba(31,41,90,0.5)] hover:bg-amber-500 hover:shadow-[0_10px_20px_-10px_rgba(245,158,11,0.5)] transition-all active:scale-[0.98] disabled:opacity-50 disabled:hover:bg-[#1f295a] uppercase tracking-[0.2em] text-[11px]"
+                      >
+                        Next Step <ArrowRight className="w-4 h-4" />
+                      </button>
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1">Email (Optional)</label>
-                    <input type="email" value={emailId} onChange={(e) => setEmailId(e.target.value)} className="w-full px-1 py-3 border-b-2 border-slate-100 focus:border-[#1f295a] outline-none text-sm font-medium transition-colors bg-transparent placeholder:text-slate-300" placeholder="name@mace.ac.in" />
-                  </div>
-                </div>
+                )}
 
-                <div className="pt-8 flex justify-end">
-                  <button type="submit" disabled={status === "submitting"} className="w-full sm:w-auto flex justify-center items-center gap-3 px-10 py-4 rounded-full font-bold text-white bg-[#1f295a] shadow-[0_10px_20px_-10px_rgba(31,41,90,0.5)] hover:bg-amber-500 hover:shadow-[0_10px_20px_-10px_rgba(245,158,11,0.5)] transition-all active:scale-[0.98] disabled:opacity-50 uppercase tracking-[0.2em] text-[11px]">
-                    {status === "submitting" ? <Loader2 className="animate-spin h-5 w-5" /> : <>Submit Idea <Send className="w-4 h-4" /></>}
-                  </button>
-                </div>
+                {/* STEP 2: PERSONAL DETAILS */}
+                {step === 2 && (
+                  <div className="animate-in fade-in slide-in-from-right-8 duration-500 space-y-8">
+                     <div className="mb-8 md:mb-10">
+                        <h2 className="text-2xl font-serif font-bold text-[#1f295a]">Your Details</h2>
+                        <p className="text-[11px] text-slate-400 uppercase tracking-[0.2em] font-medium mt-1">So we know who to credit for the idea</p>
+                      </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1">Your Name *</label>
+                        <input required type="text" value={submitterName} onChange={(e) => setSubmitterName(e.target.value)} className="w-full px-1 py-3 border-b-2 border-slate-100 focus:border-[#1f295a] outline-none text-sm font-medium transition-colors bg-transparent" placeholder="John Doe" />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1">Branch *</label>
+                        <select required value={classYear} onChange={(e) => setClassYear(e.target.value)} className="w-full px-1 py-3 border-b-2 border-slate-100 focus:border-[#1f295a] outline-none text-sm font-medium bg-transparent appearance-none transition-colors cursor-pointer">
+                          <option value="" disabled>Select Branch</option>
+                          <option value="Mech A">Mechanical A</option><option value="Mech B">Mechanical B</option>
+                          <option value="EEE A">EEE A</option><option value="EEE B">EEE B</option>
+                          <option value="EC">Electronics</option><option value="CS">Computer Science</option>
+                          <option value="Civil A">Civil A</option><option value="Civil B">Civil B</option>
+                        </select>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1">WhatsApp Number *</label>
+                        <div className="border-b-2 border-slate-100 focus-within:border-[#1f295a] transition-colors pt-2 pb-1 px-1">
+                          <PhoneInput defaultCountry="in" value={phone} onChange={(val) => setPhone(val)} inputClassName="!w-full !border-0 !text-sm !font-medium !h-8 !bg-transparent !outline-none" />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1">Email (Optional)</label>
+                        <input type="email" value={emailId} onChange={(e) => setEmailId(e.target.value)} className="w-full px-1 py-3 border-b-2 border-slate-100 focus:border-[#1f295a] outline-none text-sm font-medium transition-colors bg-transparent placeholder:text-slate-300" placeholder="name@mace.ac.in" />
+                      </div>
+                    </div>
+
+                    <div className="pt-8 flex flex-col-reverse sm:flex-row justify-between items-center gap-4">
+                      <button 
+                        type="button" 
+                        onClick={handleBack}
+                        className="text-slate-400 hover:text-[#1f295a] flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] transition-colors py-2"
+                      >
+                        <ArrowLeft className="w-4 h-4" /> Back
+                      </button>
+                      <button type="submit" disabled={status === "submitting"} className="w-full sm:w-auto flex justify-center items-center gap-3 px-10 py-4 rounded-full font-bold text-white bg-[#1f295a] shadow-[0_10px_20px_-10px_rgba(31,41,90,0.5)] hover:bg-amber-500 hover:shadow-[0_10px_20px_-10px_rgba(245,158,11,0.5)] transition-all active:scale-[0.98] disabled:opacity-50 uppercase tracking-[0.2em] text-[11px]">
+                        {status === "submitting" ? <Loader2 className="animate-spin h-5 w-5" /> : <>Submit Idea <Send className="w-4 h-4" /></>}
+                      </button>
+                    </div>
+                  </div>
+                )}
+
               </form>
             </div>
           )}
