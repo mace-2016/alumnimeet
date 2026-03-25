@@ -81,11 +81,11 @@ export default function RootLayout({
                     </div>
                      <div className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 bg-slate-50/50 cursor-not-allowed">
                       <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-                      03:███ ██████ <Lock className="w-3 h-3 opacity-50" />
+                      03:█████ ████ <Lock className="w-3 h-3 opacity-50" />
                     </div>
                      <div className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 bg-slate-50/50 cursor-not-allowed">
                       <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-                      04:█████████ ████ <Lock className="w-3 h-3 opacity-50" />
+                      04:██ █ █████ <Lock className="w-3 h-3 opacity-50" />
                     </div>
                   </div>
                 </div>
