@@ -38,7 +38,7 @@ export default function ContestsHubPage() {
     {
       id: 3,
       tag: "Contest #03",
-      title: "███ ██████",
+      title: "█████ ████",
       description: "████ ██ ██████ ██ ██████ ███ ████████ █████ ████ ████ ███ ███ █████.",
       status: "locked",
       href: "#",
@@ -47,13 +47,14 @@ export default function ContestsHubPage() {
     {
       id: 4,
       tag: "Contest #04",
-      title: "█████████ ████",
+      title: "██ █ █████",
       description: "██████ ████ ████ ██████████ ██████ ████ ████-████ ███ ███ ████ ████████.",
       status: "locked",
       href: "#",
       icon: Camera,
     },
   ];
+
 
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
