@@ -190,7 +190,7 @@ export default function EventNamePage() {
                         disabled={!eventName.trim()} 
                         className="w-full sm:w-auto flex justify-center items-center gap-3 px-10 py-4 rounded-full font-bold text-white bg-[#1f295a] shadow-[0_10px_20px_-10px_rgba(31,41,90,0.5)] hover:bg-amber-500 hover:shadow-[0_10px_20px_-10px_rgba(245,158,11,0.5)] transition-all active:scale-[0.98] disabled:opacity-50 disabled:hover:bg-[#1f295a] uppercase tracking-[0.2em] text-[11px]"
                       >
-                        Next Step <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
