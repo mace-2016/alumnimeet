@@ -142,7 +142,7 @@ export default function ContestsHubPage() {
 
                     <div className="w-full sm:w-auto mt-2 sm:mt-0 flex-shrink-0">
                       <div className="flex items-center justify-center gap-2 px-6 py-3 bg-transparent border border-white/10 text-slate-500 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] cursor-not-allowed">
-                        <Lock className="w-3.5 h-3.5" /> Coming Soon
+                        <Lock className="w-3.5 h-3.5" />
                       </div>
                     </div>
                   </div>
