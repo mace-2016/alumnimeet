@@ -96,8 +96,7 @@ export default function EventNamePage() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 italic font-light">to 2016</span>
             </h1>
             <p className="hidden sm:block text-slate-300 text-sm font-light leading-relaxed opacity-90 mb-0 md:mb-10">
-              Reminisce together & re-live a legacy of memories. <br className="hidden lg:block mt-2" />
-              മലയാളത്തിലും പേരുകൾ നിർദ്ദേശിക്കാം.
+              Reminisce together & re-live a legacy of memories. 
             </p>
           </div>
 
@@ -166,7 +165,12 @@ export default function EventNamePage() {
                     </div>
 
                     <div className="space-y-3">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1">Proposed Title *</label>
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1 leading-tight">
+  Proposed Title *
+  <span className="hidden lg:block normal-case tracking-normal text-[10px] text-slate-500 mt-1">
+    മലയാളത്തിലും പേരുകൾ നിർദ്ദേശിക്കാം.
+  </span>
+</label>
                       <div className="relative group">
                         <div className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-full flex items-center justify-center">
                           <Sparkles className="h-5 w-5 text-amber-500 opacity-50 group-focus-within:opacity-100 transition-opacity" />
