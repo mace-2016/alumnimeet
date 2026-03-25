@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { ReactTransliterate } from "react-transliterate";
@@ -12,7 +11,6 @@ import {
   Send,
   CheckCircle,
   Loader2,
-  Home,
   MapPin,
   Calendar,
   Languages,
@@ -20,6 +18,7 @@ import {
   ArrowLeft,
   Trophy,
   Lock,
+  Gift,
 } from "lucide-react";
 
 export default function EventNamePage() {
@@ -89,7 +88,6 @@ export default function EventNamePage() {
           <div className="absolute -top-20 -left-20 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
           
           <div className="relative z-10 animate-in fade-in slide-in-from-left-4 duration-700">
-            {/* UPDATED: Standardized Contest Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-[10px] font-semibold uppercase tracking-[0.3em] mb-6 md:mb-10">
               <Trophy className="w-3.5 h-3.5" /> Contest #01 • Naming
             </div>
@@ -97,9 +95,22 @@ export default function EventNamePage() {
               Journey Back <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 italic font-light">to 2016</span>
             </h1>
-            <p className="hidden sm:block text-slate-300 text-sm font-light leading-relaxed opacity-90 mb-0 md:mb-10">
+            <p className="hidden sm:block text-slate-300 text-sm font-light leading-relaxed opacity-90 mb-6">
               Submit the winning title and cement your legacy. The countdown to our grand return begins here.
             </p>
+
+            {/* "The Bounty" Rewards Callout */}
+            <div className="hidden sm:flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md mb-0 md:mb-4">
+              <div className="p-2.5 rounded-full bg-gradient-to-br from-amber-400/20 to-amber-600/20 border border-amber-400/20 shadow-[0_0_15px_rgba(251,191,36,0.15)] flex-shrink-0">
+                <Gift className="w-5 h-5 text-amber-400" />
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-amber-400 font-bold mb-1">The Bounty</p>
+                <p className="text-xs text-slate-300 font-light leading-relaxed">
+                  The selected entry unlocks <span className="text-white font-medium">exclusive rewards</span> and special VIP recognition at the homecoming.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="hidden lg:grid grid-cols-1 gap-6 pt-10 border-t border-white/10 mt-6 relative z-10">
@@ -131,7 +142,6 @@ export default function EventNamePage() {
               <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
                 <CheckCircle className="w-10 h-10 text-green-500" />
               </div>
-              {/* UPDATED: Success message pointing to the upcoming poll */}
               <h2 className="text-3xl font-serif font-bold text-[#1f295a] mb-3">Entry Confirmed!</h2>
               <p className="text-slate-500 text-base max-w-sm mx-auto mb-10 leading-relaxed">
                 Your title is in the running. Once submissions close, the top 5 names will face off in a final community poll!
@@ -148,7 +158,7 @@ export default function EventNamePage() {
                 {step === 1 && (
                   <div className="animate-in fade-in slide-in-from-right-8 duration-500 space-y-8">
                     
-                    {/* UPDATED: Header area with Phase Timeline */}
+                    {/* Header area with Phase Timeline */}
                     <div className="mb-8">
                       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                         <div>
@@ -166,11 +176,11 @@ export default function EventNamePage() {
                           }`}
                         >
                           <Languages className="w-3.5 h-3.5" />
-                          {lang === "ml" ? "English" : "Malayalam"}
+                          {lang === "ml" ? "English Mode" : "Malayalam Mode"}
                         </button>
                       </div>
 
-                      {/* Phase Indicator - Subtly mentions the poll */}
+                      {/* Phase Indicator */}
                       <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-2xl border border-slate-100 inline-flex">
                         <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#1f295a]">
                           <span className="w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center text-white">1</span>
