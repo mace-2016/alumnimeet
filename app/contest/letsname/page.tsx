@@ -130,9 +130,9 @@ export default function EventNamePage() {
               <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
                 <CheckCircle className="w-10 h-10 text-green-500" />
               </div>
-              <h2 className="text-3xl font-serif font-bold text-[#1f295a] mb-3">Idea Submitted!</h2>
+              <h2 className="text-3xl font-serif font-bold text-[#1f295a] mb-3">Got it!</h2>
               <p className="text-slate-500 text-base max-w-sm mx-auto mb-10 leading-relaxed">
-                Thank you for contributing. We'll review your suggestion for the grand return.
+                Great, Let's get this going.
               </p>
               <button onClick={() => { setStatus("idle"); setStep(1); setEventName(""); }} className="inline-flex items-center gap-3 bg-[#1f295a] text-white px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] shadow-[0_10px_20px_-10px_rgba(31,41,90,0.5)] hover:bg-amber-500 hover:shadow-[0_10px_20px_-10px_rgba(245,158,11,0.5)] transition-all active:scale-95">
                 <Home className="w-4 h-4" /> Submit Another
