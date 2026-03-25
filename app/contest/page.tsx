@@ -174,22 +174,32 @@ export default function EventNamePage() {
                         <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-2 block">
                           Your Official Entry <span className="text-amber-500">*</span>
                         </label>
-                        <div className="relative group">
-                          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-14 h-full flex items-center justify-center">
-                            <Sparkles className="h-5 w-5 text-amber-500/50 group-focus-within:text-amber-400 transition-colors" />
-                          </div>
-                          <div className="bg-[#151c3d]/40 border border-white/10 focus-within:border-amber-400/50 rounded-2xl overflow-hidden transition-all">
-                            <ReactTransliterate
-                              renderComponent={(props) => (
-                                <input {...props} required className="w-full pl-14 pr-6 py-6 outline-none text-white font-serif text-2xl md:text-3xl bg-transparent placeholder:text-slate-600" placeholder={lang === "ml" ? "മലയാളത്തിൽ..." : "The Grand Return"} />
-                              )}
-                              value={eventName}
-                              onChangeText={(text) => setEventName(text)}
-                              lang={lang as any} 
-                              enabled={lang === "ml"}
-                            />
-                          </div>
-                        </div>
+                     <div className="relative group">
+  {/* Added z-10 and pointer-events-none so it sits above the white background and doesn't block clicks */}
+  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-14 h-full flex items-center justify-center z-10 pointer-events-none">
+    {/* Slate when resting, solid vibrant amber when focused */}
+    <Sparkles className="h-5 w-5 text-slate-400 group-focus-within:text-amber-500 transition-colors" />
+  </div>
+  
+  {/* Clean white wrapper with a soft slate border that turns amber on focus */}
+  <div className="bg-white border-2 border-slate-100 focus-within:border-amber-400 rounded-2xl overflow-hidden transition-all shadow-sm">
+    <ReactTransliterate
+      renderComponent={(props) => (
+        <input 
+          {...props} 
+          required 
+          /* Input is now transparent since the wrapper is white */
+          className="w-full pl-14 pr-6 py-6 outline-none text-[#1f295a] font-serif text-2xl md:text-3xl bg-transparent placeholder:text-slate-300" 
+          placeholder={lang === "ml" ? "മലയാളത്തിൽ..." : "Here goes your brilliance"} 
+        />                              
+      )}
+      value={eventName}
+      onChangeText={(text) => setEventName(text)}
+      lang={lang as any} 
+      enabled={lang === "ml"}
+    />
+  </div>
+</div>
                       </div>
 
                       <div className="pt-10 flex justify-end">
