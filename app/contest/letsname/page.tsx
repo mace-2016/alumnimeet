@@ -190,7 +190,7 @@ export default function EventNamePage() {
           required 
           /* Input is now transparent since the wrapper is white */
           className="w-full pl-14 pr-6 py-6 outline-none text-[#1f295a] font-serif text-2xl md:text-3xl bg-transparent placeholder:text-slate-300" 
-          placeholder={lang === "ml" ? "മലയാളത്തിൽ..." : "Here goes your brilliance"} 
+          placeholder={lang === "ml" ? "മലയാളത്തിൽ..." : "English..."} 
         />                              
       )}
       value={eventName}
