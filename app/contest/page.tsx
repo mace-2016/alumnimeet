@@ -80,10 +80,6 @@ export default function ContestsHubPage() {
             Let's get it <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 italic font-light">Rolling!!</span>
           </h1>
           
-          <p className="text-sm md:text-base text-slate-300 max-w-xl mx-auto font-light leading-relaxed">
-            Participate in a series of community contests to help build our 2016 homecoming. Unlock exclusive rewards and earn your spot in the history books.
-          </p>
-          
         </div>
 
         {/* Contest Line Items */}
