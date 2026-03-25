@@ -131,7 +131,7 @@ export default function EventNamePage() {
                   <div className="inline-flex items-center gap-3 p-3 rounded-2xl bg-[#151c3d]/50 border border-white/5 mt-2">
                     <Gift className="w-4 h-4 text-amber-400" />
                     <p className="text-xs text-slate-300 font-light">
-                      <span className="text-white font-medium">Exclusive Rewards</span>Await.
+                      Winning entry unlocks<span className="text-white font-medium">Exclusive Rewards</span>.
                     </p>
                   </div>
                 </div>
