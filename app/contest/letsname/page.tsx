@@ -18,25 +18,13 @@ import {
   Languages,
   ArrowRight,
   ArrowLeft,
-  Vote,
-  Lightbulb
+  Trophy,
+  Lock,
 } from "lucide-react";
-
-// Mock data for the poll - you can update these with actual popular suggestions
-const TOP_POLL_NAMES = [
-  "Thirike 2016",
-  "Reverie '16",
-  "The Grand Return",
-  "Nostalgia OAT",
-  "Echoes of '16"
-];
 
 export default function EventNamePage() {
   const [step, setStep] = useState(1);
-  const [submissionMode, setSubmissionMode] = useState<"suggest" | "vote">("suggest"); // New toggle state
   const [eventName, setEventName] = useState("");
-  const [votedName, setVotedName] = useState(""); // New state for poll selection
-  
   const [submitterName, setSubmitterName] = useState("");
   const [phone, setPhone] = useState("");
   const [emailId, setEmailId] = useState("");
@@ -45,9 +33,7 @@ export default function EventNamePage() {
   const [lang, setLang] = useState<"en" | "ml">("en");
 
   const handleNext = () => {
-    if (submissionMode === "suggest" && eventName.trim()) {
-      setStep(2);
-    } else if (submissionMode === "vote" && votedName) {
+    if (eventName.trim()) {
       setStep(2);
     }
   };
@@ -68,11 +54,8 @@ export default function EventNamePage() {
     const GOOGLE_FORM_ACTION_URL =
       "https://docs.google.com/forms/d/e/1FAIpQLSfnoLHOkLXWmxgspb4-te3c5UqdgieNhXUjEgRmKLBnm9FCwA/formResponse";
 
-    // Distinguish between a new suggestion and a vote in the Google Sheet
-    const finalEventIdea = submissionMode === "suggest" ? eventName : `[VOTE] ${votedName}`;
-
     const formData = new FormData();
-    formData.append("entry.1424149438", finalEventIdea); 
+    formData.append("entry.1424149438", eventName);
     formData.append("entry.520789514", submitterName);
     formData.append("entry.1669338403", phone);
     formData.append("entry.797828323", classYear);
@@ -106,15 +89,16 @@ export default function EventNamePage() {
           <div className="absolute -top-20 -left-20 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
           
           <div className="relative z-10 animate-in fade-in slide-in-from-left-4 duration-700">
+            {/* UPDATED: Standardized Contest Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-[10px] font-semibold uppercase tracking-[0.3em] mb-6 md:mb-10">
-              <Sparkles className="w-3.5 h-3.5" /> Decennial
+              <Trophy className="w-3.5 h-3.5" /> Contest #01 • Naming
             </div>
             <h1 className="text-3xl md:text-5xl font-serif font-bold leading-tight mb-4 md:mb-6 tracking-tight">
               Journey Back <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 italic font-light">to 2016</span>
             </h1>
             <p className="hidden sm:block text-slate-300 text-sm font-light leading-relaxed opacity-90 mb-0 md:mb-10">
-              Reminisce together & re-live a legacy of memories. 
+              Submit the winning title and cement your legacy. The countdown to our grand return begins here.
             </p>
           </div>
 
@@ -141,142 +125,93 @@ export default function EventNamePage() {
         </div>
 
         {/* Form Section */}
-        <div className="lg:col-span-8 p-6 md:p-12 lg:p-16 bg-white flex flex-col justify-center overflow-hidden">
+        <div className="lg:col-span-8 p-6 md:p-16 bg-white flex flex-col justify-center overflow-hidden">
           {status === "success" ? (
             <div className="h-full flex flex-col items-center justify-center text-center py-10 animate-in fade-in zoom-in duration-500">
               <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
                 <CheckCircle className="w-10 h-10 text-green-500" />
               </div>
-              <h2 className="text-3xl font-serif font-bold text-[#1f295a] mb-3">Got it!</h2>
+              {/* UPDATED: Success message pointing to the upcoming poll */}
+              <h2 className="text-3xl font-serif font-bold text-[#1f295a] mb-3">Entry Confirmed!</h2>
               <p className="text-slate-500 text-base max-w-sm mx-auto mb-10 leading-relaxed">
-                Great, Let's get this going.
+                Your title is in the running. Once submissions close, the top 5 names will face off in a final community poll!
               </p>
-              <button onClick={() => { setStatus("idle"); setStep(1); setEventName(""); setVotedName(""); }} className="inline-flex items-center gap-3 bg-[#1f295a] text-white px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] shadow-[0_10px_20px_-10px_rgba(31,41,90,0.5)] hover:bg-amber-500 hover:shadow-[0_10px_20px_-10px_rgba(245,158,11,0.5)] transition-all active:scale-95">
-                <Home className="w-4 h-4" /> Submit Another
+              <button onClick={() => { setStatus("idle"); setStep(1); setEventName(""); }} className="inline-flex items-center gap-3 bg-[#1f295a] text-white px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] shadow-[0_10px_20px_-10px_rgba(31,41,90,0.5)] hover:bg-amber-500 hover:shadow-[0_10px_20px_-10px_rgba(245,158,11,0.5)] transition-all active:scale-95">
+                <Sparkles className="w-4 h-4" /> Submit Another Idea
               </button>
             </div>
           ) : (
             <div className="max-w-xl mx-auto lg:mx-0 w-full relative">
               <form onSubmit={handleSubmit}>
                 
-                {/* STEP 1: EVENT NAME / VOTE */}
+                {/* STEP 1: EVENT NAME */}
                 {step === 1 && (
-                  <div className="animate-in fade-in slide-in-from-right-8 duration-500">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8">
-                      <div>
-                        <h2 className="text-2xl font-serif font-bold text-[#1f295a]">Title Naming</h2>
-                        <p className="text-[11px] text-slate-400 uppercase tracking-[0.2em] font-medium mt-1">What should we call our homecoming?</p>
-                      </div>
-                      
-                      {submissionMode === "suggest" && (
+                  <div className="animate-in fade-in slide-in-from-right-8 duration-500 space-y-8">
+                    
+                    {/* UPDATED: Header area with Phase Timeline */}
+                    <div className="mb-8">
+                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                        <div>
+                          <h2 className="text-2xl font-serif font-bold text-[#1f295a]">Contest 01: The Naming</h2>
+                          <p className="text-[11px] text-slate-400 uppercase tracking-[0.2em] font-medium mt-1">What should we call our homecoming?</p>
+                        </div>
+                        
                         <button 
                           type="button" 
                           onClick={() => setLang(lang === "en" ? "ml" : "en")}
-                          className={`flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all border ${
+                          className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all border ${
                             lang === "ml" 
                             ? "bg-amber-400 border-amber-400 text-[#1f295a] shadow-[0_8px_16px_-6px_rgba(251,191,36,0.5)]" 
                             : "bg-slate-50 border-slate-200 text-slate-500 hover:bg-slate-100"
                           }`}
                         >
                           <Languages className="w-3.5 h-3.5" />
-                          {lang === "ml" ? "Eng" : "Malayalam"}
+                          {lang === "ml" ? "English" : "Malayalam"}
                         </button>
-                      )}
-                    </div>
+                      </div>
 
-                    {/* Mode Toggle Switch */}
-                    <div className="flex bg-slate-100 p-1.5 rounded-2xl mb-8">
-                      <button
-                        type="button"
-                        onClick={() => setSubmissionMode("suggest")}
-                        className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${
-                          submissionMode === "suggest" 
-                          ? "bg-white text-[#1f295a] shadow-sm border border-slate-200/50" 
-                          : "text-slate-400 hover:text-[#1f295a] hover:bg-slate-200/50"
-                        }`}
-                      >
-                        <Lightbulb className="w-4 h-4" /> Suggest a Name
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setSubmissionMode("vote")}
-                        className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${
-                          submissionMode === "vote" 
-                          ? "bg-white text-[#1f295a] shadow-sm border border-slate-200/50" 
-                          : "text-slate-400 hover:text-[#1f295a] hover:bg-slate-200/50"
-                        }`}
-                      >
-                        <Vote className="w-4 h-4" /> Vote on Top 5
-                      </button>
-                    </div>
-
-                    {/* Input Area (Suggest Mode) */}
-                    {submissionMode === "suggest" ? (
-                      <div className="space-y-3 animate-in fade-in zoom-in-95 duration-300">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1 leading-tight">
-                          Proposed Title *
-                          <span className="hidden lg:block normal-case tracking-normal text-[10px] text-slate-500 mt-1">
-                            മലയാളത്തിലും പേരുകൾ നിർദ്ദേശിക്കാം.
-                          </span>
-                        </label>
-                        <div className="relative group">
-                          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-full flex items-center justify-center">
-                            <Sparkles className="h-5 w-5 text-amber-500 opacity-50 group-focus-within:opacity-100 transition-opacity" />
-                          </div>
-                          <ReactTransliterate
-                            renderComponent={(props) => (
-                              <input {...props} required={submissionMode === "suggest"} className="w-full pl-12 py-4 border-b-2 border-slate-100 focus:border-[#1f295a] outline-none text-[#1f295a] font-serif text-2xl md:text-3xl transition-colors placeholder:text-slate-200 bg-transparent" placeholder={lang === "ml" ? "മലയാളത്തിൽ..." : "The Grand Return"} />
-                            )}
-                            value={eventName}
-                            onChangeText={(text) => setEventName(text)}
-                            lang={lang as any} 
-                            enabled={lang === "ml"}
-                          />
+                      {/* Phase Indicator - Subtly mentions the poll */}
+                      <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-2xl border border-slate-100 inline-flex">
+                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#1f295a]">
+                          <span className="w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center text-white">1</span>
+                          Idea Submissions
+                        </div>
+                        <div className="w-4 h-[1px] bg-slate-300"></div>
+                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                          <Lock className="w-3 h-3" />
+                          Community Poll
                         </div>
                       </div>
-                    ) : (
-                      /* Polling Area (Vote Mode) */
-                      <div className="space-y-3 animate-in fade-in zoom-in-95 duration-300">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1 leading-tight mb-2 block">
-                          Select your favorite *
-                        </label>
-                        <div className="grid grid-cols-1 gap-3">
-                          {TOP_POLL_NAMES.map((name) => (
-                            <label 
-                              key={name} 
-                              className={`flex items-center p-4 rounded-xl cursor-pointer transition-all border-2 ${
-                                votedName === name 
-                                ? 'border-amber-400 bg-amber-50/30' 
-                                : 'border-slate-100 hover:border-slate-200 hover:bg-slate-50'
-                              }`}
-                            >
-                              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4 transition-colors ${
-                                votedName === name ? 'border-amber-500' : 'border-slate-300'
-                              }`}>
-                                {votedName === name && <div className="w-2.5 h-2.5 bg-amber-500 rounded-full" />}
-                              </div>
-                              <input 
-                                type="radio" 
-                                name="pollVote" 
-                                value={name} 
-                                checked={votedName === name} 
-                                onChange={(e) => setVotedName(e.target.value)} 
-                                className="hidden" 
-                              />
-                              <span className={`font-serif text-lg transition-colors ${
-                                votedName === name ? 'text-[#1f295a] font-bold' : 'text-slate-600'
-                              }`}>{name}</span>
-                            </label>
-                          ))}
+                    </div>
+
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-1 leading-tight">
+                        Your Official Entry *
+                        <span className="hidden lg:block normal-case tracking-normal text-[10px] text-slate-500 mt-1">
+                          മലയാളത്തിലും പേരുകൾ നിർദ്ദേശിക്കാം.
+                        </span>
+                      </label>
+                      <div className="relative group">
+                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-full flex items-center justify-center">
+                          <Trophy className="h-5 w-5 text-amber-500 opacity-50 group-focus-within:opacity-100 transition-opacity" />
                         </div>
+                        <ReactTransliterate
+                          renderComponent={(props) => (
+                            <input {...props} required className="w-full pl-12 py-4 border-b-2 border-slate-100 focus:border-[#1f295a] outline-none text-[#1f295a] font-serif text-2xl md:text-3xl transition-colors placeholder:text-slate-200 bg-transparent" placeholder={lang === "ml" ? "മലയാളത്തിൽ..." : "The Grand Return"} />
+                          )}
+                          value={eventName}
+                          onChangeText={(text) => setEventName(text)}
+                          lang={lang as any} 
+                          enabled={lang === "ml"}
+                        />
                       </div>
-                    )}
+                    </div>
 
                     <div className="pt-8 flex justify-end">
                       <button 
                         type="button" 
                         onClick={handleNext} 
-                        disabled={(submissionMode === "suggest" && !eventName.trim()) || (submissionMode === "vote" && !votedName)} 
+                        disabled={!eventName.trim()} 
                         className="w-full sm:w-auto flex justify-center items-center gap-3 px-10 py-4 rounded-full font-bold text-white bg-amber-500 shadow-[0_10px_20px_-10px_rgba(31,41,90,0.5)] hover:bg-[#1f295a] hover:shadow-[0_10px_20px_-10px_rgba(245,158,11,0.5)] transition-all active:scale-[0.98] disabled:opacity-50 disabled:hover:bg-amber-500 uppercase tracking-[0.2em] text-[11px]"
                       >
                         Next Step <ArrowRight className="w-4 h-4" />
@@ -290,7 +225,7 @@ export default function EventNamePage() {
                   <div className="animate-in fade-in slide-in-from-right-8 duration-500 space-y-8">
                      <div className="mb-8 md:mb-10">
                         <h2 className="text-2xl font-serif font-bold text-[#1f295a]">Your Details</h2>
-                        <p className="text-[11px] text-slate-400 uppercase tracking-[0.2em] font-medium mt-1">So we know who to credit for the idea</p>
+                        <p className="text-[11px] text-slate-400 uppercase tracking-[0.2em] font-medium mt-1">So we know who to credit if you win!</p>
                       </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
@@ -329,7 +264,7 @@ export default function EventNamePage() {
                         <ArrowLeft className="w-4 h-4" /> Back
                       </button>
                       <button type="submit" disabled={status === "submitting"} className="w-full sm:w-auto flex justify-center items-center gap-3 px-10 py-4 rounded-full font-bold text-white bg-[#1f295a] shadow-[0_10px_20px_-10px_rgba(31,41,90,0.5)] hover:bg-amber-500 hover:shadow-[0_10px_20px_-10px_rgba(245,158,11,0.5)] transition-all active:scale-[0.98] disabled:opacity-50 uppercase tracking-[0.2em] text-[11px]">
-                        {status === "submitting" ? <Loader2 className="animate-spin h-5 w-5" /> : <>Submit <Send className="w-4 h-4" /></>}
+                        {status === "submitting" ? <Loader2 className="animate-spin h-5 w-5" /> : <>Lock Entry <Send className="w-4 h-4" /></>}
                       </button>
                     </div>
                   </div>
