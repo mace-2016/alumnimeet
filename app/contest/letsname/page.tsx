@@ -226,7 +226,7 @@ export default function EventNamePage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-2 block">Your Name <span className="text-amber-500">*</span></label>
-                          <input required type="text" value={submitterName} onChange={(e) => setSubmitterName(e.target.value)} className="w-full px-5 py-3.5 bg-[#151c3d]/40 border border-white/10 focus:border-amber-400/50 rounded-xl outline-none text-white text-sm font-medium transition-colors placeholder:text-slate-600" placeholder="John Doe" />
+                          <input required type="text" value={submitterName} onChange={(e) => setSubmitterName(e.target.value)} className="w-full px-5 py-3.5 bg-[#151c3d]/40 border border-white/10 focus:border-amber-400/50 rounded-xl outline-none text-white text-sm font-medium transition-colors placeholder:text-slate-600" placeholder="Ms Mr or whatsoever" />
                         </div>
                         <div className="space-y-2">
                           <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-2 block">Branch <span className="text-amber-500">*</span></label>
@@ -247,7 +247,7 @@ export default function EventNamePage() {
                         </div>
                         <div className="space-y-2">
                           <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] ml-2 block">Email (Optional)</label>
-                          <input type="email" value={emailId} onChange={(e) => setEmailId(e.target.value)} className="w-full px-5 py-3.5 bg-[#151c3d]/40 border border-white/10 focus:border-amber-400/50 rounded-xl outline-none text-white text-sm font-medium transition-colors placeholder:text-slate-600" placeholder="name@mace.ac.in" />
+                          <input type="email" value={emailId} onChange={(e) => setEmailId(e.target.value)} className="w-full px-5 py-3.5 bg-[#151c3d]/40 border border-white/10 focus:border-amber-400/50 rounded-xl outline-none text-white text-sm font-medium transition-colors placeholder:text-slate-600" placeholder="whatso@ever.com" />
                         </div>
                       </div>
 
