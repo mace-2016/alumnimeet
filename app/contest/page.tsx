@@ -11,7 +11,8 @@ import {
   Music, 
   Camera, 
   CalendarHeart,
-  Star
+  Star,
+  Gift
 } from "lucide-react";
 
 export default function ContestsHubPage() {
@@ -55,7 +56,6 @@ export default function ContestsHubPage() {
     },
   ];
 
-
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
       {/* Immersive Background */}
@@ -66,19 +66,24 @@ export default function ContestsHubPage() {
       <main className="relative z-10 w-full max-w-4xl mx-auto flex flex-col">
         
         {/* Header Section */}
-        <div className="inline-flex items-center gap-3 p-3 rounded-2xl bg-[#151c3d]/50 border border-white/5 mt-2">
-                    <Gift className="w-4 h-4 text-amber-400" />
-                    <p className="text-xs text-slate-300 font-light">
-                      Grab those<span className="text-white font-medium">Surprises!</span>.
-                    </p>
-          <Gift className="w-4 h-4 text-amber-400" />
-                  </div>
-                </div>
+        <div className="text-center mb-12 animate-in fade-in slide-in-from-top-6 duration-700">
+          
+          <div className="inline-flex items-center gap-3 p-3 rounded-2xl bg-[#151c3d]/50 border border-white/5 mb-6 mt-2">
+            <Gift className="w-4 h-4 text-amber-400" />
+            <p className="text-xs text-slate-300 font-light">
+              Grab those <span className="text-white font-medium">Surprises!</span>
+            </p>
+            <Gift className="w-4 h-4 text-amber-400" />
+          </div>
+          
           <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-4 tracking-tight">
             Let's get it <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 italic font-light">Rolling!!</span>
           </h1>
+          
           <p className="text-sm md:text-base text-slate-300 max-w-xl mx-auto font-light leading-relaxed">
+            Participate in a series of community contests to help build our 2016 homecoming. Unlock exclusive rewards and earn your spot in the history books.
           </p>
+          
         </div>
 
         {/* Contest Line Items */}
