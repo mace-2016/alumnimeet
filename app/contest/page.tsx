@@ -69,9 +69,11 @@ export default function ContestsHubPage() {
         <div className="inline-flex items-center gap-3 p-3 rounded-2xl bg-[#151c3d]/50 border border-white/5 mt-2">
                     <Gift className="w-4 h-4 text-amber-400" />
                     <p className="text-xs text-slate-300 font-light">
-                      Winning entry unlocks <span className="text-white font-medium">exclusive rewards</span>.
+                      Grab those<span className="text-white font-medium">Surprises!</span>.
                     </p>
+          <Gift className="w-4 h-4 text-amber-400" />
                   </div>
+                </div>
           <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-4 tracking-tight">
             Let's get it <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 italic font-light">Rolling!!</span>
           </h1>
