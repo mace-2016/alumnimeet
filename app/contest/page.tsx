@@ -21,7 +21,7 @@ export default function ContestsHubPage() {
       id: 1,
       tag: "Contest #01",
       title: "The Naming",
-      description: "Submit the winning title for our decennial homecoming and cement your legacy.",
+      description: "Brush your brains upp!!",
       status: "active",
       href: "/contest/letsname",
       icon: Trophy,
@@ -67,13 +67,12 @@ export default function ContestsHubPage() {
         {/* Header Section */}
         <div className="text-center mb-12 animate-in fade-in slide-in-from-top-6 duration-700">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-400 text-[10px] font-semibold uppercase tracking-[0.3em] mb-6">
-            <Sparkles className="w-3.5 h-3.5" /> Shape the Legacy
+            <Sparkles className="w-3.5 h-3.5" /> exclusive rewards await
           </div>
           <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-4 tracking-tight">
-            Decennial <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 italic font-light">Contests</span>
+            Let's get it <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 italic font-light">Rolling!!</span>
           </h1>
           <p className="text-sm md:text-base text-slate-300 max-w-xl mx-auto font-light leading-relaxed">
-            Participate in a series of community contests to help build our 2016 homecoming. Unlock exclusive rewards and earn your spot in the history books.
           </p>
         </div>
 
