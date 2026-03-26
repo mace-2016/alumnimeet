@@ -15,65 +15,65 @@ import {
 export default function StorePage() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const categories = ["All", "Apparel", "Accessories", "Drinkware", "Stationery", "Limited Edition"];
+  const categories = ["All", "Sourcing...", "Curating...", "In Design...", "TBA"];
 
   const products = [
     {
       id: 1,
-      name: "The '16 Varsity Jacket",
-      price: "₹2,499",
-      category: "Apparel",
-      status: "Pre-order",
+      name: "Still Sourcing...",
+      price: "TBA",
+      category: "Sourcing...",
+      status: "In Progress",
       icon: Shirt,
       color: "text-[var(--color-mace-crimson)]",
       bg: "bg-[var(--color-mace-crimson)]/5"
     },
     {
       id: 2,
-      name: "Decennial Coffee Mug",
-      price: "₹399",
-      category: "Drinkware",
-      status: "Available",
+      name: "Curating Options...",
+      price: "TBA",
+      category: "Curating...",
+      status: "Pending",
       icon: Coffee,
       color: "text-[var(--color-mace-stone)]",
       bg: "bg-[var(--background)]"
     },
     {
       id: 3,
-      name: "Heritage Enamel Pin Set",
-      price: "₹299",
-      category: "Accessories",
-      status: "Low Stock",
+      name: "In Design Phase...",
+      price: "TBA",
+      category: "In Design...",
+      status: "Drafting",
       icon: Watch,
       color: "text-[var(--color-mace-gold)]",
       bg: "bg-[var(--color-mace-gold)]/10"
     },
     {
       id: 4,
-      name: "Alumni Leather Journal",
-      price: "₹899",
-      category: "Stationery",
-      status: "Available",
+      name: "Exploring Materials...",
+      price: "TBA",
+      category: "Sourcing...",
+      status: "Curating",
       icon: BookOpen,
       color: "text-[var(--color-mace-rust)]",
       bg: "bg-[var(--color-mace-rust)]/5"
     },
     {
       id: 5,
-      name: "Classic MACE Hoodie",
-      price: "₹1,299",
-      category: "Apparel",
-      status: "Available",
+      name: "Mockups Pending...",
+      price: "TBA",
+      category: "In Design...",
+      status: "TBA",
       icon: Shirt,
       color: "text-slate-700",
       bg: "bg-slate-100"
     },
     {
       id: 6,
-      name: "Commemorative Flask",
-      price: "₹799",
-      category: "Drinkware",
-      status: "Sold Out",
+      name: "Finalizing Details...",
+      price: "TBA",
+      category: "TBA",
+      status: "Coming Soon",
       icon: Coffee,
       color: "text-[var(--text-muted)]",
       bg: "bg-[var(--surface-soft)]"
@@ -98,12 +98,11 @@ export default function StorePage() {
               <h1 className="text-3xl md:text-5xl font-serif font-bold text-[var(--color-mace-crimson)] tracking-tight">
                 Decennial <span className="italic font-light text-[var(--color-mace-gold)] pr-2">Store</span>
               </h1>
-              <p className="text-sm md:text-base text-[var(--text-muted)] font-medium mt-1">Official merchandise for the Class of 2016.</p>
+              <p className="text-sm md:text-base text-[var(--text-muted)] font-medium mt-1">Official merchandise is currently being curated.</p>
             </div>
             
             <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white border border-[var(--border)] shadow-sm relative cursor-pointer hover:border-[var(--color-mace-gold)] transition-colors">
               <ShoppingBag className="w-5 h-5 text-[var(--color-mace-crimson)]" strokeWidth={1.5} />
-              <span className="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-[var(--color-mace-rust)] border border-white"></span>
             </div>
           </div>
 
@@ -114,8 +113,9 @@ export default function StorePage() {
             </div>
             <input 
               type="text" 
-              placeholder="Search hoodies, mugs, pins..." 
-              className="w-full pl-12 pr-4 py-3.5 md:py-4 bg-white border border-[var(--border)] rounded-full text-base font-medium text-[var(--color-mace-crimson)] shadow-sm placeholder:text-slate-400 outline-none focus:ring-4 focus:ring-[var(--color-mace-gold)]/10 focus:border-[var(--color-mace-gold)] transition-all"
+              disabled
+              placeholder="Merch dropping soon..." 
+              className="w-full pl-12 pr-4 py-3.5 md:py-4 bg-white/50 border border-[var(--border)] rounded-full text-base font-medium text-[var(--color-mace-crimson)] shadow-sm placeholder:text-slate-400 outline-none cursor-not-allowed transition-all"
             />
           </div>
         </div>
@@ -146,33 +146,19 @@ export default function StorePage() {
           {products.map((product) => (
             <div 
               key={product.id} 
-              className="group flex flex-col bg-white border border-[var(--border)] rounded-[1.5rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 transition-all duration-500 cursor-pointer"
+              className="group flex flex-col bg-white border border-[var(--border)] rounded-[1.5rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] transition-all duration-500 cursor-not-allowed grayscale-[20%]"
             >
               
               {/* Product Image Area (Square, prominent) */}
               <div className={`relative w-full aspect-square ${product.bg} flex items-center justify-center p-6 border-b border-[var(--border)]/50 overflow-hidden`}>
                 
                 {/* Status Badges */}
-                {product.status === "Pre-order" && (
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-[var(--color-mace-gold)]/30 text-[8px] font-black uppercase tracking-widest text-[var(--color-mace-gold)] shadow-sm">
-                    Pre-Order
-                  </div>
-                )}
-                {product.status === "Low Stock" && (
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-[var(--color-mace-rust)]/30 text-[8px] font-black uppercase tracking-widest text-[var(--color-mace-rust)] shadow-sm">
-                    Low Stock
-                  </div>
-                )}
-                {product.status === "Sold Out" && (
-                  <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] z-10 flex items-center justify-center">
-                    <div className="px-4 py-1.5 rounded-full bg-slate-800 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-lg">
-                      Sold Out
-                    </div>
-                  </div>
-                )}
+                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-[var(--color-mace-gold)]/30 text-[8px] font-black uppercase tracking-widest text-[var(--color-mace-gold)] shadow-sm">
+                  {product.status}
+                </div>
 
                 {/* Simulated Product Image via Lucide Icon */}
-                <product.icon className={`w-24 h-24 md:w-32 md:h-32 ${product.color} opacity-80 group-hover:scale-110 transition-transform duration-700 ease-out`} strokeWidth={1} />
+                <product.icon className={`w-24 h-24 md:w-32 md:h-32 ${product.color} opacity-40 transition-transform duration-700 ease-out`} strokeWidth={1} />
               </div>
 
               {/* Product Details (Google Shopping clean style) */}
@@ -185,12 +171,12 @@ export default function StorePage() {
                   {product.name}
                 </h3>
                 
-                <div className="mt-auto flex items-end justify-between">
+                <div className="mt-auto flex items-end justify-between opacity-50">
                   <p className="text-lg md:text-xl font-bold tracking-tight text-[var(--color-mace-crimson)]">
                     {product.price}
                   </p>
-                  <div className="w-8 h-8 rounded-full bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--color-mace-rust)] group-hover:border-[var(--color-mace-rust)] transition-colors duration-300">
-                    <ArrowRight className="w-3.5 h-3.5 text-[var(--text-muted)] group-hover:text-white transition-colors" strokeWidth={2.5} />
+                  <div className="w-8 h-8 rounded-full bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center">
+                    <Lock className="w-3.5 h-3.5 text-[var(--text-muted)]" strokeWidth={2.5} />
                   </div>
                 </div>
               </div>
