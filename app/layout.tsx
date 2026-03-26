@@ -1,8 +1,12 @@
+"use client";
+
 import "./globals.css";
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Playfair_Display, Inter } from "next/font/google";
-import { ChevronDown, Lock } from "lucide-react";
+// Added 'Ticket' icon for the Register button
+import { Lock, Home, Trophy, Map, ShoppingBag, Image as ImageIcon, Ticket } from "lucide-react";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -21,124 +25,173 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
+  const isHome = pathname === "/";
+  const isContests = pathname.startsWith("/contest");
+
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="antialiased font-sans bg-white text-[#1f295a]">
+      <body className="antialiased font-sans bg-[#FCFCFD] text-[#1f295a]">
         <div className="min-h-screen flex flex-col">
           
-          {/* Header: Centered Logo with Expanded Navigation Below */}
-          <header className="flex flex-col border-b border-slate-50 relative z-50">
+          <header className="bg-white sticky top-0 z-50 border-b border-slate-200/60 shadow-sm flex flex-col">
             
-            {/* Top Row: Centered Logo */}
-            <div className="h-20 md:h-24 flex items-center justify-center mt-2 md:mt-4">
-              <Link href="/" className="flex items-center gap-4 group transition-opacity hover:opacity-80">
-                <img
-                  src="https://mace.ac.in/wp-content/uploads/2025/01/logo-2.svg"
-                  alt="MACE Logo"
-                  className="h-8 md:h-10 w-auto grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all"
-                />
-                <div className="h-6 w-px bg-slate-200"></div>
-                <span className="font-serif font-bold text-xl md:text-2xl tracking-tight text-[#1f295a]">
-                  MACE <span className="text-amber-500 tracking-tighter">’16</span>
-                </span>
-              </Link>
-            </div>
-
-            {/* Bottom Row: Expanded Navigation */}
-            <nav className="flex items-center justify-center gap-6 md:gap-10 pb-5 px-4 flex-wrap">
+            <div className="flex items-center justify-between h-16 md:h-20 px-4 md:px-10 relative">
               
-              {/* 1. Home Link */}
-              <Link 
-                href="/" 
-                className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-[#1f295a] transition-colors py-2"
-              >
-                Home
-              </Link>
+              {/* Left: Logo Area */}
+              <div className="flex-1 flex items-center">
+                <Link href="/" className="flex items-center gap-3 group transition-opacity hover:opacity-80">
+                  <img
+                    src="https://mace.ac.in/wp-content/uploads/2025/01/logo-2.svg"
+                    alt="MACE Logo"
+                    className="h-8 md:h-9 w-auto grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                  />
+                  <div className="hidden lg:block h-5 w-px bg-slate-200"></div>
+                  <span className="hidden lg:block font-serif font-bold text-xl tracking-tight text-[#1f295a]">
+                    MACE <span className="text-amber-500 tracking-tighter">’16</span>
+                  </span>
+                </Link>
+              </div>
 
-              {/* 2. Contests Dropdown */}
-              <div className="relative group">
-                <Link 
-                  href="/contest" 
-                  className="flex items-center gap-1.5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1f295a] hover:text-amber-500 transition-colors"
-                >
-                  Contests <ChevronDown className="w-3 h-3 transition-transform duration-300 group-hover:-rotate-180" />
+              {/* Center: Desktop Navigation */}
+              <nav className="hidden md:flex flex-1 items-center justify-center gap-10 h-full absolute left-1/2 -translate-x-1/2">
+                
+                <Link href="/" className="relative flex items-center gap-2.5 h-full group cursor-pointer">
+                  <Home className={`w-5 h-5 transition-all duration-300 ${isHome ? "stroke-[#1f295a] fill-[#1f295a]/10" : "stroke-slate-400 fill-slate-50 group-hover:stroke-[#1f295a] group-hover:fill-[#1f295a]/10"}`} strokeWidth={1.5} />
+                  <span className={`text-sm transition-colors ${isHome ? "text-[#1f295a] font-semibold" : "text-slate-500 font-medium group-hover:text-[#1f295a]"}`}>Home</span>
+                  <div className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${isHome ? "bg-[#1f295a]" : "bg-transparent group-hover:bg-slate-200"}`}></div>
                 </Link>
 
-                {/* Dropdown Panel */}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-60 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-out">
-                  <div className="h-2 w-full"></div>
-                  <div className="bg-white border border-slate-100 shadow-[0_15px_40px_-10px_rgba(31,41,90,0.1)] rounded-2xl overflow-hidden py-2">
-                    <Link 
-                      href="/contest/letsname" 
-                      className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1f295a] hover:bg-amber-50 hover:text-amber-600 transition-colors"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-400 shadow-[0_0_5px_rgba(74,222,128,0.5)]"></span>
-                      01: The Naming
-                    </Link>
-                    <div className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 bg-slate-50/50 cursor-not-allowed">
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-                      02:███ ██████ <Lock className="w-3 h-3 opacity-50" />
-                    </div>
-                     <div className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 bg-slate-50/50 cursor-not-allowed">
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-                      03:█████ ████ <Lock className="w-3 h-3 opacity-50" />
-                    </div>
-                     <div className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 bg-slate-50/50 cursor-not-allowed">
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-                      04:██ █ █████ <Lock className="w-3 h-3 opacity-50" />
-                    </div>
-                  </div>
+                <div className="relative group h-full">
+  <Link href="/contest" className="relative flex items-center gap-2.5 h-full transition-colors duration-300">
+    
+    <Trophy
+      className={`w-5 h-5 transition-all duration-300 ${
+        isContests
+          ? "stroke-amber-500 fill-amber-400/20"
+          : "stroke-slate-400 fill-slate-50 group-hover:stroke-amber-500 group-hover:fill-amber-400/20"
+      }`}
+      strokeWidth={1.5}
+    />
+
+    <span
+      className={`text-sm transition-colors ${
+        isContests
+          ? "text-[#1f295a] font-semibold"
+          : "text-slate-500 font-medium group-hover:text-[#1f295a]"
+      }`}
+    >
+      Contests
+    </span>
+
+    {/* Premium green pulse */}
+    <span className="absolute top-3.5 -right-5 flex h-2.5 w-2.5">
+      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+    </span>
+
+    <div
+      className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${
+        isContests ? "bg-amber-500" : "bg-transparent group-hover:bg-slate-200"
+      }`}
+    ></div>
+  </Link>
+
+  <div className="absolute top-[80px] left-1/2 -translate-x-1/2 w-60 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-out">
+    <div className="bg-white border border-slate-100 shadow-[0_15px_40px_-10px_rgba(31,41,90,0.1)] rounded-2xl overflow-hidden py-2">
+      
+      <Link
+        href="/contest/letsname"
+        className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1f295a] hover:bg-amber-50 hover:text-amber-600 transition-colors"
+      >
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(16,185,129,0.6)]"></span>
+        01: The Naming
+      </Link>
+
+      <div className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 bg-slate-50/50 cursor-not-allowed">
+        <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+        02:███ ██████ <Lock className="w-3 h-3 opacity-50" />
+      </div>
+
+    </div>
+  </div>
+</div>
+
+                <div className="relative flex items-center gap-2.5 h-full text-slate-400 font-medium cursor-not-allowed group">
+                  <Map className="w-5 h-5 stroke-slate-300 fill-slate-50" strokeWidth={1.5} />
+                  <span className="text-sm">Master Plan</span>
                 </div>
+                
+                <div className="relative flex items-center gap-2.5 h-full text-slate-400 font-medium cursor-not-allowed group">
+                  <ImageIcon className="w-5 h-5 stroke-slate-300 fill-slate-50" strokeWidth={1.5} />
+                  <span className="text-sm">Gallery</span>
+                </div>
+              </nav>
+
+              {/* Right: Actions Cluster (Perfectly Symmetrical Now) */}
+              <div className="flex-1 flex items-center justify-end gap-2 md:gap-3">
+                
+                {/* Store Button */}
+                <div className="flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-full border border-slate-100 bg-slate-50 text-slate-400 cursor-not-allowed select-none transition-colors hover:bg-slate-100">
+                  <ShoppingBag className="w-4 h-4 stroke-slate-400" strokeWidth={1.5} />
+                  <span className="text-[13px] font-semibold hidden lg:block">Store</span>
+                </div>
+
+                {/* Register Button - Exact Replica */}
+                <div className="flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-full border border-slate-100 bg-slate-50 text-slate-400 cursor-not-allowed select-none transition-colors hover:bg-slate-100">
+                  <Ticket className="w-4 h-4 stroke-slate-400" strokeWidth={1.5} />
+                  <span className="text-[13px] font-semibold hidden lg:block">Register</span>
+                </div>
+
               </div>
 
-              {/* 3. Registration (Locked) */}
-              <div 
-                className="flex items-center gap-1.5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300 cursor-not-allowed select-none"
-                title="Opening Soon"
-              >
-                Registration <Lock className="w-3 h-3 opacity-50" />
-              </div>
+            </div>
 
-
-{/* 6. Itinerary (Locked - Hidden on very small screens to prevent clutter) */}
-              <div 
-                className="hidden md:flex items-center gap-1.5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300 cursor-not-allowed select-none"
-                title="Opening Soon"
-              >
-                The Master Plan <Lock className="w-3 h-3 opacity-50" />
-              </div>
+            {/* ROW 2: Mobile Airbnb Category Navigation */}
+            <nav className="md:hidden flex items-center justify-start gap-8 px-6 h-[76px] overflow-x-auto border-t border-slate-100/80 [&::-webkit-scrollbar]:hidden">
               
+              <Link href="/" className="relative flex flex-col items-center justify-center h-full min-w-[56px] shrink-0 group">
+                <div className="mb-1.5">
+                  <Home className={`w-[26px] h-[26px] transition-colors ${isHome ? "stroke-[#1f295a] fill-[#1f295a]/10" : "stroke-slate-400 fill-slate-50"}`} strokeWidth={1.5} />
+                </div>
+                <span className={`text-[11px] transition-colors ${isHome ? "text-[#1f295a] font-semibold" : "text-slate-500 font-medium"}`}>Homes</span>
+                <div className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${isHome ? "bg-[#1f295a]" : "bg-transparent"}`}></div>
+              </Link>
 
-              {/* 4. Merchandise (Locked) */}
-              <div 
-                className="flex items-center gap-1.5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300 cursor-not-allowed select-none"
-                title="Opening Soon"
-              >
-                Merchandise <Lock className="w-3 h-3 opacity-50" />
+              <Link href="/contest" className="relative flex flex-col items-center justify-center h-full min-w-[64px] shrink-0 group">
+                <div className="relative mb-1.5">
+                  <Trophy className={`w-[26px] h-[26px] transition-colors ${isContests ? "stroke-amber-500 fill-amber-400/20" : "stroke-slate-400 fill-slate-50"}`} strokeWidth={1.5} />
+                  <span className="absolute -top-1.5 -right-6 bg-slate-700 text-white text-[9px] font-bold px-1.5 py-[1px] rounded shadow-md uppercase tracking-wide border border-slate-600/50">NEW</span>
+                </div>
+                <span className={`text-[11px] transition-colors ${isContests ? "text-[#1f295a] font-semibold" : "text-slate-500 font-medium"}`}>Contests</span>
+                <div className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${isContests ? "bg-amber-500" : "bg-transparent"}`}></div>
+              </Link>
+
+              <div className="relative flex flex-col items-center justify-center h-full min-w-[56px] shrink-0 cursor-not-allowed opacity-60">
+                <div className="mb-1.5">
+                  <Map className="w-[26px] h-[26px] stroke-slate-400 fill-slate-50" strokeWidth={1.5} />
+                </div>
+                <span className="text-[11px] text-slate-500 font-medium">Plan</span>
               </div>
 
-              {/* 5. Gallery (Locked - Hidden on very small screens to prevent clutter) */}
-              <div 
-                className="hidden sm:flex items-center gap-1.5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300 cursor-not-allowed select-none"
-                title="Opening Soon"
-              >
-                Gallery <Lock className="w-3 h-3 opacity-50" />
+              <div className="relative flex flex-col items-center justify-center h-full min-w-[56px] shrink-0 cursor-not-allowed opacity-60 pr-4">
+                <div className="mb-1.5">
+                  <ImageIcon className="w-[26px] h-[26px] stroke-slate-400 fill-slate-50" strokeWidth={1.5} />
+                </div>
+                <span className="text-[11px] text-slate-500 font-medium">Gallery</span>
               </div>
-
-              
 
             </nav>
           </header>
 
           <main className="flex-grow">{children}</main>
 
-          {/* Footer: Unified Serif Signature */}
-          <footer className="py-16 border-t border-slate-50 text-center px-6">
+          <footer className="py-16 border-t border-slate-200/60 text-center px-6 bg-white">
             <div className="max-w-4xl mx-auto space-y-6">
               <p className="font-serif text-2xl md:text-3xl text-[#1f295a] tracking-tight">
                 Journey Back <span className="italic text-amber-500 font-medium">to 2016</span>
               </p>
-              
               <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-[9px] uppercase tracking-[0.3em] font-black text-slate-400">
                 <span>Mar Athanasius College of Engineering</span>
                 <span className="hidden md:block opacity-30">•</span>
