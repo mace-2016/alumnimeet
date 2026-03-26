@@ -234,13 +234,13 @@ export default function EventNamePage() {
                     <div className="animate-in fade-in slide-in-from-right-8 duration-500">
                        <div className="mb-10 text-center">
                           <h2 className="text-3xl font-serif font-bold text-[var(--color-mace-crimson)] mb-2 tracking-tight">Almost Done</h2>
-                          <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-[0.25em] font-bold">So we know who to credit if you win.</p>
+                          <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-[0.25em] font-bold">So we know who to credit.</p>
                         </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                         <div className="space-y-2">
                           <label className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-[0.2em] ml-2 block">Your Name <span className="text-[var(--color-mace-rust)]">*</span></label>
-                          <input required type="text" value={submitterName} onChange={(e) => setSubmitterName(e.target.value)} className="w-full px-5 py-4 bg-[var(--surface-soft)] border border-[var(--border)] focus:border-[var(--color-mace-gold)] focus:ring-4 focus:ring-[var(--color-mace-gold)]/10 rounded-xl outline-none text-[var(--color-mace-crimson)] text-base font-medium transition-all shadow-inner placeholder:text-[var(--text-muted)]/50" placeholder="John Doe" />
+                          <input required type="text" value={submitterName} onChange={(e) => setSubmitterName(e.target.value)} className="w-full px-5 py-4 bg-[var(--surface-soft)] border border-[var(--border)] focus:border-[var(--color-mace-gold)] focus:ring-4 focus:ring-[var(--color-mace-gold)]/10 rounded-xl outline-none text-[var(--color-mace-crimson)] text-base font-medium transition-all shadow-inner placeholder:text-[var(--text-muted)]/50" placeholder="Ms. Mr. or whatsoever" />
                         </div>
                         <div className="space-y-2">
                           <label className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-[0.2em] ml-2 block">Branch <span className="text-[var(--color-mace-rust)]">*</span></label>
@@ -261,7 +261,7 @@ export default function EventNamePage() {
                         </div>
                         <div className="space-y-2">
                           <label className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-[0.2em] ml-2 block">Email (Optional)</label>
-                          <input type="email" value={emailId} onChange={(e) => setEmailId(e.target.value)} className="w-full px-5 py-4 bg-[var(--surface-soft)] border border-[var(--border)] focus:border-[var(--color-mace-gold)] focus:ring-4 focus:ring-[var(--color-mace-gold)]/10 rounded-xl outline-none text-[var(--color-mace-crimson)] text-base font-medium transition-all shadow-inner placeholder:text-[var(--text-muted)]/50" placeholder="you@example.com" />
+                          <input type="email" value={emailId} onChange={(e) => setEmailId(e.target.value)} className="w-full px-5 py-4 bg-[var(--surface-soft)] border border-[var(--border)] focus:border-[var(--color-mace-gold)] focus:ring-4 focus:ring-[var(--color-mace-gold)]/10 rounded-xl outline-none text-[var(--color-mace-crimson)] text-base font-medium transition-all shadow-inner placeholder:text-[var(--text-muted)]/50" placeholder="whatso@ever.com" />
                         </div>
                       </div>
 
