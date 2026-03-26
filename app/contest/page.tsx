@@ -98,8 +98,10 @@ export default function ContestsHubPage() {
               <React.Fragment key={contest.id}>
                 {isActive ? (
                   /* --- THE ACTIVE CONTEST (HERO SQUARE) --- */
-                  <Link>href={contest.href}
-                    className={`group relative rounded-[2rem] md:rounded-[2.5rem] bg-white border border-[var(--border)] p-6 sm:p-8 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)] hover:-translate-y-1 transition-all duration-700 overflow-hidden active:scale-[0.98] animate-in fade-in slide-in-from-bottom-4 flex flex-col justify-end ${animationDelay} ${bentoLayout}`}>
+                  <Link 
+                    href={contest.href}
+                    className={`group relative rounded-[2rem] md:rounded-[2.5rem] bg-white border border-[var(--border)] p-6 sm:p-8 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)] hover:-translate-y-1 transition-all duration-700 overflow-hidden active:scale-[0.98] animate-in fade-in slide-in-from-bottom-4 flex flex-col justify-end ${animationDelay} ${bentoLayout}`}
+                  >
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,var(--color-mace-gold),transparent_60%)] opacity-0 group-hover:opacity-[0.06] transition-opacity duration-1000" />
                     
                     {/* UPGRADED: Animated Mobile Watermarks with Tactile Press */}
@@ -140,10 +142,10 @@ export default function ContestsHubPage() {
                       </div>
                     </div>
                   </Link>
-
                 ) : (
                   /* --- THE LOCKED CONTESTS (MOBILE LIST ROWS -> DESKTOP SQUARES) --- */
-                  <div className={`relative rounded-[1.5rem] md:rounded-[2.5rem] bg-[var(--surface-soft)] border border-[var(--border)]/60 p-4 md:p-8 lg:p-10 opacity-90 grayscale-[20%] animate-in fade-in slide-in-from-bottom-4 flex flex-row md:flex-col items-center md:items-stretch justify-between ${animationDelay} ${bentoLayout}`}>
+                  /* Added active:scale-[0.99] so tapping locked cards feels physical, not broken */
+                  <div className={`relative rounded-[1.5rem] md:rounded-[2.5rem] bg-[var(--surface-soft)] border border-[var(--border)]/60 p-4 md:p-8 lg:p-10 opacity-90 grayscale-[20%] animate-in fade-in slide-in-from-bottom-4 flex flex-row md:flex-col items-center md:items-stretch justify-between active:scale-[0.99] transition-transform duration-300 select-none ${animationDelay} ${bentoLayout}`}>
                     
                     <div className={`w-full flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-0 ${index === 1 ? "md:flex-row md:items-center md:gap-6" : ""}`}>
                       <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl md:rounded-[1.5rem] bg-[var(--background)] border border-[var(--border)] flex items-center justify-center flex-shrink-0 shadow-sm md:mb-6">
