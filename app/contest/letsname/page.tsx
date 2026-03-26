@@ -131,9 +131,11 @@ export default function EventNamePage() {
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--color-mace-gold)]/10 border border-[var(--color-mace-gold)]/20 text-[var(--color-mace-crimson)] text-[10px] font-bold uppercase tracking-[0.25em] mb-6 shadow-sm">
                     <Trophy className="w-3.5 h-3.5 text-[var(--color-mace-gold)]" strokeWidth={2} /> Contest #01
                   </div>
-                  <h1 className="text-4xl md:text-6xl font-serif font-bold text-[var(--color-mace-crimson)] mb-4 tracking-tight">
-                    Name the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-mace-rust)] to-[var(--color-mace-gold)] italic font-light pr-2">Return</span>
-                  </h1>
+                  <h1 className="text-4xl md:text-6xl font-serif mb-4 tracking-tight">
+  <span className="text-[var(--color-mace-crimson)] italic font-light pr-3">The</span>
+  <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-mace-rust)] to-[var(--color-mace-gold)]">Naming</span>
+</h1>
+
                   
                   {/* The Bounty Inline */}
                   <div className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-[var(--surface-soft)] border border-[var(--border)] mt-2">
