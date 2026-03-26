@@ -56,7 +56,7 @@ export default function ContestsHubPage() {
   ];
 
   const getBentoClasses = (index: number) => {
-    // Increased min-height to 480px to give the Golden Seal room to bloom without hitting the text
+    // Increased min-height to give elements room to breathe
     if (index === 0) return "md:col-span-2 md:row-span-2 flex flex-col justify-end min-h-[480px]";
     if (index === 1) return "md:col-span-2 md:row-span-1 flex flex-col sm:flex-row items-start sm:items-center justify-between min-h-[220px] gap-6";
     return "md:col-span-1 md:row-span-1 flex flex-col justify-between min-h-[220px] gap-6";
@@ -96,8 +96,8 @@ export default function ContestsHubPage() {
 
             return (
               <React.Fragment key={contest.id}>
-              {isActive ? (
-                  /* ACTIVE CONTEST (HERO SQUARE) - Pure Typographic Poster */
+                {isActive ? (
+                  /* --- THE ACTIVE CONTEST (HERO SQUARE) --- */
                   <Link 
                     href={contest.href}
                     className={`group relative rounded-[2.5rem] bg-white border border-[var(--border)] p-8 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)] hover:-translate-y-1 transition-all duration-700 overflow-hidden active:scale-[0.98] animate-in fade-in slide-in-from-bottom-4 flex flex-col justify-end ${animationDelay} ${bentoLayout}`}
@@ -105,7 +105,7 @@ export default function ContestsHubPage() {
                     {/* Active Glow Bloom Background */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,var(--color-mace-gold),transparent_60%)] opacity-0 group-hover:opacity-[0.06] transition-opacity duration-1000" />
                     
-                    {/* The Giant Background Watermark (Now the sole visual anchor) */}
+                    {/* The Giant Background Watermark */}
                     {contest.isTextIcon ? (
                       <div className="absolute -right-8 -top-8 text-[20rem] leading-none font-serif text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 ease-out pointer-events-none select-none">
                         {contest.iconSymbol}
@@ -114,18 +114,18 @@ export default function ContestsHubPage() {
                       contest.icon && <contest.icon className="absolute -right-12 -top-12 w-96 h-96 text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 ease-out pointer-events-none" />
                     )}
 
-                    {/* Live Now Badge (Shifted to top-left to anchor the negative space) */}
+                    {/* Live Now Badge */}
                     <div className="absolute top-8 left-8 lg:top-12 lg:left-12 px-3 py-1.5 rounded-full border border-[var(--color-mace-rust)]/30 bg-[var(--color-mace-rust)]/5 text-[9px] font-black uppercase tracking-[0.2em] text-[var(--color-mace-rust)] animate-pulse z-20">
                       Live Now
                     </div>
                     
-                    {/* Neatly Arranged Typography (Anchored to the bottom) */}
+                    {/* Neatly Arranged Typography */}
                     <div className="relative z-10 w-full mt-auto">
                       <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[var(--color-mace-crimson)]/50 mb-3">
                         {contest.tag}
                       </p>
                       
-                      {/* --- THE UPGRADED TYPOGRAPHY SPLIT --- */}
+                      {/* Typographic Split (The -> Italic | Naming -> Gradient Bold) */}
                       <h2 className="text-4xl lg:text-5xl font-serif mb-4 tracking-tight group-hover:opacity-80 transition-opacity duration-500">
                         <span className="text-[var(--color-mace-crimson)] italic font-light pr-2 lg:pr-3">
                           {contest.title.split(" ")[0]}
@@ -134,7 +134,6 @@ export default function ContestsHubPage() {
                           {contest.title.split(" ").slice(1).join(" ")}
                         </span>
                       </h2>
-                      {/* -------------------------------------- */}
 
                       <p className="text-lg text-[var(--text-muted)] font-medium max-w-md leading-relaxed mb-8">
                         {contest.description}
@@ -146,13 +145,13 @@ export default function ContestsHubPage() {
                       </div>
                     </div>
                   </Link>
-
-                  /* LOCKED CONTESTS (RECTANGLES & SQUARES) */
-                  <div className={`relative rounded-[2.5rem] bg-[var(--surface-soft)] border border-[var(--border)]/60 p-8 lg:p-10 opacity-90 grayscale-[20%] animate-in fade-in slide-in-from-bottom-4 ${animationDelay} ${bentoLayout}`}>
+                ) : (
+                  /* --- THE LOCKED CONTESTS (RECTANGLES & SQUARES) --- */
+                  <div className={`relative rounded-[2.5rem] bg-[var(--surface-soft)] border border-[var(--border)]/60 p-8 lg:p-10 opacity-90 grayscale-[20%] animate-in fade-in slide-in-from-bottom-4 flex flex-col justify-between ${animationDelay} ${bentoLayout}`}>
                     
-                    <div className={`${index === 1 ? "flex items-center gap-6" : ""}`}>
+                    <div className={`w-full ${index === 1 ? "flex flex-col sm:flex-row items-start sm:items-center gap-6" : ""}`}>
                       <div className="w-16 h-16 rounded-[1.5rem] bg-[var(--background)] border border-[var(--border)] flex items-center justify-center flex-shrink-0 shadow-sm mb-6 sm:mb-0">
-                        <Lock className="w-6 h-6 text-[var(--color-mace-stone)]" strokeWidth={1.5} />
+                        {contest.icon && <contest.icon className="w-6 h-6 text-[var(--color-mace-stone)]" strokeWidth={1.5} />}
                       </div>
                       
                       <div>
@@ -175,7 +174,6 @@ export default function ContestsHubPage() {
                         <Lock className="w-4 h-4" strokeWidth={2} />
                       </div>
                     </div>
-
                   </div>
                 )}
               </React.Fragment>
