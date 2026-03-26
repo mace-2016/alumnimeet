@@ -2,24 +2,27 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, MessageCircle, Sparkles, ChevronDown, Calendar, MapPin } from "lucide-react";
+import {
+  ArrowUpRight,
+  MessageCircle,
+  MapPin,
+  Calendar,
+  Trophy,
+  Sparkles,
+  Clock,
+} from "lucide-react";
+
 export default function HomePage() {
   const [mounted, setMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    setMounted(true); // Prevents Next.js hydration mismatch on the timer
-    
-    // Targeted to Dec 19, 2026
+    setMounted(true);
     const targetDate = new Date("2026-12-19T00:00:00").getTime();
-    
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distance = targetDate - now;
-      if (distance < 0) { 
-        clearInterval(timer); 
-        return; 
-      }
+      if (distance < 0) { clearInterval(timer); return; }
       setTimeLeft({
         days: Math.floor(distance / (1000 * 60 * 60 * 24)),
         hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
@@ -27,103 +30,196 @@ export default function HomePage() {
         seconds: Math.floor((distance % (1000 * 60)) / 1000),
       });
     }, 1000);
-    
     return () => clearInterval(timer);
   }, []);
 
+  if (!mounted) return null;
+
+  const timerItems = [
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: timeLeft.hours },
+    { label: "Mins", value: timeLeft.minutes },
+    { label: "Secs", value: timeLeft.seconds },
+  ];
+
   return (
-    <div className="relative min-h-[calc(100vh-80px)] w-full flex flex-col items-center justify-center overflow-hidden font-sans">
+    <div className="relative w-full max-w-[1140px] mx-auto px-6 py-12 md:py-20 animate-in fade-in duration-1000">
       
-      {/* Background matches the Contest Hub depth perfectly */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/hero.jpg')" }} />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#151c3d]/80 via-[#1f295a]/90 to-[#151c3d]/95 backdrop-blur-[2px]" />
+      {/* Page Atmosphere - Using your Heritage Gold & Rust variables */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-1/2 top-0 h-[600px] w-[1000px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,var(--color-mace-gold),transparent_70%)] opacity-[0.07] blur-[120px]" />
+      </div>
 
-      <main className="relative z-10 w-full max-w-6xl px-6 text-center text-white pt-10 pb-20">
+      <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-6 lg:gap-8">
         
-        <div className="animate-in fade-in slide-in-from-top-4 duration-1000 text-center">
-          <p className="text-[11px] font-medium uppercase tracking-[0.4em] text-amber-500 mb-6 opacity-90 flex items-center justify-center gap-3">
-            <Sparkles className="w-3.5 h-3.5" /> The Decennial Celebration
-          </p>
+        {/* HERO BLOCK */}
+        <div className="group relative md:col-span-2 md:row-span-2 min-h-[400px] overflow-hidden rounded-[2.5rem] border border-[var(--border)] bg-white p-10 lg:p-14 shadow-[0_8px_30px_rgba(116,12,8,0.03)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)]">
+          <div className="absolute inset-0 bg-[url('/hero.jpg')] bg-cover bg-center opacity-[0.03] grayscale transition-opacity duration-1000 group-hover:opacity-[0.06]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/80 to-[var(--background)]/90" />
+          
+          <div className="relative z-10 h-full flex flex-col justify-between">
+            <div>
+              <div className="mb-12 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text)] shadow-sm">
+                <Sparkles className="h-3 w-3 text-[var(--color-mace-gold)]" strokeWidth={2.5} />
+                The Decennial
+              </div>
 
-          <h1 className="text-6xl md:text-9xl font-serif leading-[0.85] mb-8 drop-shadow-2xl">
-            <span className="block font-bold tracking-tight text-white">Journey Back</span>
-            <span className="text-amber-400 italic font-light lowercase text-5xl md:text-8xl mt-2 block drop-shadow-[0_0_30px_rgba(251,191,36,0.2)]">
-              to 2016
-            </span>
-          </h1>
+              <h1 className="font-serif text-[4rem] lg:text-[6rem] leading-[0.85] tracking-tight text-[var(--color-mace-crimson)]">
+                Class of<br />
+                <span className="bg-gradient-to-br from-[var(--color-mace-rust)] to-[var(--color-mace-gold)] bg-clip-text text-transparent font-light pr-4">
+                  2016
+                </span>
+              </h1>
+            </div>
 
-          <div className="space-y-4 mb-16">
-            <p className="text-sm md:text-base text-slate-300 max-w-lg mx-auto font-light tracking-wide leading-relaxed px-4">
-              Reconnecting with decade-old memories.
+            <p className="max-w-[320px] text-lg leading-relaxed font-medium text-[var(--text-muted)] tracking-tight">
+              A decade later. Reconnecting with the memories, the people, and the legacy.
             </p>
-            
-            <div className="flex items-center justify-center gap-4 text-[10px] uppercase tracking-[0.3em] text-amber-500/80 font-semibold bg-white/5 inline-flex px-6 py-2 rounded-full border border-white/10">
-  <span className="flex items-center gap-2">
-    <Calendar className="w-3 h-3" /> Dec 19
-  </span>
-  <span className="opacity-30 text-white">|</span>
-  <span className="flex items-center gap-2">
-    <MapPin className="w-3 h-3" /> The OAT
-  </span>
-</div>
           </div>
         </div>
 
-        {/* Enhanced Glassmorphism Countdown Grid */}
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mb-20 animate-in fade-in zoom-in duration-1000 delay-300">
-          {[
-            { label: "Days", value: timeLeft.days },
-            { label: "Hours", value: timeLeft.hours },
-            { label: "Mins", value: timeLeft.minutes },
-            { label: "Secs", value: timeLeft.seconds },
-          ].map((item, idx) => (
-            <div 
-              key={idx} 
-              className="flex flex-col items-center justify-center bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl w-20 h-24 sm:w-28 sm:h-32 md:w-32 md:h-36 shadow-xl"
-            >
-              <span className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-1 md:mb-2 leading-none">
-                {mounted ? String(item.value).padStart(2, '0') : "00"}
-              </span>
-              <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] sm:tracking-[0.5em] text-amber-500/80 font-semibold">
-                {item.label}
-              </span>
+        {/* TIMER BLOCK - THE CHRONOGRAPH VIBE */}
+        <div className="group relative md:col-span-2 bg-white rounded-[2.5rem] border border-[var(--border)] p-10 lg:p-14 flex flex-col justify-center overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] transition-all duration-700 hover:shadow-[0_30px_60px_rgba(116,12,8,0.06)] hover:-translate-y-1.5">
+          
+          {/* Architectural Clockwork Rings (Hidden until hover) */}
+          <div className="absolute -right-24 -top-24 w-72 h-72 border border-[var(--color-mace-gold)]/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out" />
+          <div className="absolute -right-12 -top-12 w-48 h-48 border border-[var(--color-mace-gold)]/30 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 delay-75 ease-out" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,var(--color-mace-gold),transparent_40%)] opacity-0 group-hover:opacity-[0.04] transition-opacity duration-1000" />
+
+          <div className="relative z-10">
+            <div className="mb-10 flex items-center justify-between">
+              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--color-mace-crimson)]/50 group-hover:text-[var(--color-mace-rust)] transition-colors duration-500">
+                <Clock className="h-4 w-4" strokeWidth={1.5} />
+                Countdown
+              </div>
+              
+              {/* Live Status Indicator */}
+              <div className="flex items-center gap-2">
+                <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--color-mace-stone)]">Live</span>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-mace-rust)] opacity-40"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-mace-rust)] opacity-80"></span>
+                </span>
+              </div>
             </div>
-          ))}
+
+            <div className="flex items-start justify-between w-full">
+              {timerItems.map((item, idx) => (
+                <React.Fragment key={idx}>
+                  <div className="flex flex-col items-center gap-4 w-16 md:w-20">
+                    <span className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium text-[var(--color-mace-crimson)] tabular-nums tracking-tighter drop-shadow-sm group-hover:-translate-y-1 transition-transform duration-500">
+                      {String(item.value).padStart(2, "0")}
+                    </span>
+                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)] border-t border-[var(--border)]/60 pt-3 w-full text-center">
+                      {item.label}
+                    </span>
+                  </div>
+                  
+                  {/* Classic Chronograph Separators */}
+                  {idx !== timerItems.length - 1 && (
+                    <div className="text-3xl md:text-5xl font-serif font-light text-[var(--color-mace-stone)]/40 mt-1 md:mt-2 animate-pulse">
+                      :
+                    </div>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Call to Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-500">
+        {/* LOCATION BLOCK */}
+        <a href="#map" className="group relative bg-white rounded-[2.5rem] border border-[var(--border)] p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 transition-all duration-500">
+          {/* Faded Watermark */}
+          <MapPin className="absolute -right-8 -bottom-8 w-40 h-40 text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.04] group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none" />
           
-          {/* Primary CTA with Pulsing Indicator */}
-          <Link
-  href="/contest/letsname"
-  className="group relative px-12 py-4 bg-white text-[#1f295a] rounded-full font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-amber-400 transition-all flex items-center gap-3 shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] active:scale-95"
->
-  {/* Live Pulse Dot */}
-  <span className="absolute top-0 right-4 -translate-y-1/2 flex h-3.5 w-3.5">
-    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-    {/* Notice the border-white that changes to border-amber-400 on group hover */}
-    <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-green-500 border-2 border-white group-hover:border-amber-400 transition-colors"></span>
-  </span>
-  The Naming <ArrowRight className="w-4 h-4" />
-</Link>
-
-          {/* Functional WhatsApp Link */}
-          <a 
-            href="https://chat.whatsapp.com/YOUR_GROUP_LINK_HERE" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="px-12 py-4 bg-transparent border border-white/20 text-white rounded-full font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-white/10 transition-all flex items-center gap-3 active:scale-95"
-          >
-            <MessageCircle className="w-4 h-4 text-green-400" />
-            Join WhatsApp
-          </a>
+          <div className="flex justify-between items-start relative z-10">
+            <div className="w-14 h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-gold)]/30 group-hover:bg-[var(--color-mace-gold)]/10 transition-all duration-500 shadow-sm group-hover:scale-105">
+              <MapPin className="h-6 w-6 text-[var(--text-muted)] group-hover:text-[var(--color-mace-gold)] transition-colors duration-500" strokeWidth={1.5} />
+            </div>
+            <ArrowUpRight className="h-6 w-6 text-[var(--color-mace-stone)] opacity-0 group-hover:opacity-100 group-hover:text-[var(--color-mace-gold)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500" />
+          </div>
           
-        </div>
-      </main>
+          <div className="relative z-10 mt-12">
+            <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)]/70 transition-colors duration-500">Location</p>
+            <p className="font-serif text-2xl lg:text-3xl font-medium tracking-tight text-[var(--color-mace-crimson)]">The OAT</p>
+          </div>
+        </a>
 
-      <div className="absolute bottom-8 animate-bounce opacity-30 hidden md:block">
-        <ChevronDown className="text-white w-5 h-5" />
+        {/* DATE BLOCK */}
+        <a href="#calendar" className="group relative bg-white rounded-[2.5rem] border border-[var(--border)] p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 transition-all duration-500">
+          {/* Faded Watermark */}
+          <Calendar className="absolute -right-8 -bottom-8 w-40 h-40 text-[var(--color-mace-rust)] opacity-0 group-hover:opacity-[0.03] group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none" />
+          
+          <div className="flex justify-between items-start relative z-10">
+            <div className="w-14 h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-rust)]/30 group-hover:bg-[var(--color-mace-rust)]/10 transition-all duration-500 shadow-sm group-hover:scale-105">
+              <Calendar className="h-6 w-6 text-[var(--text-muted)] group-hover:text-[var(--color-mace-rust)] transition-colors duration-500" strokeWidth={1.5} />
+            </div>
+            <ArrowUpRight className="h-6 w-6 text-[var(--color-mace-stone)] opacity-0 group-hover:opacity-100 group-hover:text-[var(--color-mace-rust)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500" />
+          </div>
+          
+          <div className="relative z-10 mt-12">
+            <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)]/70 transition-colors duration-500">Date</p>
+            <p className="font-serif text-2xl lg:text-3xl font-medium tracking-tight text-[var(--color-mace-crimson)]">Dec 19, 2026</p>
+          </div>
+        </a>
+
+        {/* WHATSAPP BLOCK */}
+        <a href="#whatsapp" className="group relative bg-white rounded-[2.5rem] border border-[var(--border)] p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 transition-all duration-500">
+          {/* Faded Watermark */}
+          <MessageCircle className="absolute -right-8 -bottom-8 w-40 h-40 text-[var(--color-mace-crimson)] opacity-0 group-hover:opacity-[0.03] group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none" />
+          
+          <div className="flex justify-between items-start relative z-10">
+            <div className="w-14 h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-crimson)]/30 group-hover:bg-[var(--color-mace-crimson)]/5 transition-all duration-500 shadow-sm group-hover:scale-105">
+              <MessageCircle className="h-6 w-6 text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)] transition-colors duration-500" strokeWidth={1.5} />
+            </div>
+            <ArrowUpRight className="h-6 w-6 text-[var(--color-mace-stone)] opacity-0 group-hover:opacity-100 group-hover:text-[var(--color-mace-crimson)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500" />
+          </div>
+          
+          <div className="relative z-10 mt-12">
+            <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)]/70 transition-colors duration-500">Comms</p>
+            <p className="font-serif text-2xl lg:text-3xl font-medium tracking-tight text-[var(--color-mace-crimson)]">WhatsApp</p>
+          </div>
+        </a>
+
+        {/* CONTESTS BLOCK - THE TROPHY ROOM VIBE */}
+        <Link href="/contest" className="group relative md:col-span-3 bg-white rounded-[2.5rem] border border-[var(--border)] p-10 lg:p-12 flex flex-col md:flex-row md:items-center justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_40px_80px_rgba(116,12,8,0.08)] hover:-translate-y-1.5 transition-all duration-700">
+          
+          {/* Premium Background Blooms */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_100%,var(--color-mace-gold),transparent_40%)] opacity-0 group-hover:opacity-[0.06] transition-opacity duration-1000" />
+          
+          {/* Faded Watermark Trophy */}
+          <Trophy className="absolute -right-8 -bottom-12 w-64 h-64 text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.03] group-hover:-translate-x-4 group-hover:-translate-y-4 transition-all duration-1000 ease-out pointer-events-none" />
+
+          <div className="flex flex-col md:flex-row md:items-center gap-6 lg:gap-8 relative z-10">
+            <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--color-mace-gold)] group-hover:border-[var(--color-mace-gold)] transition-all duration-700 shadow-sm shrink-0 group-hover:scale-105">
+              <Trophy className="h-8 w-8 lg:h-10 lg:w-10 text-[var(--color-mace-gold)] group-hover:text-white transition-colors duration-500" strokeWidth={1.5} />
+            </div>
+            
+            <div>
+              <div className="mb-2 flex items-center gap-4">
+                <h3 className="font-serif text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-mace-crimson)]">
+                  Explore Contests
+                </h3>
+                {/* Replaced pulsing dot with a prestigious Heritage Badge */}
+                <div className="px-2.5 py-1 rounded-full border border-[var(--color-mace-rust)]/30 bg-[var(--color-mace-rust)]/5 text-[8px] font-black uppercase tracking-[0.2em] text-[var(--color-mace-rust)]">
+                  Let's Get Rolling!
+                </div>
+              </div>
+              <p className="max-w-md text-base lg:text-lg font-medium text-[var(--text-muted)] leading-relaxed">
+                View leaderboards, submit your entries, and cement your legacy in the decennial archives.
+              </p>
+            </div>
+          </div>
+          
+          {/* Upgraded CTA Button */}
+          <div className="mt-8 md:mt-0 flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-rust)] transition-colors duration-500 relative z-10 w-fit">
+             
+            <div className="w-10 h-10 rounded-full bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--color-mace-rust)]/10 group-hover:border-[var(--color-mace-rust)]/20 transition-all duration-500">
+              <ArrowUpRight className="h-5 w-5 text-[var(--color-mace-crimson)] group-hover:text-[var(--color-mace-rust)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" strokeWidth={1.5} />
+            </div>
+          </div>
+        </Link>
+
       </div>
     </div>
   );
