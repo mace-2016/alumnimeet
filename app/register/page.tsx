@@ -2,49 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
-import { 
-  Ticket, 
-  Lock, 
-  Sparkles, 
-  Users, 
-  Flame,
-  ArrowRight
-} from "lucide-react";
+import { Ticket } from "lucide-react";
 
 export default function RegisterPage() {
-
-  const ticketTiers = [
-    {
-      id: 1,
-      name: "The Alumni Pass",
-      price: "TBA",
-      perks: ["Main Event Access", "Gala Dinner", "Decennial Merch Kit", "Alumni Directory"],
-      status: "Opening Soon",
-      icon: Ticket,
-      accent: "var(--color-mace-gold)",
-      interest: "248 waiting"
-    },
-    {
-      id: 2,
-      name: "The Plus-One Pass",
-      price: "TBA",
-      perks: ["2x Event Access", "Gala Dinner for Two", "Decennial Merch Kit", "Couples Photo Booth"],
-      status: "Finalizing",
-      icon: Sparkles,
-      accent: "var(--color-mace-crimson)",
-      interest: "185 waiting"
-    },
-    {
-      id: 3,
-      name: "The Family Pass",
-      price: "TBA",
-      perks: ["Family Event Access", "Kids Zone Entry", "Family Dinner Table", "Commemorative Gift"],
-      status: "Curating",
-      icon: Users,
-      accent: "var(--color-mace-rust)",
-      interest: "94 waiting"
-    }
-  ];
 
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center pt-8 md:pt-16 pb-28 md:pb-20 px-4 sm:px-6 lg:px-8 font-sans bg-[var(--background)] overflow-x-hidden">
@@ -55,118 +15,91 @@ export default function RegisterPage() {
 
       {/* Main Content */}
       <main className="relative z-10 w-full max-w-[1140px] mx-auto flex flex-col">
-        
+         
         {/* Header Section */}
         <div className="flex flex-col items-center text-center gap-4 mb-10 md:mb-16 animate-in fade-in slide-in-from-top-6 duration-700">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[var(--border)] shadow-sm">
             <Ticket className="w-3.5 h-3.5 text-[var(--color-mace-gold)]" strokeWidth={2} />
-            <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)]">
-              The Registry
-            </p>
+            <div className="w-24 h-2.5 bg-gray-200 rounded-full animate-pulse"></div>
           </div>
           
           <h1 className="text-4xl md:text-6xl font-serif font-bold text-[var(--color-mace-crimson)] tracking-tight">
             Reserve Your <span className="italic font-light text-[var(--color-mace-gold)] pr-2">Spot</span>
           </h1>
-          <p className="max-w-md text-sm md:text-base text-[var(--text-muted)] font-medium leading-relaxed mt-2">
-            The official guestlist for the Class of 2016 Decennial is currently being finalized.
-          </p>
+          <div className="w-64 h-4 bg-gray-200 rounded-full mt-2 animate-pulse"></div>
         </div>
 
-        {/* The Naming Call To Action (The ONLY Clickable Action) */}
-        <div className="w-full max-w-2xl mx-auto bg-white border border-[var(--border)] rounded-[2rem] md:rounded-[2.5rem] p-6 sm:p-8 md:p-10 shadow-[0_20px_40px_rgba(116,12,8,0.03)] mb-12 md:mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 relative overflow-hidden flex flex-col items-center text-center">
+        {/* Redirect Bar matching uploaded image style */}
+        <Link 
+          href="/contest/letsname"
+          className="w-full max-w-2xl mx-auto bg-[#F8F9FA] rounded-3xl p-4 sm:p-6 md:p-8 shadow-sm mb-12 md:mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 flex items-center justify-between transition-all hover:scale-[1.02] active:scale-[0.98] border border-[var(--border)]/50"
+        >
+          <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 tracking-tight flex items-center">
+            Play 'The Naming' <span className="ml-2 font-normal text-gray-500 text-base md:text-xl">&gt;</span>
+          </h3>
           
-          {/* Subtle background bloom */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-mace-gold)]/5 rounded-full blur-3xl -z-10 animate-pulse pointer-events-none"></div>
-
-          <div className="w-14 h-14 rounded-2xl bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center mb-5 shadow-sm">
-            <span className="text-2xl font-serif text-[var(--color-mace-gold)] leading-none">ആ</span>
+          {/* Using your earlier graphic style on the right side */}
+          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center shadow-sm shrink-0">
+            <span className="text-xl sm:text-3xl font-serif text-[var(--color-mace-gold)] leading-none">ആ</span>
           </div>
-          
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--color-mace-rust)] mb-2">While you wait</p>
-          <h3 className="font-serif text-3xl font-bold text-[var(--color-mace-crimson)] mb-3 tracking-tight">Cement Your Legacy</h3>
-          <p className="text-[var(--text-muted)] text-sm md:text-base font-medium max-w-md mb-8 leading-relaxed">
-            Ticketing operations are currently under wraps. In the meantime, join our very first decennial event and etch your mark into history.
-          </p>
-
-          <Link 
-            href="/contest/letsname"
-            className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[var(--color-mace-rust)] text-white text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_8px_20px_rgba(212,67,33,0.25)] hover:bg-[#b0361a] transition-all active:scale-[0.98] shrink-0"
-          >
-            Play 'The Naming' <ArrowRight className="w-4 h-4" strokeWidth={2} />
-          </Link>
-        </div>
+        </Link>
 
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-6 md:mb-8 animate-in fade-in duration-700 delay-200 px-2 md:px-0">
           <div className="h-px bg-[var(--border)] flex-1"></div>
-          <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)]">Preview Packages</p>
+          <div className="w-32 h-2.5 bg-gray-200 rounded-full animate-pulse"></div>
           <div className="h-px bg-[var(--border)] flex-1"></div>
         </div>
 
-        {/* TICKET PACKAGES (Locked) */}
+        {/* TICKET PACKAGES (Brainstorming Skeletons) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 w-full animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
           
           {/* md:contents trick for horizontal mobile scroll */}
           <div className="flex overflow-x-auto gap-4 pb-6 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 md:pb-0 md:contents snap-x snap-mandatory [&::-webkit-scrollbar]:hidden w-[100vw] md:w-full">
             
-            {ticketTiers.map((tier) => (
+            {[1, 2, 3].map((item) => (
               <div 
-                key={tier.id} 
-                className="relative group bg-white border border-[var(--border)] rounded-[2rem] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] transition-all duration-500 w-[280px] md:w-auto shrink-0 snap-center md:snap-none min-h-[340px] grayscale-[15%] cursor-not-allowed select-none"
+                key={item} 
+                className="relative group bg-white border border-[var(--border)] rounded-[2rem] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] transition-all duration-500 w-[280px] md:w-auto shrink-0 snap-center md:snap-none min-h-[340px] opacity-60 cursor-not-allowed select-none"
               >
-                {/* Background Ticket Graphic */}
-                <div className="absolute -right-8 -bottom-8 opacity-[0.02] pointer-events-none">
-                  <Ticket className="w-48 h-48 text-[var(--color-mace-crimson)]" strokeWidth={1} />
-                </div>
-
-                {/* Top Section */}
-                <div className="relative z-10">
+                {/* Top Section Skeleton */}
+                <div className="relative z-10 w-full">
                   <div className="flex justify-between items-start mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center shadow-sm">
-                      <tier.icon className="w-5 h-5 text-[var(--color-mace-stone)]" strokeWidth={1.5} />
-                    </div>
-                    <div className="px-3 py-1 rounded-full bg-[var(--surface-soft)] border border-[var(--border)] text-[8px] font-black uppercase tracking-widest text-[var(--text-muted)]">
-                      {tier.status}
-                    </div>
+                    <div className="w-12 h-12 rounded-2xl bg-gray-100 border border-gray-200 animate-pulse"></div>
+                    <div className="w-16 h-5 rounded-full bg-gray-200 animate-pulse"></div>
                   </div>
 
-                  <h3 className="font-serif text-2xl font-bold text-[var(--color-mace-crimson)] mb-2 tracking-tight">
-                    {tier.name}
-                  </h3>
+                  <div className="w-3/4 h-7 bg-gray-300 rounded-full mb-3 animate-pulse"></div>
                   
-                  <div className="mb-5">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)]/60 mb-1">Starting from</p>
-                    <p className="text-xl font-bold text-[var(--color-mace-crimson)] opacity-50">{tier.price}</p>
+                  <div className="mb-6">
+                    <div className="w-1/3 h-2 bg-gray-200 rounded-full mb-2 animate-pulse"></div>
+                    <div className="w-1/2 h-5 bg-gray-200 rounded-full animate-pulse"></div>
                   </div>
 
-                  {/* Perks List */}
-                  <ul className="space-y-2.5 mb-8">
-                    {tier.perks.map((perk, i) => (
-                      <li key={i} className="flex items-center gap-2.5 text-sm text-[var(--text-muted)] font-medium">
-                        <div className="w-1.5 h-1.5 rounded-full opacity-40 shrink-0" style={{ backgroundColor: tier.accent }}></div>
-                        {perk}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Perks List Skeletons */}
+                  <div className="space-y-4 mb-8">
+                     <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-gray-300 animate-pulse shrink-0"></div>
+                        <div className="w-full h-3 bg-gray-200 rounded-full animate-pulse"></div>
+                     </div>
+                     <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-gray-300 animate-pulse shrink-0"></div>
+                        <div className="w-5/6 h-3 bg-gray-200 rounded-full animate-pulse"></div>
+                     </div>
+                     <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-gray-300 animate-pulse shrink-0"></div>
+                        <div className="w-4/5 h-3 bg-gray-200 rounded-full animate-pulse"></div>
+                     </div>
+                  </div>
                 </div>
 
-                {/* Bottom Section (Social Proof + Action) */}
+                {/* Bottom Section Skeleton */}
                 <div className="relative z-10 mt-auto w-full">
-                  {/* Fire/Interest Indicator */}
-                  <div className="flex items-center gap-1.5 text-[10px] font-bold text-[var(--color-mace-rust)] mb-3">
-                    <Flame className="w-3.5 h-3.5" strokeWidth={2.5} />
-                    {tier.interest}
-                  </div>
-
-                  <div className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-[var(--surface-soft)] border border-[var(--border)] text-[var(--color-mace-stone)] text-[10px] font-black uppercase tracking-[0.2em]">
-                    <Lock className="w-3.5 h-3.5" strokeWidth={2} /> Locked
-                  </div>
+                  <div className="w-1/3 h-2.5 bg-gray-200 rounded-full mb-4 animate-pulse"></div>
+                  <div className="w-full h-11 rounded-xl bg-gray-100 border border-gray-200 animate-pulse"></div>
                 </div>
-
               </div>
             ))}
-
           </div>
         </div>
 
