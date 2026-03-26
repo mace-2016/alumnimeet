@@ -199,23 +199,27 @@ export default function HomePage() {
 
          
 
-
         {/* CONTESTS BLOCK */}
-        <Link href="/contest" className="group relative md:col-span-3 bg-white rounded-[2.5rem] border border-[var(--border)] p-10 lg:p-12 flex flex-col md:flex-row md:items-center justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_40px_80px_rgba(116,12,8,0.08)] hover:-translate-y-1.5 transition-all duration-700">
+        <Link 
+          href="/contest" 
+          className="group relative md:col-span-3 bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-8 md:p-10 lg:p-12 flex flex-col md:flex-row md:items-center justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_40px_80px_rgba(116,12,8,0.08)] hover:-translate-y-1.5 transition-all duration-700 active:scale-[0.98]"
+        >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_100%,var(--color-mace-gold),transparent_40%)] opacity-0 group-hover:opacity-[0.06] transition-opacity duration-1000" />
           <Trophy className="absolute -right-8 -bottom-12 w-64 h-64 text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.03] group-hover:-translate-x-4 group-hover:-translate-y-4 transition-all duration-1000 ease-out pointer-events-none" />
 
           <div className="flex flex-col md:flex-row md:items-center gap-6 lg:gap-8 relative z-10">
-            <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--color-mace-gold)] group-hover:border-[var(--color-mace-gold)] transition-all duration-700 shadow-sm shrink-0 group-hover:scale-105">
-              <Trophy className="h-8 w-8 lg:h-10 lg:w-10 text-[var(--color-mace-gold)] group-hover:text-white transition-colors duration-500" strokeWidth={1.5} />
+            {/* Shrunk icon slightly for mobile (w-14 h-14) */}
+            <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-2xl md:rounded-[1.5rem] bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--color-mace-gold)] group-hover:border-[var(--color-mace-gold)] transition-all duration-700 shadow-sm shrink-0 group-hover:scale-105">
+              <Trophy className="h-7 w-7 md:h-8 md:w-8 lg:h-10 lg:w-10 text-[var(--color-mace-gold)] group-hover:text-white transition-colors duration-500" strokeWidth={1.5} />
             </div>
             
             <div>
-              <div className="mb-2 flex items-center gap-4">
+              {/* Added flex-wrap and reduced gap for mobile safety */}
+              <div className="mb-2 flex flex-wrap items-center gap-2 md:gap-4">
                 <h3 className="font-serif text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-mace-crimson)]">
                   Explore Contests
                 </h3>
-                <div className="px-2.5 py-1 rounded-full border border-[var(--color-mace-rust)]/30 bg-[var(--color-mace-rust)]/5 text-[8px] font-black uppercase tracking-[0.2em] text-[var(--color-mace-rust)]">
+                <div className="px-2.5 py-1 rounded-full border border-[var(--color-mace-rust)]/30 bg-[var(--color-mace-rust)]/5 text-[8px] font-black uppercase tracking-[0.2em] text-[var(--color-mace-rust)] whitespace-nowrap">
                   Let's Get Rolling!
                 </div>
               </div>
@@ -231,6 +235,8 @@ export default function HomePage() {
             </div>
           </div>
         </Link>
+
+     
 
       </div>
     </div>
