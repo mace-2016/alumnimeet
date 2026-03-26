@@ -4,82 +4,11 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { 
   ShoppingBag, 
-  Filter, 
-  Shirt, 
-  Coffee, 
-  Watch, 
-  BookOpen, 
-  Lock,
-  ArrowRight
+  Filter
 } from "lucide-react";
 
 export default function StorePage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const categories = ["All", "Sourcing...", "Curating...", "In Design...", "TBA"];
-
-  const products = [
-    {
-      id: 1,
-      name: "Still Sourcing...",
-      price: "TBA",
-      category: "Sourcing...",
-      status: "In Progress",
-      icon: Shirt,
-      color: "text-[var(--color-mace-crimson)]",
-      bg: "bg-[var(--color-mace-crimson)]/5"
-    },
-    {
-      id: 2,
-      name: "Curating Options...",
-      price: "TBA",
-      category: "Curating...",
-      status: "Pending",
-      icon: Coffee,
-      color: "text-[var(--color-mace-stone)]",
-      bg: "bg-[var(--background)]"
-    },
-    {
-      id: 3,
-      name: "In Design Phase...",
-      price: "TBA",
-      category: "In Design...",
-      status: "Drafting",
-      icon: Watch,
-      color: "text-[var(--color-mace-gold)]",
-      bg: "bg-[var(--color-mace-gold)]/10"
-    },
-    {
-      id: 4,
-      name: "Exploring Materials...",
-      price: "TBA",
-      category: "Sourcing...",
-      status: "Curating",
-      icon: BookOpen,
-      color: "text-[var(--color-mace-rust)]",
-      bg: "bg-[var(--color-mace-rust)]/5"
-    },
-    {
-      id: 5,
-      name: "Mockups Pending...",
-      price: "TBA",
-      category: "In Design...",
-      status: "TBA",
-      icon: Shirt,
-      color: "text-slate-700",
-      bg: "bg-slate-100"
-    },
-    {
-      id: 6,
-      name: "Finalizing Details...",
-      price: "TBA",
-      category: "TBA",
-      status: "Coming Soon",
-      icon: Coffee,
-      color: "text-[var(--text-muted)]",
-      bg: "bg-[var(--surface-soft)]"
-    },
-  ];
+  const [activeCategory, setActiveCategory] = useState(1);
 
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center pt-8 md:pt-16 pb-28 md:pb-20 px-4 sm:px-6 lg:px-8 font-sans bg-[var(--background)] overflow-x-hidden">
@@ -90,111 +19,85 @@ export default function StorePage() {
 
       {/* Main Content */}
       <main className="relative z-10 w-full max-w-[1140px] mx-auto flex flex-col">
-        
+         
         {/* Header Section */}
         <div className="flex flex-col items-center text-center gap-4 mb-10 md:mb-16 animate-in fade-in slide-in-from-top-6 duration-700">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[var(--border)] shadow-sm">
             <ShoppingBag className="w-3.5 h-3.5 text-[var(--color-mace-gold)]" strokeWidth={2} />
-            <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)]">
-              Decennial Store
-            </p>
+            <div className="w-24 h-2.5 bg-gray-200 rounded-full animate-pulse"></div>
           </div>
           
           <h1 className="text-4xl md:text-6xl font-serif font-bold text-[var(--color-mace-crimson)] tracking-tight">
             Official <span className="italic font-light text-[var(--color-mace-gold)] pr-2">Merch</span>
           </h1>
-          <p className="max-w-md text-sm md:text-base text-[var(--text-muted)] font-medium leading-relaxed mt-2">
-            The exclusive merchandise collection for the Class of 2016 is currently being curated.
-          </p>
+          <div className="w-64 h-4 bg-gray-200 rounded-full mt-2 animate-pulse"></div>
         </div>
 
-        {/* The Naming Call To Action (The ONLY Clickable Action) */}
-        <div className="w-full max-w-2xl mx-auto bg-white border border-[var(--border)] rounded-[2rem] md:rounded-[2.5rem] p-6 sm:p-8 md:p-10 shadow-[0_20px_40px_rgba(116,12,8,0.03)] mb-12 md:mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 relative overflow-hidden flex flex-col items-center text-center">
+        {/* Redirect Bar matching uploaded image style */}
+        <Link 
+          href="/contest/letsname"
+          className="w-full max-w-2xl mx-auto bg-[#F8F9FA] rounded-3xl p-4 sm:p-6 md:p-8 shadow-sm mb-12 md:mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 flex items-center justify-between transition-all hover:scale-[1.02] active:scale-[0.98] border border-[var(--border)]/50"
+        >
+          <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 tracking-tight flex items-center">
+            Play 'The Naming' <span className="ml-2 font-normal text-gray-500 text-base md:text-xl">&gt;</span>
+          </h3>
           
-          {/* Subtle background bloom */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-mace-gold)]/5 rounded-full blur-3xl -z-10 animate-pulse pointer-events-none"></div>
-
-          <div className="w-14 h-14 rounded-2xl bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center mb-5 shadow-sm">
-            <span className="text-2xl font-serif text-[var(--color-mace-gold)] leading-none">ആ</span>
+          {/* Using your earlier graphic style on the right side */}
+          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center shadow-sm shrink-0">
+            <span className="text-xl sm:text-3xl font-serif text-[var(--color-mace-gold)] leading-none">ആ</span>
           </div>
-          
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--color-mace-rust)] mb-2">While you wait</p>
-          <h3 className="font-serif text-3xl font-bold text-[var(--color-mace-crimson)] mb-3 tracking-tight">Cement Your Legacy</h3>
-          <p className="text-[var(--text-muted)] text-sm md:text-base font-medium max-w-md mb-8 leading-relaxed">
-            Merchandising operations are currently under wraps. In the meantime, join our very first decennial event and etch your mark into history.
-          </p>
-
-          <Link 
-            href="/contest/letsname"
-            className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[var(--color-mace-rust)] text-white text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_8px_20px_rgba(212,67,33,0.25)] hover:bg-[#b0361a] transition-all active:scale-[0.98] shrink-0"
-          >
-            Play 'The Naming' <ArrowRight className="w-4 h-4" strokeWidth={2} />
-          </Link>
-        </div>
+        </Link>
 
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-6 md:mb-8 animate-in fade-in duration-700 delay-200 px-2 md:px-0">
           <div className="h-px bg-[var(--border)] flex-1"></div>
-          <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)]">Preview Collection</p>
+          <div className="w-32 h-2.5 bg-gray-200 rounded-full animate-pulse"></div>
           <div className="h-px bg-[var(--border)] flex-1"></div>
         </div>
 
-        {/* Scrolling Category Pills (Disabled state) */}
+        {/* Scrolling Category Pills (Brainstorming Skeletons) */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden mb-4 animate-in fade-in duration-700 delay-300">
           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-[var(--border)] text-slate-400 shrink-0 mr-1 shadow-sm opacity-60">
             <Filter className="w-4 h-4" strokeWidth={2} />
           </div>
           
-          {categories.map((category) => (
-            <div
-              key={category}
-              className={`whitespace-nowrap px-5 py-2.5 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all shadow-sm border cursor-not-allowed opacity-70 ${
-                activeCategory === category 
-                  ? "bg-[var(--color-mace-crimson)] text-white border-[var(--color-mace-crimson)]" 
-                  : "bg-white text-slate-400 border-[var(--border)]"
+          {[1, 2, 3, 4, 5].map((item) => (
+             <div
+              key={item}
+              className={`whitespace-nowrap w-24 h-10 rounded-full transition-all shadow-sm border cursor-not-allowed opacity-70 animate-pulse ${
+                activeCategory === item 
+                  ? "bg-gray-400 border-gray-400" 
+                  : "bg-gray-200 border-gray-200"
               }`}
             >
-              {category}
             </div>
           ))}
         </div>
 
-        {/* E-Commerce Product Grid (Locked) */}
+        {/* E-Commerce Product Grid (Brainstorming Skeletons) */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-500">
-          {products.map((product) => (
+          {[1, 2, 3, 4, 5, 6].map((item) => (
             <div 
-              key={product.id} 
-              className="group flex flex-col bg-white border border-[var(--border)] rounded-[1.5rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] transition-all duration-500 cursor-not-allowed grayscale-[20%] select-none"
+              key={item} 
+              className="group flex flex-col bg-white border border-[var(--border)] rounded-[1.5rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] transition-all duration-500 cursor-not-allowed select-none opacity-60"
             >
-              
-              {/* Product Image Area */}
-              <div className={`relative w-full aspect-square ${product.bg} flex items-center justify-center p-6 border-b border-[var(--border)]/50 overflow-hidden`}>
-                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-[var(--color-mace-gold)]/30 text-[8px] font-black uppercase tracking-widest text-[var(--color-mace-gold)] shadow-sm">
-                  {product.status}
-                </div>
-                <product.icon className={`w-24 h-24 md:w-32 md:h-32 ${product.color} opacity-40 transition-transform duration-700 ease-out`} strokeWidth={1} />
+              {/* Image Area Skeleton */}
+              <div className="relative w-full aspect-square bg-gray-100 flex items-center justify-center p-6 border-b border-[var(--border)]/50 overflow-hidden animate-pulse">
+                <div className="absolute top-3 left-3 w-16 h-4 rounded-full bg-gray-300"></div>
+                <div className="w-20 h-20 bg-gray-200 rounded-full"></div>
               </div>
 
-              {/* Product Details */}
+              {/* Product Details Skeleton */}
               <div className="p-4 md:p-5 flex flex-col flex-1 bg-white">
-                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] mb-1.5">
-                  {product.category}
-                </p>
+                <div className="w-1/3 h-2.5 bg-gray-200 rounded-full mb-3 animate-pulse"></div>
+                <div className="w-3/4 h-5 bg-gray-300 rounded-full mb-2 animate-pulse"></div>
+                <div className="w-1/2 h-5 bg-gray-300 rounded-full mb-6 animate-pulse"></div>
                 
-                <h3 className="font-serif font-bold text-base md:text-lg text-[var(--color-mace-crimson)] leading-tight mb-3 line-clamp-2">
-                  {product.name}
-                </h3>
-                
-                <div className="mt-auto flex items-end justify-between opacity-50">
-                  <p className="text-lg md:text-xl font-bold tracking-tight text-[var(--color-mace-crimson)]">
-                    {product.price}
-                  </p>
-                  <div className="w-8 h-8 rounded-full bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center">
-                    <Lock className="w-3.5 h-3.5 text-[var(--text-muted)]" strokeWidth={2.5} />
-                  </div>
+                <div className="mt-auto flex items-end justify-between">
+                  <div className="w-1/4 h-6 bg-gray-200 rounded-full animate-pulse"></div>
+                  <div className="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 animate-pulse"></div>
                 </div>
               </div>
-
             </div>
           ))}
         </div>
