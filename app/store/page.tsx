@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { 
-  Search, 
   ShoppingBag, 
   Filter, 
   Shirt, 
   Coffee, 
   Watch, 
   BookOpen, 
+  Lock,
   ArrowRight
 } from "lucide-react";
 
@@ -90,78 +91,91 @@ export default function StorePage() {
       {/* Main Content */}
       <main className="relative z-10 w-full max-w-[1140px] mx-auto flex flex-col">
         
-        {/* Header & Search (Google Shopping Style) */}
-        <div className="flex flex-col gap-6 mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
+        {/* Header Section */}
+        <div className="flex flex-col items-center text-center gap-4 mb-10 md:mb-16 animate-in fade-in slide-in-from-top-6 duration-700">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[var(--border)] shadow-sm">
+            <ShoppingBag className="w-3.5 h-3.5 text-[var(--color-mace-gold)]" strokeWidth={2} />
+            <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)]">
+              Decennial Store
+            </p>
+          </div>
           
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl md:text-5xl font-serif font-bold text-[var(--color-mace-crimson)] tracking-tight">
-                Decennial <span className="italic font-light text-[var(--color-mace-gold)] pr-2">Store</span>
-              </h1>
-              <p className="text-sm md:text-base text-[var(--text-muted)] font-medium mt-1">Official merchandise is currently being curated.</p>
-            </div>
-            
-            <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white border border-[var(--border)] shadow-sm relative cursor-pointer hover:border-[var(--color-mace-gold)] transition-colors">
-              <ShoppingBag className="w-5 h-5 text-[var(--color-mace-crimson)]" strokeWidth={1.5} />
-            </div>
-          </div>
-
-          {/* Google-esque Giant Search Bar */}
-          <div className="relative w-full max-w-2xl group">
-            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[var(--color-mace-crimson)] transition-colors">
-              <Search className="w-5 h-5" strokeWidth={2} />
-            </div>
-            <input 
-              type="text" 
-              disabled
-              placeholder="Merch dropping soon..." 
-              className="w-full pl-12 pr-4 py-3.5 md:py-4 bg-white/50 border border-[var(--border)] rounded-full text-base font-medium text-[var(--color-mace-crimson)] shadow-sm placeholder:text-slate-400 outline-none cursor-not-allowed transition-all"
-            />
-          </div>
+          <h1 className="text-4xl md:text-6xl font-serif font-bold text-[var(--color-mace-crimson)] tracking-tight">
+            Official <span className="italic font-light text-[var(--color-mace-gold)] pr-2">Merch</span>
+          </h1>
+          <p className="max-w-md text-sm md:text-base text-[var(--text-muted)] font-medium leading-relaxed mt-2">
+            The exclusive merchandise collection for the Class of 2016 is currently being curated.
+          </p>
         </div>
 
-        {/* Scrolling Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden mb-4 animate-in fade-in duration-700 delay-100">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-[var(--border)] text-slate-500 shrink-0 mr-1 shadow-sm">
+        {/* The Naming Call To Action (The ONLY Clickable Action) */}
+        <div className="w-full max-w-2xl mx-auto bg-white border border-[var(--border)] rounded-[2rem] md:rounded-[2.5rem] p-6 sm:p-8 md:p-10 shadow-[0_20px_40px_rgba(116,12,8,0.03)] mb-12 md:mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 relative overflow-hidden flex flex-col items-center text-center">
+          
+          {/* Subtle background bloom */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-mace-gold)]/5 rounded-full blur-3xl -z-10 animate-pulse pointer-events-none"></div>
+
+          <div className="w-14 h-14 rounded-2xl bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center mb-5 shadow-sm">
+            <span className="text-2xl font-serif text-[var(--color-mace-gold)] leading-none">ആ</span>
+          </div>
+          
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--color-mace-rust)] mb-2">While you wait</p>
+          <h3 className="font-serif text-3xl font-bold text-[var(--color-mace-crimson)] mb-3 tracking-tight">Cement Your Legacy</h3>
+          <p className="text-[var(--text-muted)] text-sm md:text-base font-medium max-w-md mb-8 leading-relaxed">
+            Merchandising operations are currently under wraps. In the meantime, join our very first decennial event and etch your mark into history.
+          </p>
+
+          <Link 
+            href="/contest/letsname"
+            className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[var(--color-mace-rust)] text-white text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_8px_20px_rgba(212,67,33,0.25)] hover:bg-[#b0361a] transition-all active:scale-[0.98] shrink-0"
+          >
+            Play 'The Naming' <ArrowRight className="w-4 h-4" strokeWidth={2} />
+          </Link>
+        </div>
+
+        {/* Section Header */}
+        <div className="flex items-center gap-4 mb-6 md:mb-8 animate-in fade-in duration-700 delay-200 px-2 md:px-0">
+          <div className="h-px bg-[var(--border)] flex-1"></div>
+          <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)]">Preview Collection</p>
+          <div className="h-px bg-[var(--border)] flex-1"></div>
+        </div>
+
+        {/* Scrolling Category Pills (Disabled state) */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden mb-4 animate-in fade-in duration-700 delay-300">
+          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-[var(--border)] text-slate-400 shrink-0 mr-1 shadow-sm opacity-60">
             <Filter className="w-4 h-4" strokeWidth={2} />
           </div>
           
           {categories.map((category) => (
-            <button
+            <div
               key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`whitespace-nowrap px-5 py-2.5 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all shadow-sm border ${
+              className={`whitespace-nowrap px-5 py-2.5 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all shadow-sm border cursor-not-allowed opacity-70 ${
                 activeCategory === category 
                   ? "bg-[var(--color-mace-crimson)] text-white border-[var(--color-mace-crimson)]" 
-                  : "bg-white text-slate-500 border-[var(--border)] hover:bg-[var(--surface-soft)] hover:text-[var(--color-mace-crimson)]"
+                  : "bg-white text-slate-400 border-[var(--border)]"
               }`}
             >
               {category}
-            </button>
+            </div>
           ))}
         </div>
 
-        {/* E-Commerce Product Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
+        {/* E-Commerce Product Grid (Locked) */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-500">
           {products.map((product) => (
             <div 
               key={product.id} 
-              className="group flex flex-col bg-white border border-[var(--border)] rounded-[1.5rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] transition-all duration-500 cursor-not-allowed grayscale-[20%]"
+              className="group flex flex-col bg-white border border-[var(--border)] rounded-[1.5rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)] transition-all duration-500 cursor-not-allowed grayscale-[20%] select-none"
             >
               
-              {/* Product Image Area (Square, prominent) */}
+              {/* Product Image Area */}
               <div className={`relative w-full aspect-square ${product.bg} flex items-center justify-center p-6 border-b border-[var(--border)]/50 overflow-hidden`}>
-                
-                {/* Status Badges */}
                 <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-[var(--color-mace-gold)]/30 text-[8px] font-black uppercase tracking-widest text-[var(--color-mace-gold)] shadow-sm">
                   {product.status}
                 </div>
-
-                {/* Simulated Product Image via Lucide Icon */}
                 <product.icon className={`w-24 h-24 md:w-32 md:h-32 ${product.color} opacity-40 transition-transform duration-700 ease-out`} strokeWidth={1} />
               </div>
 
-              {/* Product Details (Google Shopping clean style) */}
+              {/* Product Details */}
               <div className="p-4 md:p-5 flex flex-col flex-1 bg-white">
                 <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] mb-1.5">
                   {product.category}
