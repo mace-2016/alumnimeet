@@ -152,17 +152,18 @@ export default function EventNamePage() {
                   {step === 1 && (
                     <div className="animate-in fade-in slide-in-from-right-8 duration-500">
                       
-                      {/* UPGRADED: Forced Flex-Row for Mobile Space Saving */}
+                                           {/* UPGRADED: Forced Flex-Row with Exact Height Parity (h-10 mobile / h-12 desktop) */}
                       <div className="flex flex-row justify-between items-center gap-2 mb-6 md:mb-8 w-full">
+                        
                         {/* Phase Indicator */}
-                        <div className="flex items-center gap-2 md:gap-3 p-1.5 md:p-2 bg-[var(--surface-soft)] rounded-full border border-[var(--border)] shadow-sm shrink-0">
+                        <div className="flex items-center h-10 md:h-12 px-2 md:px-3 bg-[var(--surface-soft)] rounded-full border border-[var(--border)] shadow-sm shrink-0">
                           <div className="flex items-center gap-1.5 md:gap-2 text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-[var(--color-mace-crimson)] px-1.5 md:px-2">
-                            <span className="w-3.5 h-3.5 md:w-4 md:h-4 rounded-full bg-[var(--color-mace-gold)]/20 text-[var(--color-mace-gold)] flex items-center justify-center">1</span>
+                            <span className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-[var(--color-mace-gold)]/20 text-[var(--color-mace-gold)] flex items-center justify-center leading-none">1</span>
                             Idea
                           </div>
                           <div className="w-2 md:w-4 h-px bg-[var(--border)]"></div>
-                          <div className="flex items-center gap-1.5 md:gap-2 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)]/50 pr-1.5 md:pr-2">
-                            <Lock className="w-2.5 h-2.5 md:w-3 md:h-3" strokeWidth={2} /> Poll
+                          <div className="flex items-center gap-1.5 md:gap-2 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)]/50 px-1.5 md:px-2">
+                            <Lock className="w-3 h-3 md:w-3.5 md:h-3.5" strokeWidth={2} /> Poll
                           </div>
                         </div>
                         
@@ -170,16 +171,18 @@ export default function EventNamePage() {
                         <button 
                           type="button" 
                           onClick={() => setLang(lang === "en" ? "ml" : "en")}
-                          className={`flex items-center justify-center gap-1.5 md:gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] transition-all border shadow-sm shrink-0 ${
+                          className={`flex items-center justify-center h-10 md:h-12 px-4 md:px-5 gap-1.5 md:gap-2 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] transition-all border shadow-sm shrink-0 ${
                             lang === "ml" 
                             ? "bg-[var(--color-mace-gold)]/10 border-[var(--color-mace-gold)]/30 text-[var(--color-mace-crimson)]" 
                             : "bg-[var(--surface-soft)] border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--color-mace-crimson)]"
                           }`}
                         >
-                          <Languages className="w-3 h-3 md:w-3.5 md:h-3.5" strokeWidth={2} />
+                          <Languages className="w-3.5 h-3.5 md:w-4 md:h-4" strokeWidth={2} />
                           {lang === "ml" ? "English" : "മലയാളം"}
                         </button>
+                        
                       </div>
+
 
 
                       <div className="space-y-4">
