@@ -162,12 +162,12 @@ export default function HomePage() {
           </div>
         </a>
 
-                {/* WHATSAPP BLOCK */}
+                       {/* WHATSAPP BLOCK */}
         <a 
           href="https://chat.whatsapp.com/LCGlyEIPzLMCTfBe2zosaE?mode=gi_t" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="group relative bg-white rounded-[2.5rem] border border-[var(--border)] p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 transition-all duration-500"
+          className="group relative bg-white rounded-[2.5rem] border border-[var(--border)] p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500"
         >
           <MessageCircle className="absolute -right-8 -bottom-8 w-40 h-40 text-[var(--color-mace-crimson)] opacity-0 group-hover:opacity-[0.03] group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none" />
           
@@ -176,7 +176,8 @@ export default function HomePage() {
               <MessageCircle className="h-6 w-6 text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)] transition-colors duration-500" strokeWidth={1.5} />
             </div>
 
-            <ArrowUpRight className="h-6 w-6 text-[var(--color-mace-stone)] opacity-0 group-hover:opacity-100 group-hover:text-[var(--color-mace-crimson)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500" />
+            {/* UPGRADED ARROW: Visible on mobile (opacity-100 md:opacity-0) */}
+            <ArrowUpRight className="h-6 w-6 text-[var(--color-mace-stone)] opacity-100 md:opacity-0 group-hover:opacity-100 group-hover:text-[var(--color-mace-crimson)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500" />
           </div>
           
           <div className="relative z-10 mt-12">
@@ -184,6 +185,7 @@ export default function HomePage() {
             <p className="font-serif text-2xl lg:text-3xl font-medium tracking-tight text-[var(--color-mace-crimson)]">WhatsApp</p>
           </div>
         </a>
+
 
         {/* CONTESTS BLOCK */}
         <Link href="/contest" className="group relative md:col-span-3 bg-white rounded-[2.5rem] border border-[var(--border)] p-10 lg:p-12 flex flex-col md:flex-row md:items-center justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_40px_80px_rgba(116,12,8,0.08)] hover:-translate-y-1.5 transition-all duration-700">
