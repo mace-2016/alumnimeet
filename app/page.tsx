@@ -45,7 +45,7 @@ export default function HomePage() {
   return (
     <div className="relative w-full max-w-[1140px] mx-auto px-6 py-12 md:py-20 animate-in fade-in duration-1000">
       
-      {/* Page Atmosphere - Using your Heritage Gold & Rust variables */}
+      {/* Page Atmosphere */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute left-1/2 top-0 h-[600px] w-[1000px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,var(--color-mace-gold),transparent_70%)] opacity-[0.07] blur-[120px]" />
       </div>
@@ -78,22 +78,20 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* TIMER BLOCK - THE CHRONOGRAPH VIBE */}
-        <div className="group relative md:col-span-2 bg-white rounded-[2.5rem] border border-[var(--border)] p-10 lg:p-14 flex flex-col justify-center overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] transition-all duration-700 hover:shadow-[0_30px_60px_rgba(116,12,8,0.06)] hover:-translate-y-1.5">
+        {/* TIMER BLOCK - RESPONSIVE GLASS FIX */}
+        <div className="group relative md:col-span-2 bg-white rounded-[2.5rem] border border-[var(--border)] p-8 lg:p-14 flex flex-col justify-center overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] transition-all duration-700 hover:shadow-[0_30px_60px_rgba(116,12,8,0.06)] hover:-translate-y-1.5">
           
-          {/* Architectural Clockwork Rings (Hidden until hover) */}
           <div className="absolute -right-24 -top-24 w-72 h-72 border border-[var(--color-mace-gold)]/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out" />
           <div className="absolute -right-12 -top-12 w-48 h-48 border border-[var(--color-mace-gold)]/30 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 delay-75 ease-out" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,var(--color-mace-gold),transparent_40%)] opacity-0 group-hover:opacity-[0.04] transition-opacity duration-1000" />
 
           <div className="relative z-10">
-            <div className="mb-10 flex items-center justify-between">
+            <div className="mb-8 md:mb-10 flex items-center justify-between">
               <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--color-mace-crimson)]/50 group-hover:text-[var(--color-mace-rust)] transition-colors duration-500">
                 <Clock className="h-4 w-4" strokeWidth={1.5} />
                 Countdown
               </div>
               
-              {/* Live Status Indicator */}
               <div className="flex items-center gap-2">
                 <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--color-mace-stone)]">Live</span>
                 <span className="relative flex h-2 w-2">
@@ -103,21 +101,24 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="flex items-start justify-between w-full">
+            {/* Re-architected container: 4-col grid on mobile, flex-between on desktop */}
+            <div className="grid grid-cols-4 gap-2 sm:gap-3 md:flex md:items-start md:justify-between w-full">
               {timerItems.map((item, idx) => (
                 <React.Fragment key={idx}>
-                  <div className="flex flex-col items-center gap-4 w-16 md:w-20">
-                    <span className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium text-[var(--color-mace-crimson)] tabular-nums tracking-tighter drop-shadow-sm group-hover:-translate-y-1 transition-transform duration-500">
+                  
+                  {/* The Glass Piece (Mobile) vs Chronograph Column (Desktop) */}
+                  <div className="flex flex-col items-center justify-center gap-1.5 md:gap-4 w-full md:w-20 py-4 md:py-0 bg-[var(--surface-soft)]/50 md:bg-transparent border border-[var(--border)]/60 md:border-transparent rounded-2xl md:rounded-none shadow-[0_4px_12px_rgba(116,12,8,0.03)] md:shadow-none backdrop-blur-md">
+                    <span className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-medium text-[var(--color-mace-crimson)] tabular-nums tracking-tighter drop-shadow-sm md:group-hover:-translate-y-1 transition-transform duration-500">
                       {String(item.value).padStart(2, "0")}
                     </span>
-                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)] border-t border-[var(--border)]/60 pt-3 w-full text-center">
+                    <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-[var(--text-muted)] md:border-t md:border-[var(--border)]/60 pt-0.5 md:pt-3 w-full text-center">
                       {item.label}
                     </span>
                   </div>
-                  
-                  {/* Classic Chronograph Separators */}
+
+                  {/* Classic Chronograph Separators (Hidden entirely on mobile) */}
                   {idx !== timerItems.length - 1 && (
-                    <div className="text-3xl md:text-5xl font-serif font-light text-[var(--color-mace-stone)]/40 mt-1 md:mt-2 animate-pulse">
+                    <div className="hidden md:block text-3xl md:text-5xl font-serif font-light text-[var(--color-mace-stone)]/40 mt-1 md:mt-2 animate-pulse">
                       :
                     </div>
                   )}
@@ -129,7 +130,6 @@ export default function HomePage() {
 
         {/* LOCATION BLOCK */}
         <a href="#map" className="group relative bg-white rounded-[2.5rem] border border-[var(--border)] p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 transition-all duration-500">
-          {/* Faded Watermark */}
           <MapPin className="absolute -right-8 -bottom-8 w-40 h-40 text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.04] group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none" />
           
           <div className="flex justify-between items-start relative z-10">
@@ -147,7 +147,6 @@ export default function HomePage() {
 
         {/* DATE BLOCK */}
         <a href="#calendar" className="group relative bg-white rounded-[2.5rem] border border-[var(--border)] p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 transition-all duration-500">
-          {/* Faded Watermark */}
           <Calendar className="absolute -right-8 -bottom-8 w-40 h-40 text-[var(--color-mace-rust)] opacity-0 group-hover:opacity-[0.03] group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none" />
           
           <div className="flex justify-between items-start relative z-10">
@@ -165,7 +164,6 @@ export default function HomePage() {
 
         {/* WHATSAPP BLOCK */}
         <a href="#whatsapp" className="group relative bg-white rounded-[2.5rem] border border-[var(--border)] p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 transition-all duration-500">
-          {/* Faded Watermark */}
           <MessageCircle className="absolute -right-8 -bottom-8 w-40 h-40 text-[var(--color-mace-crimson)] opacity-0 group-hover:opacity-[0.03] group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none" />
           
           <div className="flex justify-between items-start relative z-10">
@@ -181,13 +179,9 @@ export default function HomePage() {
           </div>
         </a>
 
-        {/* CONTESTS BLOCK - THE TROPHY ROOM VIBE */}
+        {/* CONTESTS BLOCK */}
         <Link href="/contest" className="group relative md:col-span-3 bg-white rounded-[2.5rem] border border-[var(--border)] p-10 lg:p-12 flex flex-col md:flex-row md:items-center justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_40px_80px_rgba(116,12,8,0.08)] hover:-translate-y-1.5 transition-all duration-700">
-          
-          {/* Premium Background Blooms */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_100%,var(--color-mace-gold),transparent_40%)] opacity-0 group-hover:opacity-[0.06] transition-opacity duration-1000" />
-          
-          {/* Faded Watermark Trophy */}
           <Trophy className="absolute -right-8 -bottom-12 w-64 h-64 text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.03] group-hover:-translate-x-4 group-hover:-translate-y-4 transition-all duration-1000 ease-out pointer-events-none" />
 
           <div className="flex flex-col md:flex-row md:items-center gap-6 lg:gap-8 relative z-10">
@@ -200,7 +194,6 @@ export default function HomePage() {
                 <h3 className="font-serif text-3xl lg:text-4xl font-bold tracking-tight text-[var(--color-mace-crimson)]">
                   Explore Contests
                 </h3>
-                {/* Replaced pulsing dot with a prestigious Heritage Badge */}
                 <div className="px-2.5 py-1 rounded-full border border-[var(--color-mace-rust)]/30 bg-[var(--color-mace-rust)]/5 text-[8px] font-black uppercase tracking-[0.2em] text-[var(--color-mace-rust)]">
                   Let's Get Rolling!
                 </div>
@@ -211,9 +204,7 @@ export default function HomePage() {
             </div>
           </div>
           
-          {/* Upgraded CTA Button */}
           <div className="mt-8 md:mt-0 flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-rust)] transition-colors duration-500 relative z-10 w-fit">
-             
             <div className="w-10 h-10 rounded-full bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--color-mace-rust)]/10 group-hover:border-[var(--color-mace-rust)]/20 transition-all duration-500">
               <ArrowUpRight className="h-5 w-5 text-[var(--color-mace-crimson)] group-hover:text-[var(--color-mace-rust)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" strokeWidth={1.5} />
             </div>
@@ -224,3 +215,4 @@ export default function HomePage() {
     </div>
   );
 }
+
