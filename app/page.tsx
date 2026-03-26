@@ -162,7 +162,7 @@ export default function HomePage() {
           </div>
         </a>
 
-                       {/* WHATSAPP BLOCK */}
+                    {/* WHATSAPP BLOCK */}
         <a 
           href="https://chat.whatsapp.com/LCGlyEIPzLMCTfBe2zosaE?mode=gi_t" 
           target="_blank" 
@@ -172,12 +172,15 @@ export default function HomePage() {
           <MessageCircle className="absolute -right-8 -bottom-8 w-40 h-40 text-[var(--color-mace-crimson)] opacity-0 group-hover:opacity-[0.03] group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none" />
           
           <div className="flex justify-between items-start relative z-10">
+            {/* The Main Icon */}
             <div className="w-14 h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-crimson)]/30 group-hover:bg-[var(--color-mace-crimson)]/5 transition-all duration-500 shadow-sm group-hover:scale-105">
               <MessageCircle className="h-6 w-6 text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)] transition-colors duration-500" strokeWidth={1.5} />
             </div>
 
-            {/* UPGRADED ARROW: Visible on mobile (opacity-100 md:opacity-0) */}
-            <ArrowUpRight className="h-6 w-6 text-[var(--color-mace-stone)] opacity-100 md:opacity-0 group-hover:opacity-100 group-hover:text-[var(--color-mace-crimson)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500" />
+            {/* Mobile Affordance: Sleek "Tap to Join" pill (Hidden on Desktop) */}
+            <div className="px-3 py-1 rounded-full border border-[var(--color-mace-crimson)]/20 bg-[var(--color-mace-crimson)]/5 text-[8px] font-black uppercase tracking-widest text-[var(--color-mace-crimson)] opacity-100 md:opacity-0">
+              Tap to Join
+            </div>
           </div>
           
           <div className="relative z-10 mt-12">
@@ -185,6 +188,7 @@ export default function HomePage() {
             <p className="font-serif text-2xl lg:text-3xl font-medium tracking-tight text-[var(--color-mace-crimson)]">WhatsApp</p>
           </div>
         </a>
+         
 
 
         {/* CONTESTS BLOCK */}
