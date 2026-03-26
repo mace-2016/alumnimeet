@@ -32,11 +32,12 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="antialiased font-sans bg-[#FCFCFD] text-[#1f295a]">
-        <div className="min-h-screen flex flex-col">
+           <body className="antialiased font-sans bg-[#FCFCFD] text-[#1f295a]">
+        {/* Added pb-[76px] on mobile so the footer doesn't get hidden behind the fixed bottom bar */}
+        <div className="min-h-screen flex flex-col pb-[76px] md:pb-0">
           
+          {/* TOP HEADER (Logo & Actions Only) */}
           <header className="bg-white sticky top-0 z-50 border-b border-slate-200/60 shadow-sm flex flex-col">
-            
             <div className="flex items-center justify-between h-16 md:h-20 px-4 md:px-10 relative">
               
               {/* Left: Logo Area */}
@@ -54,9 +55,8 @@ export default function RootLayout({
                 </Link>
               </div>
 
-              {/* Center: Desktop Navigation */}
+              {/* Center: Desktop Navigation (Unchanged) */}
               <nav className="hidden md:flex flex-1 items-center justify-center gap-10 h-full absolute left-1/2 -translate-x-1/2">
-                
                 <Link href="/" className="relative flex items-center gap-2.5 h-full group cursor-pointer">
                   <Home className={`w-5 h-5 transition-all duration-300 ${isHome ? "stroke-[#1f295a] fill-[#1f295a]/10" : "stroke-slate-400 fill-slate-50 group-hover:stroke-[#1f295a] group-hover:fill-[#1f295a]/10"}`} strokeWidth={1.5} />
                   <span className={`text-sm transition-colors ${isHome ? "text-[#1f295a] font-semibold" : "text-slate-500 font-medium group-hover:text-[#1f295a]"}`}>Home</span>
@@ -64,59 +64,30 @@ export default function RootLayout({
                 </Link>
 
                 <div className="relative group h-full">
-  <Link href="/contest" className="relative flex items-center gap-2.5 h-full transition-colors duration-300">
-    
-    <Trophy
-      className={`w-5 h-5 transition-all duration-300 ${
-        isContests
-          ? "stroke-amber-500 fill-amber-400/20"
-          : "stroke-slate-400 fill-slate-50 group-hover:stroke-amber-500 group-hover:fill-amber-400/20"
-      }`}
-      strokeWidth={1.5}
-    />
+                  <Link href="/contest" className="relative flex items-center gap-2.5 h-full transition-colors duration-300">
+                    <Trophy className={`w-5 h-5 transition-all duration-300 ${isContests ? "stroke-amber-500 fill-amber-400/20" : "stroke-slate-400 fill-slate-50 group-hover:stroke-amber-500 group-hover:fill-amber-400/20"}`} strokeWidth={1.5} />
+                    <span className={`text-sm transition-colors ${isContests ? "text-[#1f295a] font-semibold" : "text-slate-500 font-medium group-hover:text-[#1f295a]"}`}>Contests</span>
+                    {/* Premium green pulse */}
+                    <span className="absolute top-3.5 -right-5 flex h-2.5 w-2.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+                    </span>
+                    <div className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${isContests ? "bg-amber-500" : "bg-transparent group-hover:bg-slate-200"}`}></div>
+                  </Link>
 
-    <span
-      className={`text-sm transition-colors ${
-        isContests
-          ? "text-[#1f295a] font-semibold"
-          : "text-slate-500 font-medium group-hover:text-[#1f295a]"
-      }`}
-    >
-      Contests
-    </span>
-
-    {/* Premium green pulse */}
-    <span className="absolute top-3.5 -right-5 flex h-2.5 w-2.5">
-      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
-    </span>
-
-    <div
-      className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${
-        isContests ? "bg-amber-500" : "bg-transparent group-hover:bg-slate-200"
-      }`}
-    ></div>
-  </Link>
-
-  <div className="absolute top-[80px] left-1/2 -translate-x-1/2 w-60 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-out">
-    <div className="bg-white border border-slate-100 shadow-[0_15px_40px_-10px_rgba(31,41,90,0.1)] rounded-2xl overflow-hidden py-2">
-      
-      <Link
-        href="/contest/letsname"
-        className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1f295a] hover:bg-amber-50 hover:text-amber-600 transition-colors"
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(16,185,129,0.6)]"></span>
-        01: The Naming
-      </Link>
-
-      <div className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 bg-slate-50/50 cursor-not-allowed">
-        <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-        02:███ ██████ <Lock className="w-3 h-3 opacity-50" />
-      </div>
-
-    </div>
-  </div>
-</div>
+                  <div className="absolute top-[80px] left-1/2 -translate-x-1/2 w-60 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-out">
+                    <div className="bg-white border border-slate-100 shadow-[0_15px_40px_-10px_rgba(31,41,90,0.1)] rounded-2xl overflow-hidden py-2">
+                      <Link href="/contest/letsname" className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1f295a] hover:bg-amber-50 hover:text-amber-600 transition-colors">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(16,185,129,0.6)]"></span>
+                        01: The Naming
+                      </Link>
+                      <div className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 bg-slate-50/50 cursor-not-allowed">
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                        02:███ ██████ <Lock className="w-3 h-3 opacity-50" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <div className="relative flex items-center gap-2.5 h-full text-slate-400 font-medium cursor-not-allowed group">
                   <Map className="w-5 h-5 stroke-slate-300 fill-slate-50" strokeWidth={1.5} />
@@ -129,60 +100,19 @@ export default function RootLayout({
                 </div>
               </nav>
 
-              {/* Right: Actions Cluster (Perfectly Symmetrical Now) */}
+              {/* Right: Actions Cluster */}
               <div className="flex-1 flex items-center justify-end gap-2 md:gap-3">
-                
-                {/* Store Button */}
                 <div className="flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-full border border-slate-100 bg-slate-50 text-slate-400 cursor-not-allowed select-none transition-colors hover:bg-slate-100">
                   <ShoppingBag className="w-4 h-4 stroke-slate-400" strokeWidth={1.5} />
                   <span className="text-[13px] font-semibold hidden lg:block">Store</span>
                 </div>
-
-                {/* Register Button - Exact Replica */}
                 <div className="flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-full border border-slate-100 bg-slate-50 text-slate-400 cursor-not-allowed select-none transition-colors hover:bg-slate-100">
                   <Ticket className="w-4 h-4 stroke-slate-400" strokeWidth={1.5} />
                   <span className="text-[13px] font-semibold hidden lg:block">Register</span>
                 </div>
-
               </div>
 
             </div>
-
-            {/* ROW 2: Mobile Airbnb Category Navigation */}
-            <nav className="md:hidden flex items-center justify-start gap-8 px-6 h-[76px] overflow-x-auto border-t border-slate-100/80 [&::-webkit-scrollbar]:hidden">
-              
-              <Link href="/" className="relative flex flex-col items-center justify-center h-full min-w-[56px] shrink-0 group">
-                <div className="mb-1.5">
-                  <Home className={`w-[26px] h-[26px] transition-colors ${isHome ? "stroke-[#1f295a] fill-[#1f295a]/10" : "stroke-slate-400 fill-slate-50"}`} strokeWidth={1.5} />
-                </div>
-                <span className={`text-[11px] transition-colors ${isHome ? "text-[#1f295a] font-semibold" : "text-slate-500 font-medium"}`}>Homes</span>
-                <div className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${isHome ? "bg-[#1f295a]" : "bg-transparent"}`}></div>
-              </Link>
-
-              <Link href="/contest" className="relative flex flex-col items-center justify-center h-full min-w-[64px] shrink-0 group">
-                <div className="relative mb-1.5">
-                  <Trophy className={`w-[26px] h-[26px] transition-colors ${isContests ? "stroke-amber-500 fill-amber-400/20" : "stroke-slate-400 fill-slate-50"}`} strokeWidth={1.5} />
-                  <span className="absolute -top-1.5 -right-6 bg-slate-700 text-white text-[9px] font-bold px-1.5 py-[1px] rounded shadow-md uppercase tracking-wide border border-slate-600/50">NEW</span>
-                </div>
-                <span className={`text-[11px] transition-colors ${isContests ? "text-[#1f295a] font-semibold" : "text-slate-500 font-medium"}`}>Contests</span>
-                <div className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${isContests ? "bg-amber-500" : "bg-transparent"}`}></div>
-              </Link>
-
-              <div className="relative flex flex-col items-center justify-center h-full min-w-[56px] shrink-0 cursor-not-allowed opacity-60">
-                <div className="mb-1.5">
-                  <Map className="w-[26px] h-[26px] stroke-slate-400 fill-slate-50" strokeWidth={1.5} />
-                </div>
-                <span className="text-[11px] text-slate-500 font-medium">Plan</span>
-              </div>
-
-              <div className="relative flex flex-col items-center justify-center h-full min-w-[56px] shrink-0 cursor-not-allowed opacity-60 pr-4">
-                <div className="mb-1.5">
-                  <ImageIcon className="w-[26px] h-[26px] stroke-slate-400 fill-slate-50" strokeWidth={1.5} />
-                </div>
-                <span className="text-[11px] text-slate-500 font-medium">Gallery</span>
-              </div>
-
-            </nav>
           </header>
 
           <main className="flex-grow">{children}</main>
@@ -202,7 +132,44 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
+
+        {/* BOTTOM TAB BAR (MOBILE ONLY) */}
+        {/* Fixed to bottom, evenly spaced, safe-area padded for iPhones */}
+        <nav className="md:hidden fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-200/60 z-50 flex items-center justify-around h-[76px] px-2 shadow-[0_-10px_30px_rgba(0,0,0,0.04)] [padding-bottom:env(safe-area-inset-bottom)]">
+          
+          <Link href="/" className="relative flex flex-col items-center justify-center w-full h-full group">
+            <div className="mb-1">
+              <Home className={`w-[24px] h-[24px] transition-colors ${isHome ? "stroke-[#1f295a] fill-[#1f295a]/10" : "stroke-slate-400 fill-slate-50"}`} strokeWidth={1.5} />
+            </div>
+            <span className={`text-[10px] transition-colors ${isHome ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"}`}>Homes</span>
+          </Link>
+
+          <Link href="/contest" className="relative flex flex-col items-center justify-center w-full h-full group">
+            <div className="relative mb-1">
+              <Trophy className={`w-[24px] h-[24px] transition-colors ${isContests ? "stroke-amber-500 fill-amber-400/20" : "stroke-slate-400 fill-slate-50"}`} strokeWidth={1.5} />
+              {/* Tucked "NEW" badge so it doesn't break out of the tab bar */}
+              <span className="absolute -top-1 -right-4 bg-slate-700 text-white text-[7px] font-bold px-1 py-[1px] rounded shadow-sm uppercase tracking-wider border border-slate-600/50">NEW</span>
+            </div>
+            <span className={`text-[10px] transition-colors ${isContests ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"}`}>Contests</span>
+          </Link>
+
+          <div className="relative flex flex-col items-center justify-center w-full h-full cursor-not-allowed opacity-60">
+            <div className="mb-1">
+              <Map className="w-[24px] h-[24px] stroke-slate-400 fill-slate-50" strokeWidth={1.5} />
+            </div>
+            <span className="text-[10px] text-slate-500 font-medium">Plan</span>
+          </div>
+
+          <div className="relative flex flex-col items-center justify-center w-full h-full cursor-not-allowed opacity-60">
+            <div className="mb-1">
+              <ImageIcon className="w-[24px] h-[24px] stroke-slate-400 fill-slate-50" strokeWidth={1.5} />
+            </div>
+            <span className="text-[10px] text-slate-500 font-medium">Gallery</span>
+          </div>
+
+        </nav>
       </body>
+
     </html>
   );
 }
