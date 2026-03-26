@@ -124,9 +124,18 @@ export default function ContestsHubPage() {
                       <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[var(--color-mace-crimson)]/50 mb-3">
                         {contest.tag}
                       </p>
-                      <h2 className="text-4xl lg:text-5xl font-serif font-bold text-[var(--color-mace-crimson)] mb-4 tracking-tight group-hover:text-[var(--color-mace-rust)] transition-colors duration-500">
-                        {contest.title}
+                      
+                      {/* --- THE UPGRADED TYPOGRAPHY SPLIT --- */}
+                      <h2 className="text-4xl lg:text-5xl font-serif mb-4 tracking-tight group-hover:opacity-80 transition-opacity duration-500">
+                        <span className="text-[var(--color-mace-crimson)] italic font-light pr-2 lg:pr-3">
+                          {contest.title.split(" ")[0]}
+                        </span>
+                        <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-mace-rust)] to-[var(--color-mace-gold)]">
+                          {contest.title.split(" ").slice(1).join(" ")}
+                        </span>
                       </h2>
+                      {/* -------------------------------------- */}
+
                       <p className="text-lg text-[var(--text-muted)] font-medium max-w-md leading-relaxed mb-8">
                         {contest.description}
                       </p>
@@ -137,10 +146,7 @@ export default function ContestsHubPage() {
                       </div>
                     </div>
                   </Link>
-                
-              
-                
-                ) : (
+
                   /* LOCKED CONTESTS (RECTANGLES & SQUARES) */
                   <div className={`relative rounded-[2.5rem] bg-[var(--surface-soft)] border border-[var(--border)]/60 p-8 lg:p-10 opacity-90 grayscale-[20%] animate-in fade-in slide-in-from-bottom-4 ${animationDelay} ${bentoLayout}`}>
                     
