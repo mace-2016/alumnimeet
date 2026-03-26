@@ -98,22 +98,20 @@ export default function ContestsHubPage() {
               <React.Fragment key={contest.id}>
                 {isActive ? (
                   /* --- THE ACTIVE CONTEST (HERO SQUARE) --- */
-                  <Link 
-                    href={contest.href}
-                    className={`group relative rounded-[2rem] md:rounded-[2.5rem] bg-white border border-[var(--border)] p-6 sm:p-8 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)] hover:-translate-y-1 transition-all duration-700 overflow-hidden active:scale-[0.98] animate-in fade-in slide-in-from-bottom-4 flex flex-col justify-end ${animationDelay} ${bentoLayout}`}
-                  >
+                  <Link>href={contest.href}
+                    className={`group relative rounded-[2rem] md:rounded-[2.5rem] bg-white border border-[var(--border)] p-6 sm:p-8 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)] hover:-translate-y-1 transition-all duration-700 overflow-hidden active:scale-[0.98] animate-in fade-in slide-in-from-bottom-4 flex flex-col justify-end ${animationDelay} ${bentoLayout}`}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,var(--color-mace-gold),transparent_60%)] opacity-0 group-hover:opacity-[0.06] transition-opacity duration-1000" />
                     
-                    {/* Background Watermark (Scaled down slightly for mobile) */}
+                    {/* UPGRADED: Animated Mobile Watermarks with Tactile Press */}
                     {contest.isTextIcon ? (
-                      <div className="absolute -right-4 -top-4 md:-right-8 md:-top-8 text-[12rem] md:text-[20rem] leading-none font-serif text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 ease-out pointer-events-none select-none">
+                      <div className="absolute -right-4 -top-4 md:-right-8 md:-top-8 text-[12rem] md:text-[20rem] leading-none font-serif text-[var(--color-mace-gold)] opacity-[0.05] animate-pulse md:animate-none md:opacity-0 md:group-hover:opacity-[0.03] group-active:-translate-x-2 group-active:-translate-y-2 md:group-hover:-translate-x-2 md:group-hover:-translate-y-2 transition-all duration-1000 ease-out pointer-events-none select-none">
                         {contest.iconSymbol}
                       </div>
                     ) : (
-                      contest.icon && <contest.icon className="absolute -right-6 -top-6 md:-right-12 md:-top-12 w-64 h-64 md:w-96 md:h-96 text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 ease-out pointer-events-none" />
+                      contest.icon && <contest.icon className="absolute -right-6 -top-6 md:-right-12 md:-top-12 w-64 h-64 md:w-96 md:h-96 text-[var(--color-mace-gold)] opacity-[0.04] animate-pulse md:animate-none md:opacity-0 md:group-hover:opacity-[0.03] group-active:-translate-x-2 group-active:-translate-y-2 md:group-hover:-translate-x-2 md:group-hover:-translate-y-2 transition-all duration-1000 ease-out pointer-events-none" />
                     )}
 
-                    {/* Live Now Badge (Adjusted mobile positioning) */}
+                    {/* Live Now Badge */}
                     <div className="absolute top-6 left-6 md:top-8 md:left-8 lg:top-12 lg:left-12 px-3 py-1.5 rounded-full border border-[var(--color-mace-rust)]/30 bg-[var(--color-mace-rust)]/5 text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-[var(--color-mace-rust)] animate-pulse z-20">
                       Live Now
                     </div>
@@ -142,6 +140,7 @@ export default function ContestsHubPage() {
                       </div>
                     </div>
                   </Link>
+
                 ) : (
                   /* --- THE LOCKED CONTESTS (MOBILE LIST ROWS -> DESKTOP SQUARES) --- */
                   <div className={`relative rounded-[1.5rem] md:rounded-[2.5rem] bg-[var(--surface-soft)] border border-[var(--border)]/60 p-4 md:p-8 lg:p-10 opacity-90 grayscale-[20%] animate-in fade-in slide-in-from-bottom-4 flex flex-row md:flex-col items-center md:items-stretch justify-between ${animationDelay} ${bentoLayout}`}>
