@@ -3,160 +3,180 @@
 import React from "react";
 import Link from "next/link";
 import { 
-  Trophy, 
   Lock, 
   ArrowRight, 
-  Sparkles, 
   Palette, 
   Music, 
   Camera, 
-  CalendarHeart,
-  Star,
   Gift
 } from "lucide-react";
 
 export default function ContestsHubPage() {
-  // Contest data structure
   const contests = [
     {
       id: 1,
       tag: "Contest #01",
       title: "The Naming",
-      description: "Brush your brains upp!!",
+      description: "Brush your brains up! Etch your mark into the decennial history.",
       status: "active",
       href: "/contest/letsname",
-      icon: Trophy,
+      isTextIcon: true,
+      iconSymbol: "ആ", 
     },
     {
       id: 2,
       tag: "Contest #02",
       title: "███ ██████",
-      description: "██████ ███ ████████ ████ ███ ███████████ ████████ ███ ███ █████ ██████.",
+      description: "██████ ███ ████████ ████ ███ ███████████ ████████.",
       status: "locked",
       href: "#",
+      isTextIcon: false,
       icon: Palette,
     },
     {
       id: 3,
       tag: "Contest #03",
       title: "█████ ████",
-      description: "████ ██ ██████ ██ ██████ ███ ████████ █████ ████ ████ ███ ███ █████.",
+      description: "████ ██ ██████ ██ ██████ ███ ████████.",
       status: "locked",
       href: "#",
+      isTextIcon: false,
       icon: Music,
     },
     {
       id: 4,
       tag: "Contest #04",
       title: "██ █ █████",
-      description: "██████ ████ ████ ██████████ ██████ ████ ████-████ ███ ███ ████ ████████.",
+      description: "██████ ████ ████ ██████████ ██████.",
       status: "locked",
       href: "#",
+      isTextIcon: false,
       icon: Camera,
     },
   ];
 
+  const getBentoClasses = (index: number) => {
+    // Increased min-height to 480px to give the Golden Seal room to bloom without hitting the text
+    if (index === 0) return "md:col-span-2 md:row-span-2 flex flex-col justify-end min-h-[480px]";
+    if (index === 1) return "md:col-span-2 md:row-span-1 flex flex-col sm:flex-row items-start sm:items-center justify-between min-h-[220px] gap-6";
+    return "md:col-span-1 md:row-span-1 flex flex-col justify-between min-h-[220px] gap-6";
+  };
+
   return (
-    <div className="relative min-h-screen w-full flex flex-col items-center pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
-      {/* Immersive Background */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed" style={{ backgroundImage: "url('/hero.jpg')" }} />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#151c3d]/90 via-[#1f295a]/95 to-[#151c3d]/95 backdrop-blur-[2px] z-0" />
+    <div className="relative min-h-screen w-full flex flex-col items-center pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden bg-[var(--background)]">
+      
+      {/* Immersive Heritage Background */}
+      <div className="absolute inset-0 bg-[url('/hero.jpg')] bg-cover bg-center opacity-[0.03] grayscale pointer-events-none" />
+      <div className="absolute left-1/2 top-0 h-[600px] w-[1000px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,var(--color-mace-gold),transparent_70%)] opacity-[0.08] blur-[120px] pointer-events-none" />
 
       {/* Main Content */}
-      <main className="relative z-10 w-full max-w-4xl mx-auto flex flex-col">
+      <main className="relative z-10 w-full max-w-[1140px] mx-auto flex flex-col">
         
         {/* Header Section */}
-        <div className="text-center mb-12 animate-in fade-in slide-in-from-top-6 duration-700">
-          
-          <div className="inline-flex items-center gap-3 p-3 rounded-2xl bg-[#151c3d]/50 border border-white/5 mb-6 mt-2">
-            <Gift className="w-4 h-4 text-amber-400" />
-            <p className="text-xs text-slate-300 font-light">
-              Grab those <span className="text-white font-medium">Surprises!</span>
+        <div className="text-center mb-16 animate-in fade-in slide-in-from-top-6 duration-700">
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white border border-[var(--border)] mb-8 shadow-sm">
+            <Gift className="w-4 h-4 text-[var(--color-mace-gold)]" strokeWidth={2} />
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)]">
+              Grab those <span className="text-[var(--color-mace-rust)]">Surprises!</span>
             </p>
-            <Gift className="w-4 h-4 text-amber-400" />
+            <Gift className="w-4 h-4 text-[var(--color-mace-gold)]" strokeWidth={2} />
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-4 tracking-tight">
-            Let's get it <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 italic font-light">Rolling!!</span>
+          <h1 className="text-5xl md:text-7xl font-serif font-bold text-[var(--color-mace-crimson)] mb-4 tracking-tight">
+            Let's get it <span className="bg-gradient-to-br from-[var(--color-mace-rust)] to-[var(--color-mace-gold)] bg-clip-text text-transparent italic font-light pr-2">Rolling!!</span>
           </h1>
-          
         </div>
 
-        {/* Contest Line Items */}
-        <div className="space-y-4">
+        {/* BENTO GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 w-full">
           {contests.map((contest, index) => {
             const isActive = contest.status === "active";
-            const Icon = contest.icon;
+            const bentoLayout = getBentoClasses(index);
             const animationDelay = `delay-[${index * 100}ms]`;
 
             return (
-              <div 
-                key={contest.id}
-                className={`animate-in fade-in slide-in-from-bottom-4 duration-500 ${animationDelay}`}
-              >
-                {isActive ? (
-                  /* ACTIVE CONTEST ITEM */
+              <React.Fragment key={contest.id}>
+              {isActive ? (
+                  /* ACTIVE CONTEST (HERO SQUARE) - Pure Typographic Poster */
                   <Link 
                     href={contest.href}
-                    className="group relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-6 md:p-8 rounded-[2rem] bg-white/10 border border-amber-400/30 backdrop-blur-md shadow-[0_0_30px_rgba(251,191,36,0.1)] hover:bg-white/15 hover:border-amber-400/50 transition-all overflow-hidden active:scale-[0.98]"
+                    className={`group relative rounded-[2.5rem] bg-white border border-[var(--border)] p-8 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)] hover:-translate-y-1 transition-all duration-700 overflow-hidden active:scale-[0.98] animate-in fade-in slide-in-from-bottom-4 flex flex-col justify-end ${animationDelay} ${bentoLayout}`}
                   >
-                    {/* Active Glow Effect */}
-                    <div className="absolute -top-20 -left-20 w-40 h-40 bg-amber-400/20 rounded-full blur-3xl group-hover:bg-amber-400/30 transition-colors"></div>
+                    {/* Active Glow Bloom Background */}
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,var(--color-mace-gold),transparent_60%)] opacity-0 group-hover:opacity-[0.06] transition-opacity duration-1000" />
+                    
+                    {/* The Giant Background Watermark (Now the sole visual anchor) */}
+                    {contest.isTextIcon ? (
+                      <div className="absolute -right-8 -top-8 text-[20rem] leading-none font-serif text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 ease-out pointer-events-none select-none">
+                        {contest.iconSymbol}
+                      </div>
+                    ) : (
+                      contest.icon && <contest.icon className="absolute -right-12 -top-12 w-96 h-96 text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 ease-out pointer-events-none" />
+                    )}
 
-                    <div className="relative z-10 flex items-center gap-5 sm:gap-8">
-                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-amber-500/20">
-                        <Icon className="w-6 h-6 text-[#1f295a]" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400 mb-1.5">
-                          {contest.tag} <span className="text-white/40 mx-1">•</span> <span className="text-green-400">Open Now</span>
-                        </p>
-                        <h2 className="text-2xl font-serif font-bold text-white mb-1">
-                          {contest.title}
-                        </h2>
-                        <p className="text-xs sm:text-sm text-slate-300 font-light max-w-md">
-                          {contest.description}
-                        </p>
-                      </div>
+                    {/* Live Now Badge (Shifted to top-left to anchor the negative space) */}
+                    <div className="absolute top-8 left-8 lg:top-12 lg:left-12 px-3 py-1.5 rounded-full border border-[var(--color-mace-rust)]/30 bg-[var(--color-mace-rust)]/5 text-[9px] font-black uppercase tracking-[0.2em] text-[var(--color-mace-rust)] animate-pulse z-20">
+                      Live Now
                     </div>
+                    
+                    {/* Neatly Arranged Typography (Anchored to the bottom) */}
+                    <div className="relative z-10 w-full mt-auto">
+                      <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[var(--color-mace-crimson)]/50 mb-3">
+                        {contest.tag}
+                      </p>
+                      <h2 className="text-4xl lg:text-5xl font-serif font-bold text-[var(--color-mace-crimson)] mb-4 tracking-tight group-hover:text-[var(--color-mace-rust)] transition-colors duration-500">
+                        {contest.title}
+                      </h2>
+                      <p className="text-lg text-[var(--text-muted)] font-medium max-w-md leading-relaxed mb-8">
+                        {contest.description}
+                      </p>
 
-                    <div className="relative z-10 w-full sm:w-auto mt-2 sm:mt-0 flex-shrink-0">
-                      <div className="flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#1f295a] rounded-full text-[11px] font-bold uppercase tracking-[0.2em] group-hover:bg-amber-400 transition-colors">
-                        Enter Now <ArrowRight className="w-4 h-4" />
+                      <div className="flex items-center justify-between w-full px-8 py-4 bg-[var(--surface-soft)] border border-[var(--border)] text-[var(--text-muted)] rounded-2xl text-[12px] font-black uppercase tracking-[0.25em] group-hover:bg-[var(--color-mace-rust)] group-hover:border-[var(--color-mace-rust)] group-hover:text-white transition-all duration-500">
+                        Here's mine 
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" strokeWidth={2} />
                       </div>
                     </div>
                   </Link>
+                
+              
+                
                 ) : (
-                  /* LOCKED CONTEST ITEM */
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-6 md:p-8 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-sm opacity-75 grayscale-[30%]">
-                    <div className="flex items-center gap-5 sm:gap-8">
-                      <div className="w-14 h-14 rounded-full bg-[#151c3d] border border-white/10 flex items-center justify-center flex-shrink-0">
-                        <Lock className="w-5 h-5 text-slate-500" />
+                  /* LOCKED CONTESTS (RECTANGLES & SQUARES) */
+                  <div className={`relative rounded-[2.5rem] bg-[var(--surface-soft)] border border-[var(--border)]/60 p-8 lg:p-10 opacity-90 grayscale-[20%] animate-in fade-in slide-in-from-bottom-4 ${animationDelay} ${bentoLayout}`}>
+                    
+                    <div className={`${index === 1 ? "flex items-center gap-6" : ""}`}>
+                      <div className="w-16 h-16 rounded-[1.5rem] bg-[var(--background)] border border-[var(--border)] flex items-center justify-center flex-shrink-0 shadow-sm mb-6 sm:mb-0">
+                        <Lock className="w-6 h-6 text-[var(--color-mace-stone)]" strokeWidth={1.5} />
                       </div>
+                      
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-1.5">
-                          {contest.tag} <span className="text-white/20 mx-1">•</span> Locked
+                        <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)]/60 mb-1.5 flex items-center gap-2">
+                          {contest.tag} <span className="text-[var(--border)] mx-1">•</span> Locked
                         </p>
-                        <h2 className="text-xl font-serif font-bold text-slate-300 mb-1">
+                        <h2 className="text-2xl font-serif font-bold text-[var(--text-muted)]/70 mb-2 tracking-tight">
                           {contest.title}
                         </h2>
-                        <p className="text-xs sm:text-sm text-slate-400 font-light max-w-md">
-                          {contest.description}
-                        </p>
+                        {index === 1 && (
+                          <p className="text-sm text-[var(--text-muted)]/60 font-medium max-w-sm leading-relaxed">
+                            {contest.description}
+                          </p>
+                        )}
                       </div>
                     </div>
 
-                    <div className="w-full sm:w-auto mt-2 sm:mt-0 flex-shrink-0">
-                      <div className="flex items-center justify-center gap-2 px-6 py-3 bg-transparent border border-white/10 text-slate-500 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] cursor-not-allowed">
-                        <Lock className="w-3.5 h-3.5" />
+                    <div className={`flex-shrink-0 ${index === 1 ? "" : "w-full"}`}>
+                      <div className="flex items-center justify-center gap-2 px-6 py-3 bg-transparent border border-[var(--border)] text-[var(--color-mace-stone)] rounded-full text-[11px] font-bold uppercase tracking-[0.25em] cursor-not-allowed">
+                        <Lock className="w-4 h-4" strokeWidth={2} />
                       </div>
                     </div>
+
                   </div>
                 )}
-              </div>
+              </React.Fragment>
             );
           })}
         </div>
+
       </main>
     </div>
   );
