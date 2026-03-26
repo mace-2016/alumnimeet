@@ -96,7 +96,7 @@ export default function HomePage() {
           
           {/* Primary CTA with Pulsing Indicator */}
           <Link
-  href="/contest"
+  href="/contest/letsname"
   className="group relative px-12 py-4 bg-white text-[#1f295a] rounded-full font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-amber-400 transition-all flex items-center gap-3 shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] active:scale-95"
 >
   {/* Live Pulse Dot */}
@@ -105,7 +105,7 @@ export default function HomePage() {
     {/* Notice the border-white that changes to border-amber-400 on group hover */}
     <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-green-500 border-2 border-white group-hover:border-amber-400 transition-colors"></span>
   </span>
-  Explore Contests <ArrowRight className="w-4 h-4" />
+  The Naming <ArrowRight className="w-4 h-4" />
 </Link>
 
           {/* Functional WhatsApp Link */}
