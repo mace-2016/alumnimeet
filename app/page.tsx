@@ -75,12 +75,12 @@ export default function HomePage() {
                 The Decennial
               </div>
 
-              <h1 className="font-serif text-[4rem] lg:text-[6rem] leading-[0.85] tracking-tight text-[var(--color-mace-crimson)]">
-                Class of<br />
-                <span className="bg-gradient-to-br from-[var(--color-mace-rust)] to-[var(--color-mace-gold)] bg-clip-text text-transparent font-light pr-4">
-                  2016
-                </span>
-              </h1>
+             <h1 className="font-serif text-[4rem] lg:text-[6rem] leading-[0.85] tracking-tight text-[var(--color-mace-crimson)]">
+  <span className="font-light">Class of</span><br />
+  <span className="bg-gradient-to-br from-[var(--color-mace-rust)] to-[var(--color-mace-gold)] bg-clip-text text-transparent font-bold pr-4">
+    2016
+  </span>
+</h1>
             </div>
 
             <p className="max-w-[320px] text-lg leading-relaxed font-medium text-[var(--text-muted)] tracking-tight">
