@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import MemoryRibbon from "../components/MemoryRibbon"; 
 import {
   ArrowUpRight,
   MessageCircle,
@@ -251,6 +252,9 @@ export default function HomePage() {
 
      
 
+      </div>
+      <div className="mt-16 md:mt-24 -mx-6 lg:-mx-[calc((100vw-1140px)/2)] w-screen overflow-hidden">
+        <MemoryRibbon />
       </div>
     </div>
   );
