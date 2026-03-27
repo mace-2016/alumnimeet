@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Calendar } from "lucide-react";
+import Link from "next/link"; 
+import { Calendar, ArrowUpRight, Film } from "lucide-react"; // Added Film icon
 
-// High-quality placeholders using Unsplash matching a "school/friends/reunion" vibe
 const RIBBON_IMAGES = [
   { src: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop", caption: "Graduation Day", year: "2016" },
   { src: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop", caption: "Senior Prom", year: "2016" },
@@ -19,34 +19,49 @@ export default function MemoryRibbon() {
   const displayImages = [...RIBBON_IMAGES, ...RIBBON_IMAGES];
 
   return (
-    // BENTO BOX STYLING APPLIED HERE
-    <div className="relative w-full overflow-hidden bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-6 md:p-8 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] transition-all duration-700 hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] group/bento">
+    <div className="relative w-full overflow-hidden bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-8 md:p-10 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] transition-all duration-700 hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] group/bento">
       
-      {/* Editorial Header - removed mx-auto so it aligns inside the box */}
-      <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 relative z-10">
-        <div>
-          <h2 className="font-serif text-3xl md:text-4xl tracking-tight text-[var(--color-mace-crimson)]">
-            The Archives
-          </h2>
-          <p className="mt-2 text-sm md:text-base text-[var(--text-muted)] font-medium max-w-md">
-            A decade of memories, captured in time. Scroll through the moments that defined the Class of 2016.
-          </p>
+      {/* SYNCED HEADER: 
+        Matches the layout of the "Explore Contests" block perfectly. 
+      */}
+      <div className="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+        
+        {/* Left Side: Icon + Text */}
+        <div className="flex flex-col md:flex-row md:items-center gap-6 lg:gap-8">
+          {/* Squircle Icon Box */}
+          <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-2xl md:rounded-[1.5rem] bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center shrink-0">
+            <Film className="h-7 w-7 md:h-8 md:w-8 lg:h-10 lg:w-10 text-[var(--color-mace-gold)]" strokeWidth={1.5} />
+          </div>
+          
+          {/* Title, Pill, and Description */}
+          <div>
+            <div className="mb-2 flex flex-wrap items-center gap-3 md:gap-4">
+              <h3 className="font-serif text-3xl lg:text-4xl font-medium tracking-tight text-[var(--color-mace-crimson)]">
+                The Archives
+              </h3>
+              <div className="px-3 py-1.5 rounded-full border border-[var(--color-mace-gold)]/30 bg-[var(--color-mace-gold)]/10 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-mace-gold)] whitespace-nowrap">
+                Decennial Gallery
+              </div>
+            </div>
+            <p className="max-w-xl text-base lg:text-lg font-medium text-[var(--text-muted)] leading-relaxed">
+              Scroll through a decade of memories. Click the arrow to view the full collection.
+            </p>
+          </div>
         </div>
-        <div className="shrink-0 flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-mace-gold)]/30 bg-[var(--color-mace-gold)]/5">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-mace-gold)] opacity-40"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-mace-gold)] opacity-80"></span>
-          </span>
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-mace-gold)]">
-            Interactive Gallery
-          </span>
-        </div>
+
+        {/* Right Side: Circular Arrow Link */}
+        <Link 
+          href="/gallery" 
+          className="shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full border border-[var(--border)] bg-white hover:border-[var(--color-mace-crimson)]/30 hover:bg-[var(--color-mace-crimson)]/5 transition-all duration-300 group/btn shadow-sm"
+        >
+          <ArrowUpRight className="h-5 w-5 text-[var(--color-mace-stone)] group-hover/btn:text-[var(--color-mace-crimson)] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all" strokeWidth={1.5} />
+        </Link>
       </div>
 
       {/* Ribbon Container */}
       <div className="relative flex w-full overflow-hidden group/ribbon -mx-4 px-4 py-2">
         
-        {/* Edge Fades - CHANGED TO 'from-white' TO MATCH BENTO BOX */}
+        {/* Edge Masks */}
         <div className="absolute inset-y-0 left-0 w-16 md:w-32 z-20 bg-gradient-to-r from-white to-transparent pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-16 md:w-32 z-20 bg-gradient-to-l from-white to-transparent pointer-events-none" />
 
@@ -55,8 +70,7 @@ export default function MemoryRibbon() {
           {displayImages.map((item, idx) => (
             <div 
               key={idx} 
-              // Slightly reduced card height so it fits beautifully inside the bento box
-              className="relative flex-shrink-0 w-[200px] h-[280px] md:w-[260px] md:h-[340px] overflow-hidden rounded-[1.5rem] border border-[var(--border)] shadow-sm group/card transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(116,12,8,0.12)] hover:border-[var(--color-mace-gold)]/40"
+              className="relative flex-shrink-0 w-[200px] h-[260px] md:w-[260px] md:h-[340px] overflow-hidden rounded-[1.5rem] border border-[var(--border)] shadow-sm group/card transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(116,12,8,0.12)] hover:border-[var(--color-mace-gold)]/40"
             >
               <img
                 src={item.src}
