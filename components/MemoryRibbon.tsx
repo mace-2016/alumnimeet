@@ -21,7 +21,7 @@ export default function MemoryRibbon() {
   const displayImages = [...RIBBON_IMAGES, ...RIBBON_IMAGES];
 
   return (
-    <div className="relative w-full overflow-hidden py-12 md:py-20 border-t border-[var(--border)] bg-[var(--background)]">
+    <div className="relative w-full overflow-hidden py-12 md:py-20 bg-[var(--background)]">
       
       {/* Editorial Header 
       <div className="max-w-[1140px] mx-auto px-6 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
