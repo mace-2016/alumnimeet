@@ -253,9 +253,14 @@ export default function HomePage() {
      
 
       </div>
-      <div className="mt-16 md:mt-24 -mx-6 lg:-mx-[calc((100vw-1140px)/2)] w-screen overflow-hidden">
+      {/* ========================================= */}
+      {/* ADDED: MEMORY RIBBON SECTION              */}
+      {/* ========================================= */}
+      {/* Replaced full-bleed with standard grid gap margin */}
+      <div className="mt-6 lg:mt-8 w-full">
         <MemoryRibbon />
       </div>
+
     </div>
   );
 }
