@@ -89,8 +89,8 @@ export default function HomePage() {
           </div>
         </div>
 
-      {/* TIMER BLOCK - RESPONSIVE GLASS FIX */}
-        <div className="group relative md:col-span-2 bg-gradient-to-br from-white to-[var(--surface-soft)] rounded-[2.5rem] border border-[var(--border)] p-8 lg:p-14 flex flex-col justify-center overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] transition-all duration-700 hover:shadow-[0_30px_60px_rgba(116,12,8,0.06)] hover:-translate-y-1.5">
+     {/* TIMER BLOCK - RESPONSIVE GLASS FIX */}
+        <div className="group relative md:col-span-2 bg-gradient-to-br from-white to-[var(--surface-soft)] rounded-[2.5rem] border border-[var(--border)] p-6 md:p-8 lg:p-10 flex flex-col justify-center overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] transition-all duration-700 hover:shadow-[0_30px_60px_rgba(116,12,8,0.06)] hover:-translate-y-1.5">
           
           {/* Subtle permanent background accents */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,var(--color-mace-rust),transparent_70%)] opacity-[0.03]" />
@@ -100,7 +100,8 @@ export default function HomePage() {
           <div className="absolute -right-12 -top-12 w-48 h-48 border border-[var(--color-mace-gold)]/30 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 delay-75 ease-out" />
 
           <div className="relative z-10">
-            <div className="mb-8 md:mb-12 flex items-center justify-between">
+            {/* Reduced bottom margin to pull the layout tighter */}
+            <div className="mb-6 md:mb-8 flex items-center justify-between">
               <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--color-mace-crimson)]/60">
                 <Clock className="h-4 w-4" strokeWidth={1.5} />
                 Countdown
@@ -115,21 +116,24 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-2 sm:gap-3 md:flex md:items-start md:justify-between w-full">
+            {/* Adjusted gap to ensure elements don't push each other out */}
+            <div className="grid grid-cols-4 gap-2 md:gap-3 lg:gap-4 md:flex md:items-center w-full">
               {timerItems.map((item, idx) => (
                 <React.Fragment key={idx}>
                   
-                  <div className="relative flex flex-col items-center justify-center gap-1.5 md:gap-4 w-full md:flex-1 py-4 md:py-6 bg-white md:bg-white/50 border border-[var(--border)]/60 rounded-2xl md:rounded-[1.5rem] shadow-[0_4px_12px_rgba(116,12,8,0.02)] md:shadow-[inset_0_2px_10px_rgba(0,0,0,0.01)] backdrop-blur-sm group-hover:border-[var(--color-mace-gold)]/20 transition-colors duration-500">
-                    <span className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-medium text-[var(--color-mace-crimson)] tabular-nums tracking-tighter drop-shadow-sm">
+                  {/* Scaled down py-6 to py-4 to stop vertical grid stretching */}
+                  <div className="relative flex flex-col items-center justify-center gap-1 w-full md:flex-1 py-3 md:py-4 bg-white md:bg-white/50 border border-[var(--border)]/60 rounded-2xl md:rounded-[1.25rem] shadow-[0_4px_12px_rgba(116,12,8,0.02)] md:shadow-[inset_0_2px_10px_rgba(0,0,0,0.01)] backdrop-blur-sm group-hover:border-[var(--color-mace-gold)]/20 transition-colors duration-500">
+                    {/* Dropped text-7xl down to 5xl to allow 3-digit numbers to fit safely */}
+                    <span className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium text-[var(--color-mace-crimson)] tabular-nums tracking-tighter drop-shadow-sm">
                       {String(item.value).padStart(2, "0")}
                     </span>
-                    <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em] md:tracking-[0.25em] text-[var(--text-muted)] w-full text-center">
+                    <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] w-full text-center">
                       {item.label}
                     </span>
                   </div>
 
                   {idx !== timerItems.length - 1 && (
-                    <div className="hidden md:flex flex-col justify-center text-2xl lg:text-4xl font-serif font-light text-[var(--color-mace-stone)]/30 mt-4 lg:mt-6 px-1 lg:px-2">
+                    <div className="hidden md:flex flex-col justify-center text-2xl lg:text-3xl font-serif font-light text-[var(--color-mace-stone)]/30 px-1">
                       :
                     </div>
                   )}
