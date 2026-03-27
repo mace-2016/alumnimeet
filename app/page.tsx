@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowUpRight,
   MessageCircle,
@@ -53,9 +54,19 @@ export default function HomePage() {
       <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-6 lg:gap-8">
         
         {/* HERO BLOCK */}
-        <div className="group relative md:col-span-2 md:row-span-2 min-h-[400px] overflow-hidden rounded-[2.5rem] border border-[var(--border)] bg-white p-10 lg:p-14 shadow-[0_8px_30px_rgba(116,12,8,0.03)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)]">
-          <div className="absolute inset-0 bg-[url('/hero.jpg')] bg-cover bg-center opacity-[0.03] grayscale transition-opacity duration-1000 group-hover:opacity-[0.06]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/80 to-[var(--background)]/90" />
+       <div className="group relative md:col-span-2 md:row-span-2 min-h-[400px] overflow-hidden rounded-[2.5rem] border border-[var(--border)] bg-white p-10 lg:p-14 shadow-[0_8px_30px_rgba(116,12,8,0.03)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)]">
+          
+          {/* Next.js Optimized Responsive Background */}
+          <Image
+            src="/hero.jpg"
+            alt="Class of 2016"
+            fill
+            priority
+            className="object-cover object-center opacity-20 grayscale transition-opacity duration-1000 group-hover:opacity-40"
+          />
+          
+          {/* Lighter gradient overlay to let the image peek through */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/50 to-[var(--background)]/90" />
           
           <div className="relative z-10 h-full flex flex-col justify-between">
             <div>
