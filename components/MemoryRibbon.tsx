@@ -23,7 +23,7 @@ export default function MemoryRibbon() {
   return (
     <div className="relative w-full overflow-hidden py-12 md:py-20 border-t border-[var(--border)] bg-[var(--background)]">
       
-      {/* Editorial Header */}
+      {/* Editorial Header 
       <div className="max-w-[1140px] mx-auto px-6 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
        
         <div className="shrink-0 flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-mace-gold)]/30 bg-[var(--color-mace-gold)]/5">
@@ -35,7 +35,7 @@ export default function MemoryRibbon() {
             Interactive Gallery
           </span>
         </div>
-      </div>
+      </div> */}
 
       {/* Ribbon Container */}
       <div className="relative flex w-full overflow-hidden group/ribbon">
