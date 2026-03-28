@@ -8,17 +8,17 @@ import { Camera, ArrowRight, Lock, Sparkles, Layers } from "lucide-react";
 const GALLERY_CATEGORIES = [
   {
     id: "the-hostels",
-    title: "The Hostel Diaries",
+    title: "&Xi;&iota;&gamma;&mu;&alpha;&nu;&tau;&alpha;",
     era: "golden",
     count: 142,
-    description: "Late nights, Maggi, and memories we'll never forget.",
+    description: "memories we'd love to hold on.",
   },
   {
     id: "convocation",
-    title: "Convocation 2016",
+    title: "&Xi;&iota;&gamma;&mu;&alpha;&nu;&tau;&alpha;",
     era: "golden",
     count: 86,
-    description: "The day we officially became alumni.",
+    description: "And some that made it special.",
   },
   {
     id: "where-are-we",
@@ -29,7 +29,7 @@ const GALLERY_CATEGORIES = [
   },
   {
     id: "decennial-live",
-    title: "The Decennial Event",
+    title: "&Xi;&iota;&gamma;&mu;&alpha;&nu;&tau;&alpha;",
     era: "live",
     count: 0,
     locked: true,
