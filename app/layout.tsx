@@ -89,15 +89,15 @@ export default function RootLayout({
                   </div>
                 </div>
 
-                <div className="relative flex items-center gap-2.5 h-full text-slate-400 font-medium cursor-not-allowed group">
-                  <Map className="w-5 h-5 stroke-slate-300 fill-slate-50" strokeWidth={1.5} />
-                  <span className="text-sm">Master Plan</span>
-                </div>
+                <Link href="/plan" className="relative flex items-center gap-2.5 h-full text-slate-500 font-medium group hover:text-[#1f295a] transition-colors">
+  <Map className="w-5 h-5 stroke-slate-400 fill-slate-50 group-hover:stroke-amber-500 group-hover:fill-amber-400/20 transition-all" strokeWidth={1.5} />
+  <span className="text-sm">Master Plan</span>
+</Link>
                 
-                <div className="relative flex items-center gap-2.5 h-full text-slate-400 font-medium cursor-not-allowed group">
-                  <ImageIcon className="w-5 h-5 stroke-slate-300 fill-slate-50" strokeWidth={1.5} />
-                  <span className="text-sm">Gallery</span>
-                </div>
+                <Link href="/gallery" className="relative flex items-center gap-2.5 h-full text-slate-500 font-medium group hover:text-[#1f295a] transition-colors">
+  <ImageIcon className="w-5 h-5 stroke-slate-400 fill-slate-50 group-hover:stroke-amber-500 group-hover:fill-amber-400/20 transition-all" strokeWidth={1.5} />
+  <span className="text-sm">Gallery</span>
+</Link>
               </nav>
 
               {/* Right: Actions Cluster */}
@@ -153,19 +153,45 @@ export default function RootLayout({
             <span className={`text-[10px] transition-colors ${isContests ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"}`}>Contests</span>
           </Link>
 
-          <div className="relative flex flex-col items-center justify-center w-full h-full cursor-not-allowed opacity-60">
-            <div className="mb-1">
-              <Map className="w-[24px] h-[24px] stroke-slate-400 fill-slate-50" strokeWidth={1.5} />
-            </div>
-            <span className="text-[10px] text-slate-500 font-medium">Plan</span>
-          </div>
+          <Link href="/plan" className="relative flex flex-col items-center justify-center w-full h-full group">
+  <div className="mb-1">
+    <Map
+      className={`w-[24px] h-[24px] transition-colors ${
+        pathname === "/plan"
+          ? "stroke-amber-500 fill-amber-400/20"
+          : "stroke-slate-400 fill-slate-50"
+      }`}
+      strokeWidth={1.5}
+    />
+  </div>
+  <span
+    className={`text-[10px] transition-colors ${
+      pathname === "/plan" ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"
+    }`}
+  >
+    Plan
+  </span>
+</Link>
 
-          <div className="relative flex flex-col items-center justify-center w-full h-full cursor-not-allowed opacity-60">
-            <div className="mb-1">
-              <ImageIcon className="w-[24px] h-[24px] stroke-slate-400 fill-slate-50" strokeWidth={1.5} />
-            </div>
-            <span className="text-[10px] text-slate-500 font-medium">Gallery</span>
-          </div>
+          <Link href="/gallery" className="relative flex flex-col items-center justify-center w-full h-full group">
+  <div className="mb-1">
+    <ImageIcon
+      className={`w-[24px] h-[24px] transition-colors ${
+        pathname === "/gallery"
+          ? "stroke-amber-500 fill-amber-400/20"
+          : "stroke-slate-400 fill-slate-50"
+      }`}
+      strokeWidth={1.5}
+    />
+  </div>
+  <span
+    className={`text-[10px] transition-colors ${
+      pathname === "/gallery" ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"
+    }`}
+  >
+    Gallery
+  </span>
+</Link>
 
         </nav>
       </body>
