@@ -13,6 +13,7 @@
 
   /* UI Base Layers */
   --color-mace-background: #FCFBF9; /* A breathless, warm off-white derived from the stone */
+  
   --color-mace-surface: #ffffff;
 }
 
@@ -31,7 +32,16 @@
   --accent: #ECBB1A;
   --accent-alt: #D44321;
 }
-
+.gradient-gold {
+  background: linear-gradient(
+    135deg,
+    #b45309 0%,
+    #f59e0b 50%,
+    #fbbf24 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 html,
 body {
   margin: 0;
