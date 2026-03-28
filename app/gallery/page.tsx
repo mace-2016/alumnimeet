@@ -46,9 +46,9 @@ const generatePlaceholders = (count: number, year: string) =>
 
 const TABS = [
   { id: "all", label: "All" },
-  { id: "golden", label: "The Golden Years ('12-'16)" },
-  { id: "present", label: "Present Day" },
-  { id: "live", label: "Decennial Live" },
+  { id: "golden", label: "Those Days!" },
+  { id: "present", label: "Where were we?" },
+  { id: "live", label: "And here we stand" },
 ];
 
 export default function GalleryPage() {
