@@ -231,14 +231,14 @@ export default function HomePage() {
             <div>
               <div className="mb-2 flex flex-wrap items-center gap-3 md:gap-4">
                 <h3 className="font-serif text-3xl lg:text-4xl font-medium tracking-tight text-[var(--color-mace-crimson)]">
-                  The Contests
-                </h3>
+  The <span className="gradient-gold font-semibold">Contests</span>
+</h3>
                 <div className="px-3 py-1.5 rounded-full border border-[var(--color-mace-gold)]/30 bg-[var(--color-mace-gold)]/10 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-mace-gold)] whitespace-nowrap">
                   Let's Get Rolling!
                 </div>
               </div>
               <p className="max-w-md text-base lg:text-lg font-medium text-[var(--text-muted)] leading-relaxed">
-                View leaderboards, submit your entries, and cement your legacy in the decennial archives.
+                Step back in. Create. Compete.
               </p>
             </div>
           </div>
