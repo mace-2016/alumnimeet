@@ -34,14 +34,12 @@ export default function PlanPage() {
           The Roadmap
         </div>
 
-        <h1 className="font-serif text-[4rem] md:text-[5rem] lg:text-[6rem] leading-[0.85] tracking-tight text-[var(--color-mace-crimson)]">
-          Plan of
-          <br />
-          <span className="gradient-gold">Action</span>
+        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 text-[var(--color-mace-crimson)] leading-[0.95]">
+          The <span className="gradient-gold">Plan</span>.
         </h1>
 
-        <p className="mt-8 text-lg font-medium text-[var(--text-muted)] max-w-lg mx-auto md:mx-0 leading-relaxed">
-          A day designed for reunion, reflection, and celebration.
+        <p className="text-lg text-[var(--text-muted)] max-w-2xl font-medium leading-relaxed">
+          Let's get young for a day.
         </p>
       </div>
 
