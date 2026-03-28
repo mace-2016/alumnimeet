@@ -8,28 +8,28 @@ import { Camera, ArrowRight, Lock, Sparkles, Layers } from "lucide-react";
 const GALLERY_CATEGORIES = [
   {
     id: "the-hostels",
-    title: "&Xi;&iota;&gamma;&mu;&alpha;&nu;&tau;&alpha;",
+    title: "Those Days",
     era: "golden",
     count: 142,
     description: "memories we'd love to hold on.",
   },
   {
     id: "convocation",
-    title: "&Xi;&iota;&gamma;&mu;&alpha;&nu;&tau;&alpha;",
+    title: "Those Days",
     era: "golden",
     count: 86,
     description: "And some that made it special.",
   },
   {
     id: "where-are-we",
-    title: "Where Are We Now?",
+    title: "Fiddling around all these while?",
     era: "present",
     count: 54,
     description: "Mini-reunions, weddings, and life updates across the globe.",
   },
   {
     id: "decennial-live",
-    title: "&Xi;&iota;&gamma;&mu;&alpha;&nu;&tau;&alpha;",
+    title: "And here we are!"
     era: "live",
     count: 0,
     locked: true,
