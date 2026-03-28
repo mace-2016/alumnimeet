@@ -48,16 +48,17 @@ export default function MemoryRibbon() {
         </Link>
       </div>
 
-      {/* Ribbon Container */}
-      <div className="relative w-full flex flex-col items-center py-4">
+      {/* Ribbon Container - Fixed Negative Margins */}
+      {/* -mx-8 matches p-8 on mobile, -mx-10 for md, etc. This pulls the track to the edge. */}
+      <div className="relative flex flex-col items-center -mx-8 md:-mx-10 lg:-mx-12 py-4">
         
-        {/* FIXED EDGE MASKS - Increased z-index and opacity */}
-        <div className="absolute inset-y-0 left-0 w-24 md:w-48 z-[40] bg-gradient-to-r from-white via-white to-transparent pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-24 md:w-48 z-[40] bg-gradient-to-l from-white via-white to-transparent pointer-events-none" />
+        {/* IMPROVED EDGE MASKS - Fixed positioning with high z-index */}
+        <div className="absolute inset-y-0 left-0 w-20 md:w-40 z-[40] bg-gradient-to-r from-white via-white to-transparent pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-20 md:w-40 z-[40] bg-gradient-to-l from-white via-white to-transparent pointer-events-none" />
 
         {/* The Scrolling Track */}
         <div 
-          className="flex w-max gap-4 md:gap-6 animate-ribbon-scroll"
+          className="flex w-max gap-4 md:gap-6 animate-ribbon-scroll px-8 md:px-10 lg:px-12"
           style={{ 
             animationPlayState: isPaused ? 'paused' : 'running',
             WebkitAnimationPlayState: isPaused ? 'paused' : '' 
@@ -66,12 +67,13 @@ export default function MemoryRibbon() {
           {displayImages.map((item, idx) => (
             <div 
               key={idx} 
-              className="relative flex-shrink-0 w-[200px] h-[260px] md:w-[260px] md:h-[340px] overflow-hidden rounded-[1.5rem] border border-[var(--border)] shadow-sm group/card transition-all duration-700 hover:-translate-y-2 hover:shadow-xl"
+              className="relative flex-shrink-0 w-[200px] h-[260px] md:w-[260px] md:h-[340px] overflow-hidden rounded-[1.5rem] border border-[var(--border)] shadow-sm group/card transition-all duration-700 hover:-translate-y-2 hover:shadow-xl bg-[var(--surface-soft)]"
             >
               <img
                 src={item.src}
                 alt={item.caption}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-5 left-5 right-5 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
@@ -91,15 +93,9 @@ export default function MemoryRibbon() {
           className="mt-10 relative z-50 flex items-center gap-2 px-6 py-2 rounded-full border border-[var(--border)] bg-white hover:bg-[var(--surface-soft)] text-[var(--color-mace-stone)] hover:text-[var(--color-mace-crimson)] transition-all shadow-sm active:scale-95"
         >
           {isPaused ? (
-            <>
-              <Play className="w-3 h-3 fill-current" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Play</span>
-            </>
+            <><Play className="w-3 h-3 fill-current" /><span className="text-[10px] font-bold uppercase tracking-[0.2em]">Play</span></>
           ) : (
-            <>
-              <Pause className="w-3 h-3 fill-current" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Pause</span>
-            </>
+            <><Pause className="w-3 h-3 fill-current" /><span className="text-[10px] font-bold uppercase tracking-[0.2em]">Pause</span></>
           )}
         </button>
       </div>
