@@ -45,7 +45,7 @@ export default function MemoryRibbon() {
               </div>
             </div>
             <p className="max-w-xl text-base lg:text-lg font-medium text-[var(--text-muted)] leading-relaxed">
-              Scroll through a decade of memories. Click the arrow to view the full collection.
+              Scroll through a decade of memories.
             </p>
           </div>
         </div>
