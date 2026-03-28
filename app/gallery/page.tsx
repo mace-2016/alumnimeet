@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Camera, ArrowRight, Lock, Sparkles, Layers } from "lucide-react";
 
 // --- MOCK DATA ---
-// You can easily add to this array whenever a new idea strikes.
 const GALLERY_CATEGORIES = [
   { 
     id: "the-hostels", 
@@ -38,12 +37,12 @@ const GALLERY_CATEGORIES = [
   },
 ];
 
-// Helper to generate empty placeholder cards for the rows
 const generatePlaceholders = (count: number, year: string) => 
   Array.from({ length: count }).map((_, i) => ({ id: i, caption: "Archive Memory", year }));
 
+// Updated Tabs Array
 const TABS = [
-  { id: "all", label: "All Archives" },
+  { id: "all", label: "All" },
   { id: "golden", label: "The Golden Years ('12-'16)" },
   { id: "present", label: "Present Day" },
   { id: "live", label: "Decennial Live" },
@@ -52,10 +51,51 @@ const TABS = [
 export default function GalleryPage() {
   const [activeTab, setActiveTab] = useState("all");
 
-  // Filter categories based on the selected tab
-  const filteredCategories = GALLERY_CATEGORIES.filter(cat => 
-    activeTab === "all" ? true : cat.era === activeTab
-  );
+  // --- SCROLLSPY LOGIC ---
+  useEffect(() => {
+    const handleScroll = () => {
+      // If we are at the very top of the page, highlight "All"
+      if (window.scrollY < 150) {
+        setActiveTab("all");
+        return;
+      }
+
+      // Find all category sections on the page
+      const sections = document.querySelectorAll('section[data-era]');
+      let currentEra = "all";
+
+      sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top;
+        // If the top of the section is near the upper middle of the viewport (accounting for sticky header)
+        if (sectionTop < window.innerHeight / 2.5) {
+          currentEra = section.getAttribute('data-era') || "all";
+        }
+      });
+
+      setActiveTab(currentEra);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // --- SMOOTH SCROLL HANDLER ---
+  const handleTabClick = (eraId: string) => {
+    setActiveTab(eraId);
+    
+    if (eraId === "all") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    // Find the FIRST section that matches the clicked era
+    const element = document.querySelector(`section[data-era="${eraId}"]`);
+    if (element) {
+      // Calculate position, offset by 140px to leave room for the sticky tab bar
+      const y = element.getBoundingClientRect().top + window.scrollY - 140; 
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="min-h-screen pb-24 animate-in fade-in duration-1000">
@@ -67,24 +107,24 @@ export default function GalleryPage() {
           The Master Archive
         </div>
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[var(--color-mace-crimson)] tracking-tight mb-4">
-          A Decade in Focus.
+          A Decade in Frame.
         </h1>
         <p className="text-lg text-[var(--text-muted)] max-w-2xl font-medium leading-relaxed">
-          Browse through the eras. From the golden days on campus to where we are now, leading up to the main event.
+          From the golden days on campus to now.
         </p>
       </div>
 
       {/* --- STICKY FILTER TABS --- */}
-      <div className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-[var(--border)] mb-8 md:mb-12">
+      <div className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-[var(--border)] mb-8 md:mb-12 transition-all">
         <div className="max-w-[1140px] mx-auto px-6">
           <div className="flex overflow-x-auto hide-scrollbar gap-2 py-4 snap-x">
             {TABS.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => handleTabClick(tab.id)}
                 className={`snap-start whitespace-nowrap px-5 py-2 rounded-full text-[11px] font-bold uppercase tracking-[0.15em] transition-all duration-300 border ${
                   activeTab === tab.id 
-                    ? "bg-[var(--color-mace-crimson)] border-[var(--color-mace-crimson)] text-white shadow-md" 
+                    ? "bg-[var(--color-mace-crimson)] border-[var(--color-mace-crimson)] text-white shadow-md scale-105" 
                     : "bg-transparent border-[var(--border)] text-[var(--text-muted)] hover:border-[var(--color-mace-gold)]/50 hover:text-[var(--color-mace-crimson)]"
                 }`}
               >
@@ -96,9 +136,14 @@ export default function GalleryPage() {
       </div>
 
       {/* --- GALLERY ROWS --- */}
+      {/* Notice we are mapping over all GALLERY_CATEGORIES, no filtering array needed */}
       <div className="w-full max-w-[1140px] mx-auto space-y-16 md:space-y-24">
-        {filteredCategories.map((category) => (
-          <section key={category.id} className="relative w-full">
+        {GALLERY_CATEGORIES.map((category) => (
+          <section 
+            key={category.id} 
+            data-era={category.era} /* Critical for scrollspy to read the era */
+            className="relative w-full"
+          >
             
             {/* Row Header */}
             <div className="px-6 mb-6 flex items-end justify-between gap-4">
@@ -112,7 +157,6 @@ export default function GalleryPage() {
                 <p className="text-sm text-[var(--text-muted)] mt-1">{category.description}</p>
               </div>
               
-              {/* Desktop "See All" Text Link */}
               {!category.locked && (
                 <Link href={`/gallery/${category.id}`} className="hidden md:flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--color-mace-stone)] hover:text-[var(--color-mace-crimson)] transition-colors">
                   View {category.count} items
@@ -120,9 +164,8 @@ export default function GalleryPage() {
               )}
             </div>
 
-            {/* The Horizontal Scroll Container */}
+            {/* Scroll Container */}
             <div className="relative w-full">
-              {/* Edge fade mask for smooth scrolling visuals */}
               <div className="absolute top-0 right-0 bottom-0 w-12 md:w-24 bg-gradient-to-l from-[var(--background)] to-transparent z-10 pointer-events-none" />
 
               <div className="flex overflow-x-auto hide-scrollbar gap-4 md:gap-6 px-6 pb-8 snap-x snap-mandatory">
@@ -144,12 +187,9 @@ export default function GalleryPage() {
                         key={item.id}
                         className="group/card relative w-[220px] md:w-[260px] shrink-0 snap-start aspect-[4/5] overflow-hidden rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface-soft)] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(116,12,8,0.08)] transition-all duration-500 cursor-pointer flex flex-col"
                       >
-                        {/* Placeholder Image Area */}
                         <div className="flex-1 w-full bg-gradient-to-br from-[var(--background)] to-[var(--surface-soft)] flex items-center justify-center border-b border-[var(--border)] group-hover/card:bg-white transition-colors duration-500 relative overflow-hidden">
                           <Camera className="w-10 h-10 text-[var(--border)] group-hover/card:text-[var(--color-mace-gold)]/50 transition-colors duration-500 group-hover/card:scale-110" strokeWidth={1} />
                         </div>
-                        
-                        {/* Card Footer */}
                         <div className="p-4 bg-white">
                            <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--color-mace-gold)] mb-1">
                              {item.year}
@@ -189,7 +229,6 @@ export default function GalleryPage() {
       </div>
 
       <style jsx global>{`
-        /* Utility to hide scrollbar but keep functionality */
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }
