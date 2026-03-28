@@ -35,7 +35,7 @@ export default function PlanPage() {
         </div>
 
         <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 text-[var(--color-mace-crimson)] leading-[0.95]">
-          The <span className="gradient-gold">Plan</span>.
+          The <span className="gradient-gold">Timetable</span>.
         </h1>
 
         <p className="text-lg text-[var(--text-muted)] max-w-2xl font-medium leading-relaxed">
