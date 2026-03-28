@@ -5,8 +5,15 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Playfair_Display, Inter } from "next/font/google";
-// Added 'Ticket' icon for the Register button
-import { Lock, Home, Trophy, Map, ShoppingBag, Image as ImageIcon, Ticket } from "lucide-react";
+import {
+  Lock,
+  Home,
+  Trophy,
+  Map,
+  ShoppingBag,
+  Image as ImageIcon,
+  Ticket,
+} from "lucide-react";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -29,20 +36,22 @@ export default function RootLayout({
 
   const isHome = pathname === "/";
   const isContests = pathname.startsWith("/contest");
+  const isPlan = pathname.startsWith("/plan");
+  const isGallery = pathname.startsWith("/gallery");
 
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-           <body className="antialiased font-sans bg-[#FCFCFD] text-[#1f295a]">
-        {/* Added pb-[76px] on mobile so the footer doesn't get hidden behind the fixed bottom bar */}
+      <body className="antialiased font-sans bg-[#FCFCFD] text-[#1f295a]">
         <div className="min-h-screen flex flex-col pb-[76px] md:pb-0">
-          
-          {/* TOP HEADER (Logo & Actions Only) */}
+          {/* TOP HEADER */}
           <header className="bg-white sticky top-0 z-50 border-b border-slate-200/60 shadow-sm flex flex-col">
             <div className="flex items-center justify-between h-16 md:h-20 px-4 md:px-10 relative">
-              
               {/* Left: Logo Area */}
               <div className="flex-1 flex items-center">
-                <Link href="/" className="flex items-center gap-3 group transition-opacity hover:opacity-80">
+                <Link
+                  href="/"
+                  className="flex items-center gap-3 group transition-opacity hover:opacity-80"
+                >
                   <img
                     src="https://mace.ac.in/wp-content/uploads/2025/01/logo-2.svg"
                     alt="MACE Logo"
@@ -55,29 +64,71 @@ export default function RootLayout({
                 </Link>
               </div>
 
-              {/* Center: Desktop Navigation (Unchanged) */}
+              {/* Center: Desktop Navigation */}
               <nav className="hidden md:flex flex-1 items-center justify-center gap-10 h-full absolute left-1/2 -translate-x-1/2">
                 <Link href="/" className="relative flex items-center gap-2.5 h-full group cursor-pointer">
-                  <Home className={`w-5 h-5 transition-all duration-300 ${isHome ? "stroke-[#1f295a] fill-[#1f295a]/10" : "stroke-slate-400 fill-slate-50 group-hover:stroke-[#1f295a] group-hover:fill-[#1f295a]/10"}`} strokeWidth={1.5} />
-                  <span className={`text-sm transition-colors ${isHome ? "text-[#1f295a] font-semibold" : "text-slate-500 font-medium group-hover:text-[#1f295a]"}`}>Home</span>
-                  <div className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${isHome ? "bg-[#1f295a]" : "bg-transparent group-hover:bg-slate-200"}`}></div>
+                  <Home
+                    className={`w-5 h-5 transition-all duration-300 ${
+                      isHome
+                        ? "stroke-[#1f295a] fill-[#1f295a]/10"
+                        : "stroke-slate-400 fill-slate-50 group-hover:stroke-[#1f295a] group-hover:fill-[#1f295a]/10"
+                    }`}
+                    strokeWidth={1.5}
+                  />
+                  <span
+                    className={`text-sm transition-colors ${
+                      isHome
+                        ? "text-[#1f295a] font-semibold"
+                        : "text-slate-500 font-medium group-hover:text-[#1f295a]"
+                    }`}
+                  >
+                    Home
+                  </span>
+                  <div
+                    className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${
+                      isHome ? "bg-[#1f295a]" : "bg-transparent group-hover:bg-slate-200"
+                    }`}
+                  ></div>
                 </Link>
 
                 <div className="relative group h-full">
                   <Link href="/contest" className="relative flex items-center gap-2.5 h-full transition-colors duration-300">
-                    <Trophy className={`w-5 h-5 transition-all duration-300 ${isContests ? "stroke-amber-500 fill-amber-400/20" : "stroke-slate-400 fill-slate-50 group-hover:stroke-amber-500 group-hover:fill-amber-400/20"}`} strokeWidth={1.5} />
-                    <span className={`text-sm transition-colors ${isContests ? "text-[#1f295a] font-semibold" : "text-slate-500 font-medium group-hover:text-[#1f295a]"}`}>Contests</span>
-                    {/* Premium green pulse */}
+                    <Trophy
+                      className={`w-5 h-5 transition-all duration-300 ${
+                        isContests
+                          ? "stroke-amber-500 fill-amber-400/20"
+                          : "stroke-slate-400 fill-slate-50 group-hover:stroke-amber-500 group-hover:fill-amber-400/20"
+                      }`}
+                      strokeWidth={1.5}
+                    />
+                    <span
+                      className={`text-sm transition-colors ${
+                        isContests
+                          ? "text-[#1f295a] font-semibold"
+                          : "text-slate-500 font-medium group-hover:text-[#1f295a]"
+                      }`}
+                    >
+                      Contests
+                    </span>
+
                     <span className="absolute top-3.5 -right-5 flex h-2.5 w-2.5">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
                     </span>
-                    <div className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${isContests ? "bg-amber-500" : "bg-transparent group-hover:bg-slate-200"}`}></div>
+
+                    <div
+                      className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${
+                        isContests ? "bg-amber-500" : "bg-transparent group-hover:bg-slate-200"
+                      }`}
+                    ></div>
                   </Link>
 
                   <div className="absolute top-[80px] left-1/2 -translate-x-1/2 w-60 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-out">
                     <div className="bg-white border border-slate-100 shadow-[0_15px_40px_-10px_rgba(31,41,90,0.1)] rounded-2xl overflow-hidden py-2">
-                      <Link href="/contest/letsname" className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1f295a] hover:bg-amber-50 hover:text-amber-600 transition-colors">
+                      <Link
+                        href="/contest/letsname"
+                        className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1f295a] hover:bg-amber-50 hover:text-amber-600 transition-colors"
+                      >
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(16,185,129,0.6)]"></span>
                         01: The Naming
                       </Link>
@@ -89,15 +140,55 @@ export default function RootLayout({
                   </div>
                 </div>
 
-                <Link href="/plan" className="relative flex items-center gap-2.5 h-full text-slate-500 font-medium group hover:text-[#1f295a] transition-colors">
-  <Map className="w-5 h-5 stroke-slate-400 fill-slate-50 group-hover:stroke-amber-500 group-hover:fill-amber-400/20 transition-all" strokeWidth={1.5} />
-  <span className="text-sm">Master Plan</span>
-</Link>
-                
-                <Link href="/gallery" className="relative flex items-center gap-2.5 h-full text-slate-500 font-medium group hover:text-[#1f295a] transition-colors">
-  <ImageIcon className="w-5 h-5 stroke-slate-400 fill-slate-50 group-hover:stroke-amber-500 group-hover:fill-amber-400/20 transition-all" strokeWidth={1.5} />
-  <span className="text-sm">Gallery</span>
-</Link>
+                <Link href="/plan" className="relative flex items-center gap-2.5 h-full group transition-colors duration-300">
+                  <Map
+                    className={`w-5 h-5 transition-all duration-300 ${
+                      isPlan
+                        ? "stroke-amber-500 fill-amber-400/20"
+                        : "stroke-slate-400 fill-slate-50 group-hover:stroke-amber-500 group-hover:fill-amber-400/20"
+                    }`}
+                    strokeWidth={1.5}
+                  />
+                  <span
+                    className={`text-sm transition-colors ${
+                      isPlan
+                        ? "text-[#1f295a] font-semibold"
+                        : "text-slate-500 font-medium group-hover:text-[#1f295a]"
+                    }`}
+                  >
+                    Master Plan
+                  </span>
+                  <div
+                    className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${
+                      isPlan ? "bg-amber-500" : "bg-transparent group-hover:bg-slate-200"
+                    }`}
+                  ></div>
+                </Link>
+
+                <Link href="/gallery" className="relative flex items-center gap-2.5 h-full group transition-colors duration-300">
+                  <ImageIcon
+                    className={`w-5 h-5 transition-all duration-300 ${
+                      isGallery
+                        ? "stroke-amber-500 fill-amber-400/20"
+                        : "stroke-slate-400 fill-slate-50 group-hover:stroke-amber-500 group-hover:fill-amber-400/20"
+                    }`}
+                    strokeWidth={1.5}
+                  />
+                  <span
+                    className={`text-sm transition-colors ${
+                      isGallery
+                        ? "text-[#1f295a] font-semibold"
+                        : "text-slate-500 font-medium group-hover:text-[#1f295a]"
+                    }`}
+                  >
+                    Gallery
+                  </span>
+                  <div
+                    className={`absolute bottom-0 left-0 w-full h-[3px] rounded-t-md transition-colors ${
+                      isGallery ? "bg-amber-500" : "bg-transparent group-hover:bg-slate-200"
+                    }`}
+                  ></div>
+                </Link>
               </nav>
 
               {/* Right: Actions Cluster */}
@@ -111,7 +202,6 @@ export default function RootLayout({
                   <span className="text-[13px] font-semibold hidden lg:block">Register</span>
                 </div>
               </div>
-
             </div>
           </header>
 
@@ -134,68 +224,83 @@ export default function RootLayout({
         </div>
 
         {/* BOTTOM TAB BAR (MOBILE ONLY) */}
-        {/* Fixed to bottom, evenly spaced, safe-area padded for iPhones */}
         <nav className="md:hidden fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-200/60 z-50 flex items-center justify-around h-[76px] px-2 shadow-[0_-10px_30px_rgba(0,0,0,0.04)] [padding-bottom:env(safe-area-inset-bottom)]">
-          
           <Link href="/" className="relative flex flex-col items-center justify-center w-full h-full group">
             <div className="mb-1">
-              <Home className={`w-[24px] h-[24px] transition-colors ${isHome ? "stroke-[#1f295a] fill-[#1f295a]/10" : "stroke-slate-400 fill-slate-50"}`} strokeWidth={1.5} />
+              <Home
+                className={`w-[24px] h-[24px] transition-colors ${
+                  isHome ? "stroke-[#1f295a] fill-[#1f295a]/10" : "stroke-slate-400 fill-slate-50"
+                }`}
+                strokeWidth={1.5}
+              />
             </div>
-            <span className={`text-[10px] transition-colors ${isHome ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"}`}>Homes</span>
+            <span
+              className={`text-[10px] transition-colors ${
+                isHome ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"
+              }`}
+            >
+              Home
+            </span>
           </Link>
 
           <Link href="/contest" className="relative flex flex-col items-center justify-center w-full h-full group">
             <div className="relative mb-1">
-              <Trophy className={`w-[24px] h-[24px] transition-colors ${isContests ? "stroke-amber-500 fill-amber-400/20" : "stroke-slate-400 fill-slate-50"}`} strokeWidth={1.5} />
-              {/* Tucked "NEW" badge so it doesn't break out of the tab bar */}
-              <span className="absolute -top-1 -right-4 bg-slate-700 text-white text-[7px] font-bold px-1 py-[1px] rounded shadow-sm uppercase tracking-wider border border-slate-600/50">NEW</span>
+              <Trophy
+                className={`w-[24px] h-[24px] transition-colors ${
+                  isContests ? "stroke-amber-500 fill-amber-400/20" : "stroke-slate-400 fill-slate-50"
+                }`}
+                strokeWidth={1.5}
+              />
+              <span className="absolute -top-1 -right-4 bg-slate-700 text-white text-[7px] font-bold px-1 py-[1px] rounded shadow-sm uppercase tracking-wider border border-slate-600/50">
+                NEW
+              </span>
             </div>
-            <span className={`text-[10px] transition-colors ${isContests ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"}`}>Contests</span>
+            <span
+              className={`text-[10px] transition-colors ${
+                isContests ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"
+              }`}
+            >
+              Contests
+            </span>
           </Link>
 
           <Link href="/plan" className="relative flex flex-col items-center justify-center w-full h-full group">
-  <div className="mb-1">
-    <Map
-      className={`w-[24px] h-[24px] transition-colors ${
-        pathname === "/plan"
-          ? "stroke-amber-500 fill-amber-400/20"
-          : "stroke-slate-400 fill-slate-50"
-      }`}
-      strokeWidth={1.5}
-    />
-  </div>
-  <span
-    className={`text-[10px] transition-colors ${
-      pathname === "/plan" ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"
-    }`}
-  >
-    Plan
-  </span>
-</Link>
+            <div className="mb-1">
+              <Map
+                className={`w-[24px] h-[24px] transition-colors ${
+                  isPlan ? "stroke-amber-500 fill-amber-400/20" : "stroke-slate-400 fill-slate-50"
+                }`}
+                strokeWidth={1.5}
+              />
+            </div>
+            <span
+              className={`text-[10px] transition-colors ${
+                isPlan ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"
+              }`}
+            >
+              Plan
+            </span>
+          </Link>
 
           <Link href="/gallery" className="relative flex flex-col items-center justify-center w-full h-full group">
-  <div className="mb-1">
-    <ImageIcon
-      className={`w-[24px] h-[24px] transition-colors ${
-        pathname === "/gallery"
-          ? "stroke-amber-500 fill-amber-400/20"
-          : "stroke-slate-400 fill-slate-50"
-      }`}
-      strokeWidth={1.5}
-    />
-  </div>
-  <span
-    className={`text-[10px] transition-colors ${
-      pathname === "/gallery" ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"
-    }`}
-  >
-    Gallery
-  </span>
-</Link>
-
+            <div className="mb-1">
+              <ImageIcon
+                className={`w-[24px] h-[24px] transition-colors ${
+                  isGallery ? "stroke-amber-500 fill-amber-400/20" : "stroke-slate-400 fill-slate-50"
+                }`}
+                strokeWidth={1.5}
+              />
+            </div>
+            <span
+              className={`text-[10px] transition-colors ${
+                isGallery ? "text-[#1f295a] font-bold" : "text-slate-500 font-medium"
+              }`}
+            >
+              Gallery
+            </span>
+          </Link>
         </nav>
       </body>
-
     </html>
   );
 }
