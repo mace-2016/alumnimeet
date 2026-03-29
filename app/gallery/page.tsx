@@ -29,7 +29,7 @@ const GALLERY_CATEGORIES = [
   },
   {
     id: "decennial-live",
-    title: "And here we are!"
+    title: "And here we are!",
     era: "live",
     count: 0,
     locked: true,
