@@ -57,87 +57,87 @@ export default function HomePage() {
         {/* ========================================= */}
         {/* MOBILE COMBINED WRAPPER (HERO + TIMER)    */}
         {/* ========================================= */}
-<div className="flex flex-col md:flex md:col-span-2 md:row-span-3 max-md:rounded-[2.5rem] max-md:border max-md:border-[var(--border)] max-md:overflow-hidden max-md:shadow-[0_8px_30px_rgba(116,12,8,0.03)] max-md:bg-white md:gap-6 lg:gap-8">          
-          {/* HERO BLOCK */}
-<div className="group relative min-h-[400px] md:min-h-[520px] overflow-hidden rounded-[2.5rem] max-md:rounded-none border border-[var(--border)] max-md:border-0 bg-white max-md:bg-transparent p-10 lg:p-14 shadow-[0_8px_30px_rgba(116,12,8,0.03)] max-md:shadow-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 max-md:hover:translate-y-0 hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)] md:flex-[2]"            
-            <Image
-              src="/hero.jpg"
-              alt="Class of 2016"
-              fill
-              priority
-              className="object-cover object-center opacity-20 grayscale transition-opacity duration-1000 group-hover:opacity-40"
-            />
-            
-            <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/50 to-[var(--background)]/90 max-md:to-white/90" />
-            
-            <div className="relative z-10 h-full flex flex-col justify-between">
-              <div>
-                <div className="mb-12 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text)] shadow-sm">
-                  <Sparkles className="h-3 w-3 text-[var(--color-mace-gold)]" strokeWidth={2.5} />
-                  The Decennial
-                </div>
+<div className="flex flex-col md:flex md:col-span-2 md:row-span-3 max-md:rounded-[2.5rem] max-md:border max-md:border-[var(--border)] max-md:overflow-hidden max-md:shadow-[0_8px_30px_rgba(116,12,8,0.03)] max-md:bg-white md:gap-6 lg:gap-8">
+  {/* HERO BLOCK */}
+  <div className="group relative min-h-[400px] md:min-h-[520px] overflow-hidden rounded-[2.5rem] max-md:rounded-none border border-[var(--border)] max-md:border-0 bg-white max-md:bg-transparent p-10 lg:p-14 shadow-[0_8px_30px_rgba(116,12,8,0.03)] max-md:shadow-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 max-md:hover:translate-y-0 hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)] md:flex-[2]">
+    <Image
+      src="/hero.jpg"
+      alt="Class of 2016"
+      fill
+      priority
+      className="object-cover object-center opacity-20 grayscale transition-opacity duration-1000 group-hover:opacity-40"
+    />
 
-                <h1 className="font-serif text-[4rem] lg:text-[6rem] leading-[0.85] tracking-tight text-[var(--color-mace-crimson)]">
-                  <span className="font-light">Class of</span><br />
-                  <span className="bg-gradient-to-br from-[var(--color-mace-rust)] to-[var(--color-mace-gold)] bg-clip-text text-transparent font-bold pr-4">
-                    2016
-                  </span>
-                </h1>
-              </div>
+    <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/50 to-[var(--background)]/90 max-md:to-white/90" />
 
-              <p className="max-w-[320px] text-lg leading-relaxed font-medium text-[var(--text-muted)] tracking-tight">
-                A decade later. Reconnecting with the memories, the people, and the legacy.
-              </p>
-            </div>
-          </div>
-
-          {/* TIMER BLOCK */}
-<div className="group relative bg-gradient-to-br from-white to-[var(--surface-soft)] rounded-[2.5rem] max-md:rounded-none border border-[var(--border)] max-md:border-0 max-md:border-t max-md:border-[var(--border)]/50 p-6 md:p-8 lg:p-10 flex flex-col justify-center overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] max-md:shadow-none transition-all duration-700 hover:shadow-[0_30px_60px_rgba(116,12,8,0.06)] hover:-translate-y-1.5 max-md:hover:translate-y-0 max-md:bg-transparent md:flex-1"            
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,var(--color-mace-rust),transparent_70%)] opacity-[0.03]" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[radial-gradient(circle_at_bottom_left,var(--color-mace-gold),transparent_70%)] opacity-[0.03]" />
-
-            <div className="absolute -right-24 -top-24 w-72 h-72 border border-[var(--color-mace-gold)]/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out" />
-            <div className="absolute -right-12 -top-12 w-48 h-48 border border-[var(--color-mace-gold)]/30 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 delay-75 ease-out" />
-
-            <div className="relative z-10">
-              <div className="mb-6 md:mb-8 flex items-center justify-between">
-                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--color-mace-crimson)]/60">
-                  <Clock className="h-4 w-4" strokeWidth={1.5} />
-                  Countdown
-                </div>
-                
-                <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-[var(--border)] shadow-sm">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--color-mace-stone)]">Live</span>
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-mace-rust)] opacity-40"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-mace-rust)] opacity-80"></span>
-                  </span>
-                </div>
-              </div>
-
-<div className="grid grid-cols-4 gap-2 md:flex md:items-center md:gap-3 lg:gap-4 w-full">
-  {timerItems.map((item, idx) => (
-                  <React.Fragment key={idx}>
-                    <div className="relative flex flex-col items-center justify-center gap-1 w-full md:flex-1 py-3 md:py-4 bg-white md:bg-white/50 border border-[var(--border)]/60 rounded-2xl md:rounded-[1.25rem] shadow-[0_4px_12px_rgba(116,12,8,0.02)] md:shadow-[inset_0_2px_10px_rgba(0,0,0,0.01)] backdrop-blur-sm group-hover:border-[var(--color-mace-gold)]/20 transition-colors duration-500 max-md:bg-[var(--surface-soft)]/50">
-                      <span className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium text-[var(--color-mace-crimson)] tabular-nums tracking-tighter drop-shadow-sm">
-                        {String(item.value).padStart(2, "0")}
-                      </span>
-                      <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] w-full text-center">
-                        {item.label}
-                      </span>
-                    </div>
-
-                    {idx !== timerItems.length - 1 && (
-                      <div className="hidden md:flex flex-col justify-center text-2xl lg:text-3xl font-serif font-light text-[var(--color-mace-stone)]/30 px-1">
-                        :
-                      </div>
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-          </div>
+    <div className="relative z-10 h-full flex flex-col justify-between">
+      <div>
+        <div className="mb-12 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text)] shadow-sm">
+          <Sparkles className="h-3 w-3 text-[var(--color-mace-gold)]" strokeWidth={2.5} />
+          The Decennial
         </div>
+
+        <h1 className="font-serif text-[4rem] lg:text-[6rem] leading-[0.85] tracking-tight text-[var(--color-mace-crimson)]">
+          <span className="font-light">Class of</span><br />
+          <span className="bg-gradient-to-br from-[var(--color-mace-rust)] to-[var(--color-mace-gold)] bg-clip-text text-transparent font-bold pr-4">
+            2016
+          </span>
+        </h1>
+      </div>
+
+      <p className="max-w-[320px] text-lg leading-relaxed font-medium text-[var(--text-muted)] tracking-tight">
+        A decade later. Reconnecting with the memories, the people, and the legacy.
+      </p>
+    </div>
+  </div>
+
+  {/* TIMER BLOCK */}
+  <div className="group relative bg-gradient-to-br from-white to-[var(--surface-soft)] rounded-[2.5rem] max-md:rounded-none border border-[var(--border)] max-md:border-0 max-md:border-t max-md:border-[var(--border)]/50 p-6 md:p-8 lg:p-10 flex flex-col justify-center overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] max-md:shadow-none transition-all duration-700 hover:shadow-[0_30px_60px_rgba(116,12,8,0.06)] hover:-translate-y-1.5 max-md:hover:translate-y-0 max-md:bg-transparent md:flex-1">
+    <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,var(--color-mace-rust),transparent_70%)] opacity-[0.03]" />
+    <div className="absolute bottom-0 left-0 w-64 h-64 bg-[radial-gradient(circle_at_bottom_left,var(--color-mace-gold),transparent_70%)] opacity-[0.03]" />
+
+    <div className="absolute -right-24 -top-24 w-72 h-72 border border-[var(--color-mace-gold)]/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out" />
+    <div className="absolute -right-12 -top-12 w-48 h-48 border border-[var(--color-mace-gold)]/30 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 delay-75 ease-out" />
+
+    <div className="relative z-10">
+      <div className="mb-6 md:mb-8 flex items-center justify-between">
+        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--color-mace-crimson)]/60">
+          <Clock className="h-4 w-4" strokeWidth={1.5} />
+          Countdown
+        </div>
+
+        <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-[var(--border)] shadow-sm">
+          <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--color-mace-stone)]">Live</span>
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-mace-rust)] opacity-40"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-mace-rust)] opacity-80"></span>
+          </span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-4 gap-2 md:flex md:items-center md:gap-3 lg:gap-4 w-full">
+        {timerItems.map((item, idx) => (
+          <React.Fragment key={idx}>
+            <div className="relative flex flex-col items-center justify-center gap-1 w-full md:flex-1 py-3 md:py-4 bg-white md:bg-white/50 border border-[var(--border)]/60 rounded-2xl md:rounded-[1.25rem] shadow-[0_4px_12px_rgba(116,12,8,0.02)] md:shadow-[inset_0_2px_10px_rgba(0,0,0,0.01)] backdrop-blur-sm group-hover:border-[var(--color-mace-gold)]/20 transition-colors duration-500 max-md:bg-[var(--surface-soft)]/50">
+              <span className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium text-[var(--color-mace-crimson)] tabular-nums tracking-tighter drop-shadow-sm">
+                {String(item.value).padStart(2, "0")}
+              </span>
+              <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] w-full text-center">
+                {item.label}
+              </span>
+            </div>
+
+            {idx !== timerItems.length - 1 && (
+              <div className="hidden md:flex flex-col justify-center text-2xl lg:text-3xl font-serif font-light text-[var(--color-mace-stone)]/30 px-1">
+                :
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
         {/* ========================================= */}
 
         {/* ========================================= */}
