@@ -81,7 +81,7 @@ export default function HomePage() {
 
           <div className="relative z-10 h-full flex flex-col justify-between">
             <div>
-              <div className="mb-10 md:mb-12 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text)] shadow-sm">
+              <div className="mb-8 md:mb-12 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text)] shadow-sm">
                 <Sparkles
                   className="h-3 w-3 text-[var(--color-mace-gold)]"
                   strokeWidth={2.5}
@@ -98,15 +98,37 @@ export default function HomePage() {
               </h1>
             </div>
 
-            <p className="max-w-[320px] text-base md:text-lg leading-relaxed font-medium text-[var(--text-muted)] tracking-tight mt-8">
-              A decade later. Reconnecting with the memories, the people, and the
-              legacy.
-            </p>
+            <div className="mt-8">
+              <p className="max-w-[320px] text-base md:text-lg leading-relaxed font-medium text-[var(--text-muted)] tracking-tight">
+                A decade later. Reconnecting with the memories, the people, and the
+                legacy.
+              </p>
+
+              {/* NEW: MOBILE COMPACT TIMER (Hidden on md and up) */}
+              <div className="mt-6 flex w-full items-center justify-between rounded-2xl border border-[var(--border)] bg-white/60 p-4 shadow-sm backdrop-blur-md md:hidden">
+                {timerItems.map((item, idx) => (
+                  <React.Fragment key={idx}>
+                    <div className="flex flex-col items-center justify-center">
+                      <span className="font-serif text-2xl font-medium tabular-nums tracking-tighter text-[var(--color-mace-crimson)]">
+                        {String(item.value).padStart(2, "0")}
+                      </span>
+                      <span className="mt-0.5 text-[8px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                        {item.label}
+                      </span>
+                    </div>
+                    {idx !== timerItems.length - 1 && (
+                      <div className="font-serif text-xl font-light text-[var(--color-mace-stone)]/30">
+                        :
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* TIMER BLOCK */}
-        <div className="group relative md:col-span-2 bg-gradient-to-br from-white to-[var(--surface-soft)] rounded-[2.5rem] border border-[var(--border)] p-6 md:p-8 lg:p-10 flex flex-col justify-center overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] transition-all duration-700 hover:shadow-[0_30px_60px_rgba(116,12,8,0.06)] hover:-translate-y-1.5">
+                {/* TIMER BLOCK (Hidden on mobile, visible on desktop) */}
+        <div className="group relative md:col-span-2 bg-gradient-to-br from-white to-[var(--surface-soft)] rounded-[2.5rem] border border-[var(--border)] p-6 md:p-8 lg:p-10 hidden md:flex flex-col justify-center overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] transition-all duration-700 hover:shadow-[0_30px_60px_rgba(116,12,8,0.06)] hover:-translate-y-1.5">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,var(--color-mace-rust),transparent_70%)] opacity-[0.03]" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-[radial-gradient(circle_at_bottom_left,var(--color-mace-gold),transparent_70%)] opacity-[0.03]" />
 
@@ -153,6 +175,8 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+
+
 
         {/* MOBILE CAROUSEL / DESKTOP GRID CONNECTOR */}
         <div className="flex overflow-x-auto gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 md:pb-0 md:contents snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
