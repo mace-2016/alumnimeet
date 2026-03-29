@@ -20,11 +20,11 @@ export default function MemoryRibbon() {
   const displayImages = [...RIBBON_IMAGES, ...RIBBON_IMAGES];
 
   return (
-    /* Added group/gallery to the parent to trigger internal animations on hover */
-    <div className="group/gallery relative w-full overflow-hidden bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-8 md:p-10 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] transition-all duration-700 hover:shadow-[0_40px_80px_rgba(116,12,8,0.08)] hover:-translate-y-1.5">
+    /* Added max-md:border-none and max-md:shadow-none to remove the box border/shadow on mobile */
+    <div className="group/gallery relative w-full overflow-hidden bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] max-md:border-none p-8 md:p-10 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] max-md:shadow-none transition-all duration-700 hover:shadow-[0_40px_80px_rgba(116,12,8,0.08)] hover:-translate-y-1.5 max-md:hover:translate-y-0">
       
-      {/* HEADER SECTION */}
-      <div className="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+      {/* HEADER SECTION - Added max-md:hidden to hide this entire header on mobile */}
+      <div className="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10 max-md:hidden">
         
         <div className="flex flex-col md:flex-row md:items-center gap-6 lg:gap-8">
           {/* SYNCED ICON BOX: Changes to gold on gallery hover, matching the Trophy block */}
@@ -38,8 +38,8 @@ export default function MemoryRibbon() {
           <div>
             <div className="mb-2 flex flex-wrap items-center gap-3 md:gap-4">
               <h3 className="font-serif text-3xl lg:text-4xl font-medium tracking-tight text-[var(--color-mace-crimson)]">
-  The <span className="gradient-gold font-semibold">Gallery</span>
-</h3>
+                The <span className="gradient-gold font-semibold">Gallery</span>
+              </h3>
               <div className="px-3 py-1.5 rounded-full border border-[var(--color-mace-gold)]/30 bg-[var(--color-mace-gold)]/10 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-mace-gold)] whitespace-nowrap">
                 All Those In The Archive
               </div>
@@ -63,12 +63,13 @@ export default function MemoryRibbon() {
       </div>
 
       {/* RIBBON CONTENT */}
-      <div className="relative flex flex-col items-center -mx-8 md:-mx-10 lg:-mx-12 py-4">
+      {/* Reduced negative margins and padding on mobile since the border is gone */}
+      <div className="relative flex flex-col items-center -mx-8 md:-mx-10 lg:-mx-12 py-4 max-md:-mx-4 max-md:py-0">
         <div className="absolute inset-y-0 left-0 w-24 md:w-48 z-[40] bg-gradient-to-r from-white via-white to-transparent pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-24 md:w-48 z-[40] bg-gradient-to-l from-white via-white to-transparent pointer-events-none" />
 
         <div 
-          className="flex w-max gap-4 md:gap-6 animate-ribbon-scroll px-8 md:px-10 lg:px-12"
+          className="flex w-max gap-4 md:gap-6 animate-ribbon-scroll px-8 md:px-10 lg:px-12 max-md:px-4"
           style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
         >
           {displayImages.map((item, idx) => (
