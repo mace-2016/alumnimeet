@@ -143,14 +143,13 @@ export default function HomePage() {
         </div>
         {/* ========================================= */}
 
-
         {/* ========================================= */}
-        {/* MOBILE STACKED CARDS / DESKTOP GRID CONNECTOR */}
+        {/* MOBILE HORIZONTAL SCROLL / DESKTOP GRID CONNECTOR */}
         {/* ========================================= */}
-        <div className="flex flex-col md:contents gap-4 w-full">
+        <div className="flex max-md:overflow-x-auto max-md:snap-x max-md:snap-mandatory gap-4 w-full max-md:pb-4 max-md:-mx-6 max-md:px-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] md:contents">
           
           {/* LOCATION BLOCK */}
-          <a href="#map" className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 w-full md:w-auto md:min-h-[220px] gap-4 md:gap-0">
+          <a href="#map" className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 max-md:w-[80vw] max-md:shrink-0 max-md:snap-center md:w-auto md:min-h-[220px] gap-4 md:gap-0">
             <MapPin className="absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 w-32 h-32 md:w-40 md:h-40 text-[var(--color-mace-gold)] opacity-[0.02] md:opacity-0 md:group-hover:opacity-[0.02] transition-all duration-1000 ease-out pointer-events-none" />
             
             <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-gold)]/30 group-hover:bg-[var(--color-mace-gold)]/10 transition-all duration-500 shadow-sm shrink-0">
@@ -168,7 +167,7 @@ export default function HomePage() {
           </a>
 
           {/* DATE BLOCK */}
-          <a href="#calendar" className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 w-full md:w-auto md:min-h-[220px] gap-4 md:gap-0">
+          <a href="#calendar" className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 max-md:w-[80vw] max-md:shrink-0 max-md:snap-center md:w-auto md:min-h-[220px] gap-4 md:gap-0">
             <Calendar className="absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 w-32 h-32 md:w-40 md:h-40 text-[var(--color-mace-rust)] opacity-[0.02] md:opacity-0 md:group-hover:opacity-[0.02] transition-all duration-1000 ease-out pointer-events-none" />
             
             <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-rust)]/30 group-hover:bg-[var(--color-mace-rust)]/10 transition-all duration-500 shadow-sm shrink-0">
@@ -190,7 +189,7 @@ export default function HomePage() {
             href="https://chat.whatsapp.com/LCGlyEIPzLMCTfBe2zosaE?mode=gi_t" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 w-full md:w-auto md:min-h-[220px] gap-4 md:gap-0"
+            className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 max-md:w-[80vw] max-md:shrink-0 max-md:snap-center md:w-auto md:min-h-[220px] gap-4 md:gap-0"
           >
             <MessageCircle className="absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 w-32 h-32 md:w-40 md:h-40 text-[var(--color-mace-crimson)] opacity-[0.02] md:opacity-0 md:group-hover:opacity-[0.02] transition-all duration-1000 ease-out pointer-events-none" />
             
@@ -213,6 +212,8 @@ export default function HomePage() {
           
         </div>
         {/* ========================================= */}
+
+
 
         {/* CONTESTS BLOCK */}
         <Link 
