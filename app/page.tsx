@@ -232,74 +232,88 @@ export default function HomePage() {
               </p>
             </div>
           </a>
-
-          {/* WHATSAPP BLOCK (Full width on mobile) */}
+          {/* WHATSAPP BLOCK (Solid Color Anchor) */}
           <a
             href="https://chat.whatsapp.com/LCGlyEIPzLMCTfBe2zosaE?mode=gi_t"
             target="_blank"
             rel="noopener noreferrer"
-            className="col-span-2 md:col-auto group relative bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-6 md:p-8 lg:p-10 flex flex-col md:flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 min-h-[140px] md:min-h-[220px]"
+            className="col-span-2 md:col-auto group relative bg-gradient-to-br from-[var(--color-mace-crimson)] to-[var(--color-mace-rust)] md:bg-none md:bg-white rounded-[2rem] md:rounded-[2.5rem] border-none md:border md:border-[var(--border)] p-6 md:p-8 lg:p-10 flex flex-col md:flex-col justify-between overflow-hidden shadow-[0_12px_30px_rgba(116,12,8,0.15)] md:shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 min-h-[140px] md:min-h-[220px]"
           >
-            <MessageCircle className="absolute -right-4 -bottom-4 md:-right-8 md:-bottom-8 w-28 h-28 md:w-40 md:h-40 text-[var(--color-mace-crimson)] opacity-[0.03] md:opacity-0 md:group-hover:opacity-[0.02] group-active:-translate-x-1 group-active:-translate-y-1 md:group-hover:-translate-x-1 md:group-hover:-translate-y-1 transition-all duration-1000 ease-out pointer-events-none" />
+            {/* Background pattern for mobile */}
+            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 md:hidden mix-blend-overlay"></div>
+            
+            <MessageCircle className="absolute -right-4 -bottom-4 md:-right-8 md:-bottom-8 w-32 h-32 md:w-40 md:h-40 text-white/10 md:text-[var(--color-mace-crimson)] md:opacity-0 pointer-events-none" />
 
             <div className="flex justify-between items-center md:items-start relative z-10 w-full mb-4 md:mb-0">
-              <div className="w-12 h-12 md:w-14 md:h-14 rounded-[1rem] md:rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-crimson)]/30 group-hover:bg-[var(--color-mace-crimson)]/5 transition-all duration-500 shadow-sm group-hover:scale-105 shrink-0">
+              <div className="w-12 h-12 md:w-14 md:h-14 rounded-[1rem] md:rounded-2xl bg-white/20 md:bg-[var(--background)] border border-white/20 md:border-[var(--border)] flex items-center justify-center backdrop-blur-sm shrink-0">
                 <MessageCircle
-                  className="h-6 w-6 text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)] transition-colors duration-500"
+                  className="h-6 w-6 text-white md:text-[var(--text-muted)]"
                   strokeWidth={1.5}
                 />
               </div>
 
-              <div className="md:hidden px-4 py-2 rounded-full border border-[var(--color-mace-crimson)]/20 bg-[var(--color-mace-crimson)]/5 text-[9px] font-black uppercase tracking-widest text-[var(--color-mace-crimson)] whitespace-nowrap flex items-center gap-1.5">
+              <div className="md:hidden px-4 py-2 rounded-full border border-white/30 bg-white/20 text-[9px] font-black uppercase tracking-widest text-white whitespace-nowrap flex items-center gap-1.5 backdrop-blur-md">
                 Tap to Join <ArrowUpRight className="w-3 h-3" />
               </div>
             </div>
 
             <div className="relative z-10 w-full mt-auto flex flex-col md:block">
-              <p className="mb-1 md:mb-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)]/70 transition-colors duration-500">
+              <p className="mb-1 md:mb-2 text-[10px] font-bold uppercase tracking-[0.25em] text-white/70 md:text-[var(--text-muted)]">
                 Comms
               </p>
-              <p className="font-serif text-2xl lg:text-3xl font-medium tracking-tight text-[var(--color-mace-crimson)]">
+              <p className="font-serif text-2xl lg:text-3xl font-medium tracking-tight text-white md:text-[var(--color-mace-crimson)]">
                 WhatsApp
               </p>
             </div>
           </a>
 
-        </div>
 
+
+        </div>
 
         {/* CONTESTS BLOCK */}
         <Link
           href="/contest"
-          className="group relative md:col-span-3 bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-8 md:p-10 lg:p-12 flex flex-col md:flex-row md:items-center justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_40px_80px_rgba(116,12,8,0.08)] hover:-translate-y-1.5 transition-all duration-700 active:scale-[0.98]"
+          className="group relative md:col-span-3 bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-6 md:p-10 lg:p-12 flex flex-col md:flex-row md:items-center justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_40px_80px_rgba(116,12,8,0.08)] hover:-translate-y-1.5 transition-all duration-700 active:scale-[0.98]"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_100%,var(--color-mace-gold),transparent_40%)] opacity-0 group-hover:opacity-[0.06] transition-opacity duration-1000" />
-          <Trophy className="absolute -right-8 -bottom-12 w-64 h-64 text-[var(--color-mace-gold)] opacity-0 group-hover:opacity-[0.03] group-hover:-translate-x-4 group-hover:-translate-y-4 transition-all duration-1000 ease-out pointer-events-none" />
+          <Trophy className="absolute -right-4 -bottom-12 md:-right-8 md:-bottom-12 w-48 h-48 md:w-64 md:h-64 text-[var(--color-mace-gold)] opacity-[0.03] md:opacity-0 group-hover:opacity-[0.03] group-hover:-translate-x-4 group-hover:-translate-y-4 transition-all duration-1000 ease-out pointer-events-none" />
 
-          <div className="flex flex-col md:flex-row md:items-center gap-6 lg:gap-8 relative z-10">
-            <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-2xl md:rounded-[1.5rem] bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--color-mace-gold)] group-hover:border-[var(--color-mace-gold)] transition-all duration-700 shadow-sm shrink-0 group-hover:scale-105">
-              <Trophy
-                className="h-7 w-7 md:h-8 md:w-8 lg:h-10 lg:w-10 text-[var(--color-mace-gold)] group-hover:text-white transition-colors duration-500"
-                strokeWidth={1.5}
-              />
+          <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-6 lg:gap-8 relative z-10 w-full">
+            <div className="flex justify-between items-start w-full md:w-auto">
+              <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-[1rem] md:rounded-[1.5rem] bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--color-mace-gold)] group-hover:border-[var(--color-mace-gold)] transition-all duration-700 shadow-sm shrink-0 group-hover:scale-105">
+                <Trophy
+                  className="h-6 w-6 md:h-8 md:w-8 lg:h-10 lg:w-10 text-[var(--color-mace-gold)] group-hover:text-white transition-colors duration-500"
+                  strokeWidth={1.5}
+                />
+              </div>
+
+              {/* MOBILE ARROW: Pushed to top right to match other cards */}
+              <div className="md:hidden w-10 h-10 rounded-full bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--color-mace-gold)]/10 group-hover:border-[var(--color-mace-gold)]/20 transition-all duration-500">
+                <ArrowUpRight
+                  className="h-5 w-5 text-[var(--color-mace-crimson)] group-hover:text-[var(--color-mace-gold)] transition-all"
+                  strokeWidth={1.5}
+                />
+              </div>
             </div>
 
-            <div>
-              <div className="mb-2 flex flex-wrap items-center gap-3 md:gap-4">
-                <h3 className="font-serif text-3xl lg:text-4xl font-medium tracking-tight text-[var(--color-mace-crimson)]">
+            <div className="mt-2 md:mt-0">
+              <div className="mb-2 flex flex-wrap items-center gap-2 md:gap-4">
+                <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl font-medium tracking-tight text-[var(--color-mace-crimson)]">
                   The <span className="gradient-gold font-semibold">Contests</span>
                 </h3>
-                <div className="px-3 py-1.5 rounded-full border border-[var(--color-mace-gold)]/30 bg-[var(--color-mace-gold)]/10 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-mace-gold)] whitespace-nowrap">
+                <div className="px-3 py-1.5 rounded-full border border-[var(--color-mace-gold)]/30 bg-[var(--color-mace-gold)]/10 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-mace-gold)] whitespace-nowrap">
                   Let&apos;s Get Rolling!
                 </div>
               </div>
-              <p className="max-w-md text-base lg:text-lg font-medium text-[var(--text-muted)] leading-relaxed">
+              <p className="max-w-md text-sm md:text-base lg:text-lg font-medium text-[var(--text-muted)] leading-relaxed">
                 Step back in. Create. Compete.
               </p>
             </div>
           </div>
 
-          <div className="mt-8 md:mt-0 flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-gold)] transition-colors duration-500 relative z-10 w-fit">
+          {/* DESKTOP ARROW: Sits at the far right end */}
+          <div className="hidden md:flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-gold)] transition-colors duration-500 relative z-10 shrink-0">
             <div className="w-10 h-10 rounded-full bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center group-hover:bg-[var(--color-mace-gold)]/10 group-hover:border-[var(--color-mace-gold)]/20 transition-all duration-500">
               <ArrowUpRight
                 className="h-5 w-5 text-[var(--color-mace-crimson)] group-hover:text-[var(--color-mace-gold)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
@@ -308,7 +322,8 @@ export default function HomePage() {
             </div>
           </div>
         </Link>
-      </div>
+
+
 
       {/* MEMORY RIBBON SECTION */}
       <div className="mt-6 lg:mt-8 w-full">
