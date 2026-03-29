@@ -176,21 +176,20 @@ export default function HomePage() {
           </div>
         </div>
 
-
-
-        {/* MOBILE CAROUSEL / DESKTOP GRID CONNECTOR */}
-        <div className="flex overflow-x-auto gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 md:pb-0 md:contents snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          {/* LOCATION BLOCK */}
+        {/* MOBILE BENTO GRID / DESKTOP GRID CONNECTOR */}
+        <div className="grid grid-cols-2 gap-4 md:contents">
+          
+          {/* LOCATION BLOCK (1/2 width on mobile) */}
           <a
             href="#map"
-            className="group relative bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-6 md:p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 w-[240px] md:w-auto shrink-0 snap-start md:snap-none aspect-square md:aspect-auto min-h-[220px]"
+            className="col-span-1 md:col-auto group relative bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 min-h-[180px] md:min-h-[220px]"
           >
-            <MapPin className="absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 w-32 h-32 md:w-40 md:h-40 text-[var(--color-mace-gold)] opacity-[0.02] md:opacity-0 md:group-hover:opacity-[0.02] group-active:-translate-x-1 group-active:-translate-y-1 md:group-hover:-translate-x-1 md:group-hover:-translate-y-1 transition-all duration-1000 ease-out pointer-events-none" />
+            <MapPin className="absolute -right-4 -bottom-4 md:-right-8 md:-bottom-8 w-24 h-24 md:w-40 md:h-40 text-[var(--color-mace-gold)] opacity-[0.03] md:opacity-0 md:group-hover:opacity-[0.02] group-active:-translate-x-1 group-active:-translate-y-1 md:group-hover:-translate-x-1 md:group-hover:-translate-y-1 transition-all duration-1000 ease-out pointer-events-none" />
 
             <div className="flex justify-between items-start relative z-10 w-full">
-              <div className="w-14 h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-gold)]/30 group-hover:bg-[var(--color-mace-gold)]/10 transition-all duration-500 shadow-sm group-hover:scale-105">
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-[1rem] md:rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-gold)]/30 group-hover:bg-[var(--color-mace-gold)]/10 transition-all duration-500 shadow-sm group-hover:scale-105">
                 <MapPin
-                  className="h-6 w-6 text-[var(--text-muted)] group-hover:text-[var(--color-mace-gold)] transition-colors duration-500"
+                  className="h-5 w-5 md:h-6 md:w-6 text-[var(--text-muted)] group-hover:text-[var(--color-mace-gold)] transition-colors duration-500"
                   strokeWidth={1.5}
                 />
               </div>
@@ -198,26 +197,26 @@ export default function HomePage() {
             </div>
 
             <div className="relative z-10 w-full mt-auto">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)]/70 transition-colors duration-500">
+              <p className="mb-1 md:mb-2 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)]/70 transition-colors duration-500">
                 Location
               </p>
-              <p className="font-serif text-2xl lg:text-3xl font-medium tracking-tight text-[var(--color-mace-crimson)]">
+              <p className="font-serif text-xl md:text-2xl lg:text-3xl font-medium tracking-tight text-[var(--color-mace-crimson)]">
                 The OAT
               </p>
             </div>
           </a>
 
-          {/* DATE BLOCK */}
+          {/* DATE BLOCK (1/2 width on mobile) */}
           <a
             href="#calendar"
-            className="group relative bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-6 md:p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 w-[240px] md:w-auto shrink-0 snap-start md:snap-none aspect-square md:aspect-auto min-h-[220px]"
+            className="col-span-1 md:col-auto group relative bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 min-h-[180px] md:min-h-[220px]"
           >
-            <Calendar className="absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 w-32 h-32 md:w-40 md:h-40 text-[var(--color-mace-rust)] opacity-[0.02] md:opacity-0 md:group-hover:opacity-[0.02] group-active:-translate-x-1 group-active:-translate-y-1 md:group-hover:-translate-x-1 md:group-hover:-translate-y-1 transition-all duration-1000 ease-out pointer-events-none" />
+            <Calendar className="absolute -right-4 -bottom-4 md:-right-8 md:-bottom-8 w-24 h-24 md:w-40 md:h-40 text-[var(--color-mace-rust)] opacity-[0.03] md:opacity-0 md:group-hover:opacity-[0.02] group-active:-translate-x-1 group-active:-translate-y-1 md:group-hover:-translate-x-1 md:group-hover:-translate-y-1 transition-all duration-1000 ease-out pointer-events-none" />
 
             <div className="flex justify-between items-start relative z-10 w-full">
-              <div className="w-14 h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-rust)]/30 group-hover:bg-[var(--color-mace-rust)]/10 transition-all duration-500 shadow-sm group-hover:scale-105">
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-[1rem] md:rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-rust)]/30 group-hover:bg-[var(--color-mace-rust)]/10 transition-all duration-500 shadow-sm group-hover:scale-105">
                 <Calendar
-                  className="h-6 w-6 text-[var(--text-muted)] group-hover:text-[var(--color-mace-rust)] transition-colors duration-500"
+                  className="h-5 w-5 md:h-6 md:w-6 text-[var(--text-muted)] group-hover:text-[var(--color-mace-rust)] transition-colors duration-500"
                   strokeWidth={1.5}
                 />
               </div>
@@ -225,39 +224,39 @@ export default function HomePage() {
             </div>
 
             <div className="relative z-10 w-full mt-auto">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)]/70 transition-colors duration-500">
+              <p className="mb-1 md:mb-2 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)]/70 transition-colors duration-500">
                 Date
               </p>
-              <p className="font-serif text-2xl lg:text-3xl font-medium tracking-tight text-[var(--color-mace-crimson)]">
-                Dec 19, 2026
+              <p className="font-serif text-xl md:text-2xl lg:text-3xl font-medium tracking-tight text-[var(--color-mace-crimson)]">
+                Dec 19, '26
               </p>
             </div>
           </a>
 
-          {/* WHATSAPP BLOCK */}
+          {/* WHATSAPP BLOCK (Full width on mobile) */}
           <a
             href="https://chat.whatsapp.com/LCGlyEIPzLMCTfBe2zosaE?mode=gi_t"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-6 md:p-8 lg:p-10 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 w-[240px] md:w-auto shrink-0 snap-start md:snap-none aspect-square md:aspect-auto min-h-[220px]"
+            className="col-span-2 md:col-auto group relative bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] p-6 md:p-8 lg:p-10 flex flex-col md:flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 min-h-[140px] md:min-h-[220px]"
           >
-            <MessageCircle className="absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 w-32 h-32 md:w-40 md:h-40 text-[var(--color-mace-crimson)] opacity-[0.02] md:opacity-0 md:group-hover:opacity-[0.02] group-active:-translate-x-1 group-active:-translate-y-1 md:group-hover:-translate-x-1 md:group-hover:-translate-y-1 transition-all duration-1000 ease-out pointer-events-none" />
+            <MessageCircle className="absolute -right-4 -bottom-4 md:-right-8 md:-bottom-8 w-28 h-28 md:w-40 md:h-40 text-[var(--color-mace-crimson)] opacity-[0.03] md:opacity-0 md:group-hover:opacity-[0.02] group-active:-translate-x-1 group-active:-translate-y-1 md:group-hover:-translate-x-1 md:group-hover:-translate-y-1 transition-all duration-1000 ease-out pointer-events-none" />
 
-            <div className="flex justify-between items-start relative z-10 w-full">
-              <div className="w-14 h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-crimson)]/30 group-hover:bg-[var(--color-mace-crimson)]/5 transition-all duration-500 shadow-sm group-hover:scale-105">
+            <div className="flex justify-between items-center md:items-start relative z-10 w-full mb-4 md:mb-0">
+              <div className="w-12 h-12 md:w-14 md:h-14 rounded-[1rem] md:rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-crimson)]/30 group-hover:bg-[var(--color-mace-crimson)]/5 transition-all duration-500 shadow-sm group-hover:scale-105 shrink-0">
                 <MessageCircle
                   className="h-6 w-6 text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)] transition-colors duration-500"
                   strokeWidth={1.5}
                 />
               </div>
 
-              <div className="md:hidden mt-2 px-3 py-1.5 rounded-full border border-[var(--color-mace-crimson)]/20 bg-[var(--color-mace-crimson)]/5 text-[8px] font-black uppercase tracking-widest text-[var(--color-mace-crimson)] whitespace-nowrap">
-                Tap to Join
+              <div className="md:hidden px-4 py-2 rounded-full border border-[var(--color-mace-crimson)]/20 bg-[var(--color-mace-crimson)]/5 text-[9px] font-black uppercase tracking-widest text-[var(--color-mace-crimson)] whitespace-nowrap flex items-center gap-1.5">
+                Tap to Join <ArrowUpRight className="w-3 h-3" />
               </div>
             </div>
 
-            <div className="relative z-10 w-full mt-auto">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)]/70 transition-colors duration-500">
+            <div className="relative z-10 w-full mt-auto flex flex-col md:block">
+              <p className="mb-1 md:mb-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)] group-hover:text-[var(--color-mace-crimson)]/70 transition-colors duration-500">
                 Comms
               </p>
               <p className="font-serif text-2xl lg:text-3xl font-medium tracking-tight text-[var(--color-mace-crimson)]">
@@ -265,7 +264,9 @@ export default function HomePage() {
               </p>
             </div>
           </a>
+
         </div>
+
 
         {/* CONTESTS BLOCK */}
         <Link
