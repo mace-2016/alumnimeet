@@ -20,14 +20,13 @@ export default function MemoryRibbon() {
   const displayImages = [...RIBBON_IMAGES, ...RIBBON_IMAGES];
 
   return (
-    /* Added max-md:border-none and max-md:shadow-none to remove the box border/shadow on mobile */
-    <div className="group/gallery relative w-full overflow-hidden bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[var(--border)] max-md:border-none p-8 md:p-10 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] max-md:shadow-none transition-all duration-700 hover:shadow-[0_40px_80px_rgba(116,12,8,0.08)] hover:-translate-y-1.5 max-md:hover:translate-y-0">
+    /* Added negative margin and width calc to break out of parent padding on mobile */
+    <div className="group/gallery relative w-full max-md:w-[calc(100%+3rem)] max-md:-mx-6 overflow-hidden bg-white max-md:bg-transparent rounded-[2rem] max-md:rounded-none md:rounded-[2.5rem] border border-[var(--border)] max-md:border-none p-8 max-md:p-0 md:p-10 lg:p-12 shadow-[0_8px_30px_rgba(116,12,8,0.02)] max-md:shadow-none transition-all duration-700 hover:shadow-[0_40px_80px_rgba(116,12,8,0.08)] hover:-translate-y-1.5 max-md:hover:translate-y-0">
       
-      {/* HEADER SECTION - Added max-md:hidden to hide this entire header on mobile */}
+      {/* HEADER SECTION - Hidden on mobile */}
       <div className="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10 max-md:hidden">
         
         <div className="flex flex-col md:flex-row md:items-center gap-6 lg:gap-8">
-          {/* SYNCED ICON BOX: Changes to gold on gallery hover, matching the Trophy block */}
           <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-2xl md:rounded-[1.5rem] bg-[var(--surface-soft)] border border-[var(--border)] flex items-center justify-center shrink-0 transition-all duration-700 group-hover/gallery:bg-[var(--color-mace-gold)] group-hover/gallery:border-[var(--color-mace-gold)] group-hover/gallery:scale-105 shadow-sm">
             <Film 
               className="h-7 w-7 md:h-8 md:w-8 lg:h-10 lg:w-10 text-[var(--color-mace-gold)] group-hover/gallery:text-white transition-colors duration-500" 
@@ -50,7 +49,6 @@ export default function MemoryRibbon() {
           </div>
         </div>
 
-        {/* SYNCED ARROW: Slides up-right when the whole gallery card is hovered */}
         <Link 
           href="/gallery" 
           className="shrink-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full border border-[var(--border)] bg-white hover:border-[var(--color-mace-gold)]/20 hover:bg-[var(--color-mace-gold)]/10 transition-all duration-300 shadow-sm"
@@ -63,13 +61,15 @@ export default function MemoryRibbon() {
       </div>
 
       {/* RIBBON CONTENT */}
-      {/* Reduced negative margins and padding on mobile since the border is gone */}
-      <div className="relative flex flex-col items-center -mx-8 md:-mx-10 lg:-mx-12 py-4 max-md:-mx-4 max-md:py-0">
-        <div className="absolute inset-y-0 left-0 w-24 md:w-48 z-[40] bg-gradient-to-r from-white via-white to-transparent pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-24 md:w-48 z-[40] bg-gradient-to-l from-white via-white to-transparent pointer-events-none" />
+      {/* Zeroed out negative margins on mobile since the parent handles it now */}
+      <div className="relative flex flex-col items-center -mx-8 md:-mx-10 lg:-mx-12 py-4 max-md:mx-0 max-md:py-0">
+        
+        {/* Hidden gradient fades on mobile for a clean edge-to-edge look */}
+        <div className="absolute inset-y-0 left-0 w-24 md:w-48 z-[40] bg-gradient-to-r from-white via-white to-transparent pointer-events-none max-md:hidden" />
+        <div className="absolute inset-y-0 right-0 w-24 md:w-48 z-[40] bg-gradient-to-l from-white via-white to-transparent pointer-events-none max-md:hidden" />
 
         <div 
-          className="flex w-max gap-4 md:gap-6 animate-ribbon-scroll px-8 md:px-10 lg:px-12 max-md:px-4"
+          className="flex w-max gap-4 md:gap-6 animate-ribbon-scroll px-8 md:px-10 lg:px-12 max-md:px-6"
           style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
         >
           {displayImages.map((item, idx) => (
@@ -92,7 +92,7 @@ export default function MemoryRibbon() {
 
         <button
           onClick={() => setIsPaused(!isPaused)}
-          className="mt-10 relative z-50 flex items-center gap-2 px-6 py-2 rounded-full border border-[var(--border)] bg-white hover:bg-[var(--surface-soft)] text-[var(--color-mace-stone)] hover:text-[var(--color-mace-crimson)] transition-all shadow-sm active:scale-95"
+          className="mt-6 md:mt-10 relative z-50 flex items-center gap-2 px-6 py-2 rounded-full border border-[var(--border)] bg-white hover:bg-[var(--surface-soft)] text-[var(--color-mace-stone)] hover:text-[var(--color-mace-crimson)] transition-all shadow-sm active:scale-95"
         >
           {isPaused ? (
             <><Play className="w-3 h-3 fill-current" /><span className="text-[10px] font-bold uppercase tracking-[0.2em]">Play</span></>
