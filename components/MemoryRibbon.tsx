@@ -72,8 +72,7 @@ export default function MemoryRibbon() {
         {/* OVERLAPPED MOBILE BUTTON / DESKTOP TEXT BUTTON */}
         <button
           onClick={() => setIsPaused(!isPaused)}
-          className="mt-6 md:mt-10 relative z-50 flex items-center justify-center gap-2 px-6 py-2 rounded-full border border-[var(--border)] bg-white hover:bg-[var(--surface-soft)] text-[var(--color-mace-stone)] hover:text-[var(--color-mace-crimson)] transition-all shadow-sm active:scale-95
-                     max-md:absolute max-md:bottom-4 max-md:right-10 max-md:w-12 max-md:h-12 max-md:px-0 max-md:bg-white/90 max-md:backdrop-blur-sm"
+          className="mt-6 md:mt-10 relative z-50 flex items-center justify-center gap-2 px-6 py-2 rounded-full border border-[var(--border)] bg-white hover:bg-[var(--surface-soft)] text-[var(--color-mace-stone)] hover:text-[var(--color-mace-crimson)] transition-all shadow-sm active:scale-95 max-md:absolute max-md:bottom-4 max-md:right-10 max-md:w-12 max-md:h-12 max-md:px-0 max-md:bg-white/90 max-md:backdrop-blur-sm"
         >
           {isPaused ? (
             <><Play className="w-5 h-5 md:w-3 md:h-3 max-md:ml-1 fill-current" /><span className="max-md:hidden text-[10px] font-bold uppercase tracking-[0.2em]">Play</span></>
