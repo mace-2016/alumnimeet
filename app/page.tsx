@@ -57,11 +57,9 @@ export default function HomePage() {
         {/* ========================================= */}
         {/* MOBILE COMBINED WRAPPER (HERO + TIMER)    */}
         {/* ========================================= */}
-        <div className="flex flex-col md:contents max-md:rounded-[2.5rem] max-md:border max-md:border-[var(--border)] max-md:overflow-hidden max-md:shadow-[0_8px_30px_rgba(116,12,8,0.03)] max-md:bg-white">
-          
+<div className="flex flex-col md:flex md:col-span-2 md:row-span-3 max-md:rounded-[2.5rem] max-md:border max-md:border-[var(--border)] max-md:overflow-hidden max-md:shadow-[0_8px_30px_rgba(116,12,8,0.03)] max-md:bg-white md:gap-6 lg:gap-8">          
           {/* HERO BLOCK */}
-          <div className="group relative md:col-span-2 md:row-span-2 min-h-[400px] overflow-hidden rounded-[2.5rem] max-md:rounded-none border border-[var(--border)] max-md:border-0 bg-white max-md:bg-transparent p-10 lg:p-14 shadow-[0_8px_30px_rgba(116,12,8,0.03)] max-md:shadow-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 max-md:hover:translate-y-0 hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)]">
-            
+<div className="group relative min-h-[400px] md:min-h-[520px] overflow-hidden rounded-[2.5rem] max-md:rounded-none border border-[var(--border)] max-md:border-0 bg-white max-md:bg-transparent p-10 lg:p-14 shadow-[0_8px_30px_rgba(116,12,8,0.03)] max-md:shadow-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 max-md:hover:translate-y-0 hover:shadow-[0_30px_60px_rgba(116,12,8,0.08)] md:flex-[2]"            
             <Image
               src="/hero.jpg"
               alt="Class of 2016"
@@ -94,8 +92,7 @@ export default function HomePage() {
           </div>
 
           {/* TIMER BLOCK */}
-          <div className="group relative md:col-span-2 bg-gradient-to-br from-white to-[var(--surface-soft)] rounded-[2.5rem] max-md:rounded-none border border-[var(--border)] max-md:border-0 max-md:border-t max-md:border-[var(--border)]/50 p-6 md:p-8 lg:p-10 flex flex-col justify-center overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] max-md:shadow-none transition-all duration-700 hover:shadow-[0_30px_60px_rgba(116,12,8,0.06)] hover:-translate-y-1.5 max-md:hover:translate-y-0 max-md:bg-transparent">
-            
+<div className="group relative bg-gradient-to-br from-white to-[var(--surface-soft)] rounded-[2.5rem] max-md:rounded-none border border-[var(--border)] max-md:border-0 max-md:border-t max-md:border-[var(--border)]/50 p-6 md:p-8 lg:p-10 flex flex-col justify-center overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] max-md:shadow-none transition-all duration-700 hover:shadow-[0_30px_60px_rgba(116,12,8,0.06)] hover:-translate-y-1.5 max-md:hover:translate-y-0 max-md:bg-transparent md:flex-1"            
             <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,var(--color-mace-rust),transparent_70%)] opacity-[0.03]" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-[radial-gradient(circle_at_bottom_left,var(--color-mace-gold),transparent_70%)] opacity-[0.03]" />
 
@@ -118,8 +115,8 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-4 gap-2 md:gap-3 lg:gap-4 md:flex md:items-center w-full">
-                {timerItems.map((item, idx) => (
+<div className="grid grid-cols-4 gap-2 md:flex md:items-center md:gap-3 lg:gap-4 w-full">
+  {timerItems.map((item, idx) => (
                   <React.Fragment key={idx}>
                     <div className="relative flex flex-col items-center justify-center gap-1 w-full md:flex-1 py-3 md:py-4 bg-white md:bg-white/50 border border-[var(--border)]/60 rounded-2xl md:rounded-[1.25rem] shadow-[0_4px_12px_rgba(116,12,8,0.02)] md:shadow-[inset_0_2px_10px_rgba(0,0,0,0.01)] backdrop-blur-sm group-hover:border-[var(--color-mace-gold)]/20 transition-colors duration-500 max-md:bg-[var(--surface-soft)]/50">
                       <span className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium text-[var(--color-mace-crimson)] tabular-nums tracking-tighter drop-shadow-sm">
@@ -146,10 +143,9 @@ export default function HomePage() {
         {/* ========================================= */}
         {/* MOBILE HORIZONTAL SCROLL / DESKTOP GRID CONNECTOR */}
         {/* ========================================= */}
-        <div className="flex max-md:overflow-x-auto max-md:snap-x max-md:snap-mandatory gap-4 w-full max-md:pb-4 max-md:-mx-6 max-md:px-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] md:contents">
-          
+<div className="flex max-md:overflow-x-auto max-md:snap-x max-md:snap-mandatory gap-4 w-full max-md:pb-4 max-md:-mx-6 max-md:px-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] md:grid md:grid-cols-2 md:grid-rows-2 md:col-span-2 md:row-span-2 md:gap-6 lg:gap-8 md:overflow-visible md:mx-0 md:px-0">          
           {/* LOCATION BLOCK */}
-          <a href="#map" className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 max-md:w-[65vw] max-md:shrink-0 max-md:snap-center md:w-auto md:min-h-[220px] gap-4 md:gap-0">
+          <a href="#map" className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 max-md:w-[80vw] max-md:shrink-0 max-md:snap-center md:w-auto md:min-h-[220px] gap-4 md:gap-0 md:col-span-1 md:row-span-1">
             <MapPin className="absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 w-32 h-32 md:w-40 md:h-40 text-[var(--color-mace-gold)] opacity-[0.02] md:opacity-0 md:group-hover:opacity-[0.02] transition-all duration-1000 ease-out pointer-events-none" />
             
             <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-gold)]/30 group-hover:bg-[var(--color-mace-gold)]/10 transition-all duration-500 shadow-sm shrink-0">
@@ -167,7 +163,7 @@ export default function HomePage() {
           </a>
 
           {/* DATE BLOCK */}
-          <a href="#calendar" className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 max-md:w-[65vw] max-md:shrink-0 max-md:snap-center md:w-auto md:min-h-[220px] gap-4 md:gap-0">
+          <a href="#calendar" className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 max-md:w-[80vw] max-md:shrink-0 max-md:snap-center md:w-auto md:min-h-[220px] gap-4 md:gap-0 md:col-span-1 md:row-span-1">
             <Calendar className="absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 w-32 h-32 md:w-40 md:h-40 text-[var(--color-mace-rust)] opacity-[0.02] md:opacity-0 md:group-hover:opacity-[0.02] transition-all duration-1000 ease-out pointer-events-none" />
             
             <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-rust)]/30 group-hover:bg-[var(--color-mace-rust)]/10 transition-all duration-500 shadow-sm shrink-0">
@@ -189,8 +185,7 @@ export default function HomePage() {
             href="https://chat.whatsapp.com/LCGlyEIPzLMCTfBe2zosaE?mode=gi_t" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 max-md:w-[80vw] max-md:shrink-0 max-md:snap-center md:w-auto md:min-h-[220px] gap-4 md:gap-0"
-          >
+            className="group relative bg-white rounded-[1.5rem] md:rounded-[2.5rem] border border-[var(--border)] p-5 md:p-8 lg:p-10 flex max-md:flex-row max-md:items-center md:flex-col md:justify-between overflow-hidden shadow-[0_8px_30px_rgba(116,12,8,0.02)] hover:shadow-[0_20px_40px_rgba(116,12,8,0.06)] hover:-translate-y-1 active:scale-[0.98] transition-all duration-500 max-md:w-[80vw] max-md:shrink-0 max-md:snap-center md:w-auto md:min-h-[220px] gap-4 md:gap-0 md:col-span-2 md:row-span-1">
             <MessageCircle className="absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 w-32 h-32 md:w-40 md:h-40 text-[var(--color-mace-crimson)] opacity-[0.02] md:opacity-0 md:group-hover:opacity-[0.02] transition-all duration-1000 ease-out pointer-events-none" />
             
             <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--color-mace-crimson)]/30 group-hover:bg-[var(--color-mace-crimson)]/5 transition-all duration-500 shadow-sm shrink-0">
