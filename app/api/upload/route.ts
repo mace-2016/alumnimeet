@@ -6,6 +6,22 @@ import { Readable } from "stream";
 
 export async function POST(req: NextRequest) {
   try {
+    const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY;
+    const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
+
+    if (!email) {
+      return NextResponse.json({ error: "Missing GOOGLE_SERVICE_ACCOUNT_EMAIL" }, { status: 500 });
+    }
+
+    if (!privateKey) {
+      return NextResponse.json({ error: "Missing GOOGLE_PRIVATE_KEY" }, { status: 500 });
+    }
+
+    if (!folderId) {
+      return NextResponse.json({ error: "Missing GOOGLE_DRIVE_FOLDER_ID" }, { status: 500 });
+    }
+
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
 
@@ -16,8 +32,8 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(await file.arrayBuffer());
 
     const auth = new google.auth.JWT({
-      email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+      email,
+      key: privateKey.replace(/\\n/g, "\n"),
       scopes: ["https://www.googleapis.com/auth/drive"],
     });
 
@@ -30,7 +46,7 @@ export async function POST(req: NextRequest) {
     const response = await drive.files.create({
       requestBody: {
         name: file.name,
-        parents: [process.env.GOOGLE_DRIVE_FOLDER_ID!],
+        parents: [folderId],
       },
       media: {
         mimeType: file.type || "application/octet-stream",
@@ -43,8 +59,14 @@ export async function POST(req: NextRequest) {
       success: true,
       file: response.data,
     });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+  } catch (error: any) {
+    console.error("UPLOAD ERROR:", error);
+    return NextResponse.json(
+      {
+        error: error?.message || "Upload failed",
+        details: String(error),
+      },
+      { status: 500 }
+    );
   }
 }
