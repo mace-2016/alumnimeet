@@ -35,7 +35,7 @@ export default function DriveUploader() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ⚠️ REPLACE WITH YOUR GOOGLE SCRIPT WEB APP URL
-  const WEB_APP_URL = 'https://script.google.com/macros/s/YOUR_URL_HERE/exec';
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyBOINKmBAWLjI1K_NtMTz_jS3cevMfwvtO7wHW6vw6kzLTX7WrorSiAl_88RbVIEll1w/exec';
 
   const handleDragOver = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault(); e.stopPropagation(); setIsDragging(true);
