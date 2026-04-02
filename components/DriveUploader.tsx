@@ -1,149 +1,125 @@
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>File Upload to Google Drive</title>
-
-    <style>
-
-        body { font-family: sans-serif; padding: 20px; }
-
-        .upload-container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
-
-        input[type="file"], button { width: 100%; margin-top: 10px; padding: 10px; }
-
-        #status { margin-top: 15px; font-weight: bold; }
-
-    </style>
-
-</head>
-
-<body>
+"use client";
 
 
 
-<div class="upload-container">
-
-    <h3>Upload a File</h3>
-
-    <input type="file" id="fileInput">
-
-    <button onclick="uploadFile()">Upload to Drive</button>
-
-    <div id="status"></div>
-
-</div>
+import { useState } from 'react';
 
 
 
-<script>
+export default function DriveUploader() {
 
-    // REPLACE WITH YOUR WEB APP URL FROM STEP 3
+  const [status, setStatus] = useState<string>('');
 
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyBOINKmBAWLjI1K_NtMTz_jS3cevMfwvtO7wHW6vw6kzLTX7WrorSiAl_88RbVIEll1w/exec';
-
-
-
-    function uploadFile() {
-
-        const fileInput = document.getElementById('fileInput');
-
-        const statusDiv = document.getElementById('status');
-
-        const file = fileInput.files[0];
+  const [isUploading, setIsUploading] = useState<boolean>(false);
 
 
 
-        if (!file) {
+  // REPLACE WITH YOUR GOOGLE SCRIPT WEB APP URL
 
-            statusDiv.innerText = "Please select a file first.";
-
-            statusDiv.style.color = "red";
-
-            return;
-
-        }
+  const WEB_APP_URL = 'YOUR_WEB_APP_URL_HERE';
 
 
 
-        statusDiv.innerText = "Uploading... please wait.";
+  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
 
-        statusDiv.style.color = "blue";
+    const file = event.target.files?.[0];
+
+    if (!file) return;
 
 
 
-        const reader = new FileReader();
+    setIsUploading(true);
+
+    setStatus('Uploading... please wait.');
+
+
+
+    const reader = new FileReader();
+
+
+
+    reader.onload = async (e) => {
+
+      const base64Data = (e.target?.result as string).split(',')[1];
+
+
+
+      const formData = new URLSearchParams();
+
+      formData.append('filename', file.name);
+
+      formData.append('mimeType', file.type);
+
+      formData.append('fileData', base64Data);
+
+
+
+      try {
+
+        const response = await fetch(https://script.google.com/macros/s/AKfycbyBOINKmBAWLjI1K_NtMTz_jS3cevMfwvtO7wHW6vw6kzLTX7WrorSiAl_88RbVIEll1w/exec, {
+
+          method: 'POST',
+
+          body: formData,
+
+        });
 
         
 
-        // When the file is read, convert it and send it
+        const result = await response.text();
 
-        reader.onload = function(e) {
+        setStatus(result);
 
-            // Remove the base64 metadata prefix (e.g., "data:image/png;base64,")
+      } catch (error) {
 
-            const base64Data = e.target.result.split(',')[1]; 
+        setStatus(`Upload failed: ${error}`);
 
+      } finally {
 
+        setIsUploading(false);
 
-            const formData = new URLSearchParams();
+      }
 
-            formData.append('filename', file.name);
-
-            formData.append('mimeType', file.type);
-
-            formData.append('fileData', base64Data);
+    };
 
 
 
-            fetch(WEB_APP_URL, {
+    reader.readAsDataURL(file);
 
-                method: 'POST',
-
-                body: formData
-
-            })
-
-            .then(response => response.text())
-
-            .then(result => {
-
-                statusDiv.innerText = result;
-
-                statusDiv.style.color = result.includes("Error") ? "red" : "green";
-
-                fileInput.value = ""; // Clear the input
-
-            })
-
-            .catch(error => {
-
-                statusDiv.innerText = "Upload failed: " + error;
-
-                statusDiv.style.color = "red";
-
-            });
-
-        };
+  };
 
 
 
-        // Read the file as a Data URL (base64)
+  return (
 
-        reader.readAsDataURL(file);
+    <div style={{ maxWidth: '400px', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', margin: '0 auto' }}>
 
-    }
+      <h3>Upload to Drive</h3>
 
-</script>
+      <input 
 
+        type="file" 
 
+        onChange={handleUpload} 
 
-</body>
+        disabled={isUploading}
 
-</html>
+        style={{ display: 'block', marginBottom: '10px', width: '100%' }}
+
+      />
+
+      {status && (
+
+        <p style={{ color: status.includes('failed') || status.includes('Error') ? 'red' : 'green', fontWeight: 'bold' }}>
+
+          {status}
+
+        </p>
+
+      )}
+
+    </div>
+
+  );
+
+}
