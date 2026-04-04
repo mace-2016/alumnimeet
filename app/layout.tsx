@@ -42,9 +42,36 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="antialiased font-sans bg-[#FCFCFD] text-[#1f295a]">
-        <div className="min-h-screen flex flex-col pb-[76px] md:pb-0">
-          {/* TOP HEADER */}
-          <header className="bg-white sticky top-0 z-50 border-b border-slate-200/60 shadow-sm flex flex-col">
+        
+        {/* --- CINEMATIC SUNRISE MESH BACKGROUND --- */}
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+          {/* 1. The Retro Sun Core (Intense Gold-to-Pink glow just below the screen) */}
+          <div className="absolute -bottom-[40%] left-1/2 -translate-x-1/2 w-[100vw] h-[100vw] rounded-full bg-gradient-to-t from-amber-400 via-orange-400 to-rose-500/30 opacity-40 blur-[120px]" />
+
+          {/* 2. The Horizon (Bleeding out to the bottom left and right) */}
+          <div className="absolute -bottom-[20%] -left-[10%] w-[60vw] h-[50vw] rounded-full bg-red-500/15 blur-[140px]" />
+          <div className="absolute -bottom-[20%] -right-[10%] w-[60vw] h-[50vw] rounded-full bg-pink-500/15 blur-[140px]" />
+
+          {/* 3. Cinematic Sun Rays (Using Tailwind's amber color hex #f59e0b) */}
+          <div 
+            className="absolute -bottom-[50%] left-1/2 -translate-x-1/2 w-[200vw] h-[200vw] opacity-20 mix-blend-overlay blur-[60px]"
+            style={{
+              backgroundImage: 'repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, #f59e0b 15deg, transparent 30deg)'
+            }}
+          />
+
+          {/* 4. The Atmosphere (Subtle top glow) */}
+          <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[80vw] h-[40vw] rounded-full bg-blue-400/5 blur-[100px]" />
+
+          {/* 5. Film Grain (If you don't have a noise.png, you can remove this div or add a subtle CSS grain later) */}
+          <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
+        </div>
+
+        {/* --- MAIN CONTENT WRAPPER (Elevated with relative z-10) --- */}
+        <div className="relative z-10 min-h-screen flex flex-col pb-[76px] md:pb-0">
+          
+          {/* TOP HEADER (Upgraded to frosted glass so the sky bleeds through) */}
+          <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200/60 shadow-sm flex flex-col">
             <div className="flex items-center justify-between h-16 md:h-20 px-4 md:px-10 relative">
               {/* Left: Logo Area */}
               <div className="flex-1 flex items-center">
@@ -207,12 +234,13 @@ export default function RootLayout({
 
           <main className="flex-grow">{children}</main>
 
-          <footer className="py-16 border-t border-slate-200/60 text-center px-6 bg-white">
+          {/* FOOTER (Removed bg-white so it sits natively on the sunset gradient) */}
+          <footer className="py-16 border-t border-slate-200/40 text-center px-6">
             <div className="max-w-4xl mx-auto space-y-6">
               <p className="font-serif text-2xl md:text-3xl text-[#1f295a] tracking-tight">
                 Journey Back <span className="italic text-amber-500 font-medium">to 2016</span>
               </p>
-              <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-[9px] uppercase tracking-[0.3em] font-black text-slate-400">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-[9px] uppercase tracking-[0.3em] font-black text-slate-500">
                 <span>Mar Athanasius College of Engineering</span>
                 <span className="hidden md:block opacity-30">•</span>
                 <span>Class of 2016 Alumni</span>
@@ -224,7 +252,7 @@ export default function RootLayout({
         </div>
 
         {/* BOTTOM TAB BAR (MOBILE ONLY) */}
-        <nav className="md:hidden fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-200/60 z-50 flex items-center justify-around h-[76px] px-2 shadow-[0_-10px_30px_rgba(0,0,0,0.04)] [padding-bottom:env(safe-area-inset-bottom)]">
+        <nav className="md:hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-slate-200/60 z-50 flex items-center justify-around h-[76px] px-2 shadow-[0_-10px_30px_rgba(0,0,0,0.04)] [padding-bottom:env(safe-area-inset-bottom)]">
           <Link href="/" className="relative flex flex-col items-center justify-center w-full h-full group">
             <div className="mb-1">
               <Home
