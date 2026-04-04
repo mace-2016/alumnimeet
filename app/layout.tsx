@@ -43,28 +43,90 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="antialiased font-sans bg-[#FCFCFD] text-[#1f295a]">
         
-        {/* --- CINEMATIC SUNRISE MESH BACKGROUND --- */}
+        {/* --- CINEMATIC SUNRISE MESH BACKGROUND (ANIMATED WITH EMBERS) --- */}
         <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-          {/* 1. The Retro Sun Core (Intense Gold-to-Pink glow just below the screen) */}
-          <div className="absolute -bottom-[40%] left-1/2 -translate-x-1/2 w-[100vw] h-[100vw] rounded-full bg-gradient-to-t from-amber-400 via-orange-400 to-rose-500/30 opacity-40 blur-[120px]" />
+          
+          {/* 1. The Breathing Sun Core */}
+          <div className="absolute -bottom-[40%] left-1/2 -translate-x-1/2 w-[100vw] h-[100vw] rounded-full bg-gradient-to-t from-amber-400 via-orange-400 to-rose-500/30 blur-[120px] animate-breathe" />
 
           {/* 2. The Horizon (Bleeding out to the bottom left and right) */}
           <div className="absolute -bottom-[20%] -left-[10%] w-[60vw] h-[50vw] rounded-full bg-red-500/15 blur-[140px]" />
           <div className="absolute -bottom-[20%] -right-[10%] w-[60vw] h-[50vw] rounded-full bg-pink-500/15 blur-[140px]" />
 
-          {/* 3. Cinematic Sun Rays (Using Tailwind's amber color hex #f59e0b) */}
-          <div 
-            className="absolute -bottom-[50%] left-1/2 -translate-x-1/2 w-[200vw] h-[200vw] opacity-20 mix-blend-overlay blur-[60px]"
-            style={{
-              backgroundImage: 'repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, #f59e0b 15deg, transparent 30deg)'
-            }}
-          />
+          {/* 3. Cinematic Sun Rays (Slowly Rotating) */}
+          <div className="absolute -bottom-[50%] left-1/2 -translate-x-1/2 w-[200vw] h-[200vw] opacity-20 mix-blend-overlay blur-[60px] animate-slow-spin">
+            <div 
+              className="w-full h-full rounded-full"
+              style={{ backgroundImage: 'repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, #f59e0b 15deg, transparent 30deg)' }}
+            />
+          </div>
 
           {/* 4. The Atmosphere (Subtle top glow) */}
           <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[80vw] h-[40vw] rounded-full bg-blue-400/5 blur-[100px]" />
 
-          {/* 5. Film Grain (If you don't have a noise.png, you can remove this div or add a subtle CSS grain later) */}
+          {/* 5. NEW: Cinematic Embers / Fireflies */}
+          <div className="absolute inset-0">
+             <div className="absolute top-[60%] left-[20%] w-2 h-2 rounded-full bg-amber-200/60 blur-[1px] animate-float-1" />
+             <div className="absolute top-[80%] left-[70%] w-3 h-3 rounded-full bg-orange-300/40 blur-[2px] animate-float-2" />
+             <div className="absolute top-[40%] left-[80%] w-1.5 h-1.5 rounded-full bg-amber-100/50 blur-[1px] animate-float-3" />
+             <div className="absolute top-[70%] left-[40%] w-4 h-4 rounded-full bg-rose-300/30 blur-[3px] animate-float-1" style={{ animationDelay: '2s' }} />
+             <div className="absolute top-[30%] left-[10%] w-2 h-2 rounded-full bg-amber-400/40 blur-[1px] animate-float-2" style={{ animationDelay: '4s' }} />
+          </div>
+
+          {/* 6. Film Grain */}
           <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
+
+          {/* MAGIC CSS: Pure CSS Animations for the background */}
+          <style dangerouslySetInnerHTML={{__html: `
+            @keyframes slow-spin {
+              from { transform: translateX(-50%) rotate(0deg); }
+              to { transform: translateX(-50%) rotate(360deg); }
+            }
+            @keyframes breathe {
+              0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.35; }
+              50% { transform: translateX(-50%) scale(1.05) translateY(-2%); opacity: 0.45; }
+            }
+            
+            /* Embers drifting upwards and fading */
+            @keyframes float-up-1 {
+              0% { transform: translateY(0) scale(1); opacity: 0; }
+              20% { opacity: 1; }
+              80% { opacity: 1; }
+              100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
+            }
+            @keyframes float-up-2 {
+              0% { transform: translateY(0) scale(1) translateX(0); opacity: 0; }
+              20% { opacity: 0.8; }
+              80% { opacity: 0.8; }
+              100% { transform: translateY(-25vh) scale(0.8) translateX(5vw); opacity: 0; }
+            }
+            @keyframes float-up-3 {
+              0% { transform: translateY(0) scale(1) translateX(0); opacity: 0; }
+              20% { opacity: 0.6; }
+              80% { opacity: 0.6; }
+              100% { transform: translateY(-15vh) scale(1.2) translateX(-3vw); opacity: 0; }
+            }
+
+            .animate-slow-spin {
+              animation: slow-spin 120s linear infinite;
+              transform-origin: center center;
+            }
+            .animate-breathe {
+              animation: breathe 12s ease-in-out infinite;
+            }
+            .animate-float-1 { animation: float-up-1 10s ease-in-out infinite; }
+            .animate-float-2 { animation: float-up-2 14s ease-in-out infinite; }
+            .animate-float-3 { animation: float-up-3 12s ease-in-out infinite; }
+
+            /* Accessibility Compliance: Pause all motion if requested */
+            @media (prefers-reduced-motion: reduce) {
+              .animate-slow-spin, .animate-breathe, 
+              .animate-float-1, .animate-float-2, .animate-float-3 {
+                animation: none !important;
+                opacity: 0.5; /* Keep elements visible but static */
+              }
+            }
+          `}} />
         </div>
 
         {/* --- MAIN CONTENT WRAPPER (Elevated with relative z-10) --- */}
