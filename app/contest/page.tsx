@@ -16,8 +16,8 @@ export default function ContestsHubPage() {
     {
       id: 1,
       tag: "Contest #01",
-      title: "The Naming",
-      description: "Brush your brains up! Etch your mark into the decennial history.",
+      title: "പേരിടല്‍ ചടങ്ങ്",
+      description: "Brush your brains up!",
       status: "active",
       href: "/contest/letsname",
       isTextIcon: true,
@@ -36,7 +36,7 @@ export default function ContestsHubPage() {
     {
       id: 3,
       tag: "Contest #03",
-      title: "█████ ████",
+      : "█████ ████",
       description: "████ ██ ██████ ██ ██████ ███ ████████.",
       status: "locked",
       href: "#",
@@ -46,7 +46,7 @@ export default function ContestsHubPage() {
     {
       id: 4,
       tag: "Contest #04",
-      title: "██ █ █████",
+      : "██ █ █████",
       description: "██████ ████ ████ ██████████ ██████.",
       status: "locked",
       href: "#",
