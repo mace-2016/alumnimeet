@@ -36,7 +36,7 @@ export default function ContestsHubPage() {
     {
       id: 3,
       tag: "Contest #03",
-      : "█████ ████",
+      title: "█████ ████", // Fixed: Added 'title' here
       description: "████ ██ ██████ ██ ██████ ███ ████████.",
       status: "locked",
       href: "#",
@@ -46,7 +46,7 @@ export default function ContestsHubPage() {
     {
       id: 4,
       tag: "Contest #04",
-      : "██ █ █████",
+      title: "██ █ █████", // Fixed: Added 'title' here
       description: "██████ ████ ████ ██████████ ██████.",
       status: "locked",
       href: "#",
