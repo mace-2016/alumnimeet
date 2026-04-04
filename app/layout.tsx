@@ -235,7 +235,7 @@ export default function RootLayout({
           <main className="flex-grow">{children}</main>
 
           {/* FOOTER (Removed bg-white so it sits natively on the sunset gradient) */}
-          <footer className="py-16 border-t border-slate-200/40 text-center px-6">
+          <footer className="bg-white/80 backdrop-blur-md py-16 border-t border-slate-200/60 text-center px-6 relative z-10">
             <div className="max-w-4xl mx-auto space-y-6">
               <p className="font-serif text-2xl md:text-3xl text-[#1f295a] tracking-tight">
                 Journey Back <span className="italic text-amber-500 font-medium">to 2016</span>
