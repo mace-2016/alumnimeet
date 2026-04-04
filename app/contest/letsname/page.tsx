@@ -132,7 +132,7 @@ export default function EventNamePage() {
                     <Trophy className="w-3.5 h-3.5 text-[var(--color-mace-gold)]" strokeWidth={2} /> Contest #01
                   </div>
                   <h1 className="text-4xl md:text-6xl font-serif mb-4 tracking-tight">
-  <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-mace-rust)] to-[var(--color-mace-gold)]">പേരിടല്‍</span>
+  <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-mace-rust)] to-[var(--color-mace-gold)]">പേരിടല്‍ </span>
   <span className="text-[var(--color-mace-crimson)] italic font-light pr-3">ചടങ്ങ്</span>
 </h1>
 
