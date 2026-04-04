@@ -56,8 +56,18 @@ export default function DriveUploader() {
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
+      // Filter for images only
       const imageFiles = Array.from(e.target.files).filter(file => file.type.startsWith('image/'));
-      addFilesToQueue(imageFiles);
+      
+      if (imageFiles.length > 0) {
+        addFilesToQueue(imageFiles);
+      } else {
+        // Alert the user if they picked a PDF or document from their file manager
+        alert("Please select image files only.");
+      }
+      
+      // Reset the input value so they can open the picker again without issues
+      if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
 
@@ -246,7 +256,7 @@ export default function DriveUploader() {
             transition: 'all 0.2s ease'
           }}
         >
-          <input type="file" multiple accept="image/*" ref={fileInputRef} onChange={handleFileSelect} style={{ display: 'none' }} />
+          <input type="file" multiple ref={fileInputRef} onChange={handleFileSelect} style={{ display: 'none' }} />
           <div style={{ fontSize: '48px', marginBottom: '16px', filter: isDragging ? 'grayscale(0%)' : 'grayscale(100%)', opacity: isDragging ? 1 : 0.6, transition: 'all 0.2s' }}>🖼️</div>
           <h3 style={{ margin: '0 0 8px 0', color: '#111', fontSize: '18px', fontWeight: '700' }}>{isDragging ? 'Drop images here' : 'Select or drop images'}</h3>
           <p style={{ margin: 0, color: '#888', fontSize: '14px' }}>Supports JPG, PNG, WEBP</p>
