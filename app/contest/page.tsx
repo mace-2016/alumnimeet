@@ -130,10 +130,10 @@ export default function ContestsHubPage() {
                         </p>
                         
                         <h2 className="text-4xl lg:text-5xl font-serif mb-3 md:mb-4 tracking-tight group-hover:opacity-80 transition-opacity duration-500">
-                          <span className="text-[var(--color-mace-crimson)] italic font-light pr-2 lg:pr-3">
+                          <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-mace-rust)] to-[var(--color-mace-gold)]">
                             {contest.title.split(" ")[0]}
                           </span>
-                          <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-mace-rust)] to-[var(--color-mace-gold)]">
+                          <span className="text-[var(--color-mace-crimson)] italic font-light pr-2 lg:pr-3">
                             {contest.title.split(" ").slice(1).join(" ")}
                           </span>
                         </h2>
