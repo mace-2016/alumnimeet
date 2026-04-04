@@ -27,7 +27,7 @@ const RIBBON_IMAGES = [
 ];
 export default function HomePage() {
   const [isRibbonPaused, setIsRibbonPaused] = useState(false);
-const displayImages = [...RIBBON_IMAGES, ...RIBBON_IMAGES];
+  const displayImages = [...RIBBON_IMAGES, ...RIBBON_IMAGES];
   const [mounted, setMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 0, hours: 0, minutes: 0, seconds: 0,
