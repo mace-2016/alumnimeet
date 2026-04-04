@@ -426,14 +426,14 @@ const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
           <>
             <Play className="w-4 h-4 ml-0.5 fill-current" aria-hidden="true" />
             <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em]">
-              Play
+              
             </span>
           </>
         ) : (
           <>
             <Pause className="w-4 h-4 fill-current" aria-hidden="true" />
             <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em]">
-              Pause
+              
             </span>
           </>
         )}
