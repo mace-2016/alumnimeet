@@ -130,7 +130,7 @@ export default function RootLayout({
                         className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1f295a] hover:bg-amber-50 hover:text-amber-600 transition-colors"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(16,185,129,0.6)]"></span>
-                        01: The Naming
+                        01: പേരിടല്‍ ചടങ്ങ്
                       </Link>
                       <div className="flex items-center gap-3 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 bg-slate-50/50 cursor-not-allowed">
                         <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
