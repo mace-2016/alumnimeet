@@ -155,8 +155,8 @@ export default function GalleryPage() {
               <button
                 key={tab.id}
                 onClick={() => handleTabClick(tab.id)}
-                className={`snap-start whitespace-nowrap px-5 py-2 rounded-full text-[11px] font-bold uppercase tracking-[0.15em] transition-all duration-300 border ${
-                  activeTab === tab.id
+                className={`snap-start whitespace-nowrap px-5 py-2 rounded-full text-[12px] font-serif font-medium tracking-[0.08em] capitalize transition-all duration-300 border ${
+ activeTab === tab.id
                     ? "bg-[var(--color-mace-crimson)] border-[var(--color-mace-crimson)] text-white shadow-[0_8px_20px_rgba(116,12,8,0.16)] scale-[1.03]"
                     : "bg-white/60 border-[var(--border)] text-[var(--text-muted)] hover:border-[var(--color-mace-gold)]/50 hover:text-[var(--color-mace-crimson)] hover:bg-white"
                 }`}
