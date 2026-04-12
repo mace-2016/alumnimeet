@@ -14,7 +14,7 @@ import {
   Film,
   Pause,
 } from "lucide-react";
-import FloatingGallery from "./FloatingGallery";
+import FloatingGallery from "@/components/FloatingGallery";
 
 const RIBBON_IMAGES = [
   { src: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop", caption: "Graduation Day", year: "2016" },
