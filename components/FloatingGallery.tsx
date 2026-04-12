@@ -217,12 +217,12 @@ export default function FloatingGallery({
                 isDesktop ? "hidden md:block" : "block md:hidden",
               ].join(" ")}
             >
-              <img
-                src={card.src}
-                alt={card.caption}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
+             <img
+  src="/icon.png"
+  alt="memory"
+  loading="eager"
+  className="h-full w-full object-cover"
+/>
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.03)_0%,rgba(0,0,0,0.02)_100%)]" />
             </motion.div>
           );
