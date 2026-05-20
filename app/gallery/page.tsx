@@ -5,7 +5,7 @@ import { getImagesFromFolder } from "@/lib/googleDrive";
 const DRIVE_FOLDERS = [
   {
     id: "the-hostels",
-    driveFolderId: "12CF3H2wyr1FJbz1jk6uvLP53b6JN2FCw", // e.g., 1aBcD2eFgH...
+    driveFolderId: "1uclaab47vdYL1pRIu7Fotk-N_slxkO5U", // e.g., 1aBcD2eFgH...
     title: "Oh! Those years!",
     year: "2016",
     description: "Memories we'd love to hold on to.",
@@ -13,7 +13,7 @@ const DRIVE_FOLDERS = [
   },
   {
     id: "convocation",
-    driveFolderId: "1uclaab47vdYL1pRIu7Fotk-N_slxkO5U",
+    driveFolderId: "12CF3H2wyr1FJbz1jk6uvLP53b6JN2FCw",
     title: "Some Specials",
     year: "2016",
     description: "And some of those days were super special!",
@@ -33,7 +33,7 @@ const DRIVE_FOLDERS = [
     title: "And here we are!",
     year: "2026",
     locked: true,
-    description: "Live updates dropping on Dec 19, 2026.",
+    description: "A Gallery to Hold on | Dec 19, '26",
   },
 ];
 
