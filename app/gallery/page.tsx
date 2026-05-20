@@ -22,10 +22,10 @@ const GALLERY_CATEGORIES = [
   },
   {
     id: "where-are-we",
-    title: "Fiddling around all these while?",
+    title: "And just like that, we all grew up!",
     era: "present",
     count: 54,
-    description: "Mini-reunions, weddings, and life updates across the globe.",
+    description: "Some chased dreams, some moved cities, some built careers, and many began new chapters.",
   },
   {
     id: "decennial-live",
