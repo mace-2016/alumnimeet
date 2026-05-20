@@ -1,6 +1,8 @@
 import GalleryClient from "./GalleryClient";
 import { getImagesFromFolder } from "@/lib/googleDrive";
 
+export const revalidate = 60; // Revalidate the cache every 60 seconds
+
 // Your category structure, now acting as the data mapping source
 const DRIVE_FOLDERS = [
   {
