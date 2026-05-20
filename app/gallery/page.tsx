@@ -18,7 +18,7 @@ const GALLERY_CATEGORIES = [
     title: "Some Specials",
     era: "golden",
     count: 86,
-    description: "And some that made it special.",
+    description: "And some of those days were super special!",
   },
   {
     id: "where-are-we",
