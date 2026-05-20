@@ -69,8 +69,8 @@ export default function GalleryPage() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const era = entry.target.getAttribute("data-era");
-          if (era) setActiveTab(era);
+          const categoryId = entry.target.getAttribute("data-category-id");
+if (categoryId) setActiveTab(categoryId);
         }
       });
     }, observerOptions);
@@ -98,15 +98,17 @@ export default function GalleryPage() {
     };
   }, []);
 
-  const handleTabClick = (eraId: string) => {
-    setActiveTab(eraId);
+  const handleTabClick = (categoryId: string) => {
+  setActiveTab(categoryId);
 
-    if (eraId === "all") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
+  if (categoryId === "all") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
 
-    const element = document.querySelector(`section[data-era="${eraId}"]`);
+  const element = document.querySelector(
+    `section[data-category-id="${categoryId}"]`
+  );
     if (element) {
       const y = element.getBoundingClientRect().top + window.scrollY - 140;
       window.scrollTo({ top: y, behavior: "smooth" });
@@ -171,32 +173,23 @@ export default function GalleryPage() {
 
       {/* GALLERY ROWS (Grouped by Era) */}
       <div className="w-full max-w-[1140px] mx-auto space-y-16 md:space-y-24">
-        {TABS.filter((tab) => tab.id !== "all").map((tab, tabIndex) => {
-          // Find all categories that belong to this specific tab's era
-          const sectionCategories = GALLERY_CATEGORIES.filter(
-            (category) => category.era === tab.id
-          );
-
-          // If no categories match, skip rendering this section
-          if (sectionCategories.length === 0) return null;
-
-          return (
-            <section
-              key={tab.id}
-              data-era={tab.id}
-              // Connect this section to our IntersectionObserver
-              ref={(el) => {
-                 sectionRefs.current[tabIndex] = el;
-              }}
+        {GALLERY_CATEGORIES.map((category, categoryIndex) => {
+  return (
+    <section
+      key={category.id}
+      data-category-id={category.id}
+      ref={(el) => {
+        sectionRefs.current[categoryIndex] = el;
+      }}
               className="relative w-full transition-all duration-700"
               style={{ transform: "translateZ(0)" }}
             >
-              {tabIndex !== 0 && (
+              {categoryIndex !== 0 && (
                 <div className="absolute left-6 right-6 -top-8 md:-top-12 h-px bg-gradient-to-r from-transparent via-[var(--color-mace-gold)]/20 to-transparent" />
               )}
 
               <div className="space-y-12 md:space-y-16">
-                {sectionCategories.map((category) => (
+               
                   <div key={category.id} className="relative">
                     {/* ROW HEADER */}
                     <div className="px-6 mb-6 flex items-end justify-between gap-4">
@@ -241,10 +234,7 @@ export default function GalleryPage() {
                           </div>
                         ) : (
                           <>
-                            {generatePlaceholders(
-                              6,
-                              category.era === "present" ? "2025" : "2016"
-                            ).map((item) => (
+                           {generatePlaceholders(6, category.year).map((item) => (
                               <div
                                 key={item.id}
                                 className="group/card relative w-[220px] md:w-[260px] shrink-0 snap-start aspect-[4/5] overflow-hidden rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface-soft)] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(116,12,8,0.08)] transition-all duration-500 cursor-pointer flex flex-col"
@@ -268,7 +258,7 @@ export default function GalleryPage() {
                                   </h4>
                                 </div>
                               </div>
-                            ))}
+                            
 
                             <Link
                               href={`/gallery/${category.id}`}
