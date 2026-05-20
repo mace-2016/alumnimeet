@@ -8,14 +8,14 @@ import { Camera, ArrowRight, Lock, Sparkles, Layers } from "lucide-react";
 const GALLERY_CATEGORIES = [
   {
     id: "the-hostels",
-    title: "The Hostels",
+    title: "Oh! Those years!",
     era: "golden",
     count: 142,
     description: "Memories we'd love to hold on to.",
   },
   {
     id: "convocation",
-    title: "Convocation",
+    title: "Some Specials",
     era: "golden",
     count: 86,
     description: "And some that made it special.",
