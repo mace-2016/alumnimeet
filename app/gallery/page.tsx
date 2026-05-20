@@ -7,18 +7,10 @@ export const revalidate = 60; // Revalidate the cache every 60 seconds
 const DRIVE_FOLDERS = [
   {
     id: "the-hostels",
-    driveFolderId: "1uclaab47vdYL1pRIu7Fotk-N_slxkO5U", // e.g., 1aBcD2eFgH...
+    driveFolderId: "1uclaab47vdYL1pRIu7Fotk-N_slxkO5U", 
     title: "Oh! Those years!",
     year: "2016",
-    description: "Memories we'd love to hold on to.",
-    locked: false,
-  },
-  {
-    id: "convocation",
-    driveFolderId: "12CF3H2wyr1FJbz1jk6uvLP53b6JN2FCw",
-    title: "Some Specials",
-    year: "2016",
-    description: "And some of those days were super special!",
+    description: "Because some days are too good to leave behind.",
     locked: false,
   },
   {
