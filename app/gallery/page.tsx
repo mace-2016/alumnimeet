@@ -9,29 +9,29 @@ const GALLERY_CATEGORIES = [
   {
     id: "the-hostels",
     title: "Oh! Those years!",
-    era: "golden",
     count: 142,
+    year: "2016",
     description: "Memories we'd love to hold on to.",
   },
   {
     id: "convocation",
     title: "Some Specials",
-    era: "golden",
     count: 86,
+    year: "2016",
     description: "And some of those days were super special!",
   },
   {
     id: "where-are-we",
-    title: "And just like that, we all grew up!",
-    era: "present",
+    title: "Just like that, we all grew up!",
     count: 54,
+    year: "2026",
     description: "Some chased dreams, some moved cities, some built careers, and many began new chapters.",
   },
   {
     id: "decennial-live",
     title: "And here we are!",
-    era: "live",
     count: 0,
+    year: "2026",
     locked: true,
     description: "Live updates dropping on Dec 19, 2026.",
   },
@@ -46,9 +46,10 @@ const generatePlaceholders = (count: number, year: string) =>
 
 const TABS = [
   { id: "all", label: "All" },
-  { id: "golden", label: "Those Days!" },
-  { id: "present", label: "Where were we?" },
-  { id: "live", label: "And here we stand" },
+  ...GALLERY_CATEGORIES.map((category) => ({
+    id: category.id,
+    label: category.title,
+  })),
 ];
 
 export default function GalleryPage() {
