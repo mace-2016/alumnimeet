@@ -310,7 +310,7 @@ export default function HomePage() {
                 </div>
               </div>
               <p className="max-w-lg text-base md:text-lg lg:text-xl font-medium text-[var(--text-muted)] leading-relaxed">
-                Step into the vault. A curated collection of our best days, perfectly preserved for the decennial.
+                Perfectly preserved for the decennial.
               </p>
             </div>
           </div>
